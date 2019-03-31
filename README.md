@@ -2,7 +2,7 @@ Plan działania:
 
 Faza I:
 
-Parsowanie artykułów reutersa z formatu sgm do stworzonej przez nas klasy.
+✔️ Parsowanie artykułów reutersa z formatu sgm do stworzonej przez nas klasy.
 
 Ekstrachowanie cech z artykułów znajdujących się już w stworzonej wcześniej klasie.
 
