@@ -5,8 +5,8 @@ import parsing.Article;
 import java.text.BreakIterator;
 import java.util.*;
 
-class Convert {
-    private static List<String> contentToWords(String text) {
+public class Converter {
+    public static List<String> contentToWords(String text) {
         List<String> words = new ArrayList<>();
         BreakIterator breakIterator = BreakIterator.getWordInstance();
         breakIterator.setText(text);
@@ -22,7 +22,7 @@ class Convert {
         return words;
     }
 
-    static Map<String, Float> articlesToVector(List<Article> articles) {
+    public static Map<String, Float> articlesToVector(List<Article> articles) {
         Map<String, Float> vector = new HashMap<>();
         for(Article article : articles) {
             List<String> wordsInArticles = contentToWords(article.getContent());
