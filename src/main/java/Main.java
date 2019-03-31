@@ -1,4 +1,5 @@
 import extracting.NElementsSelector;
+import extracting.feature_extractors.Stopwords;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ public class Main {
         oko.put("f",3f);
         oko.put("g",2f);
         List<String> e = NElementsSelector.selectN(oko,3);
+        System.out.println(Stopwords.getInstance().getListOfStopwords().stream().anyMatch(t -> t.equals("the")));
         e.forEach(System.out::println);
         System.out.println("Hello");
     }
