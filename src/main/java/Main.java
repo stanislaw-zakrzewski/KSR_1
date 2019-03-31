@@ -24,7 +24,7 @@ public class Main {
         System.out.println("Hello");
         Read read = new Read();
 
-        List<Article> lst = read.readTag("C:\\Users\\macie\\OneDrive\\Studia\\Rok III\\Semestr VI\\Komputerowe systemy rozpoznawania\\zadanie1\\src\\main\\resources\\sgm\\reut2-000.sgm", "PLACES");
+        List<Article> lst = read.readTag("src\\main\\resources\\sgm\\reut2-000.sgm", "PLACES");
 
         for (Article art:
              lst) {
