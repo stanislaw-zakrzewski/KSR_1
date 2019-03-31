@@ -24,4 +24,14 @@ public class Article {
     public String getContent() {
         return content;
     }
+
+    public void printAll() {
+        System.out.println("Article title: " + title);
+        System.out.println("Article body: " + content);
+        System.out.print("Tags: ");
+        for (int i=0;i<tags.size();i++) {
+            System.out.println(tags.get(i));
+        }
+        System.out.println("\n \n");
+    }
 }
