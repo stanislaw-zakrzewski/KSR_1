@@ -38,6 +38,7 @@ public class MainExtractor {
             vectorPart = extractorRemoveStopWords.extract(vectorPart, articles);
             //First words
             vectorPart = extractorFirstWords.extract(vectorPart, articles);
+
             for(String element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
                 if(!vector.contains(element)) {
                     vector.add(element);
