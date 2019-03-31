@@ -6,10 +6,10 @@ import java.util.*;
 
 public class Stopwords {
     private static Stopwords instance;
-    private List<String> listOfStopwords;
+    private HashSet<String> listOfStopwords;
 
     private Stopwords() {
-        listOfStopwords = new ArrayList<>();
+        listOfStopwords = new HashSet<>();
         Scanner scanner = null;
         try {
             scanner = new Scanner(new File("src\\main\\resources\\stopwords.txt"));
@@ -30,7 +30,7 @@ public class Stopwords {
         return instance;
     }
 
-    public List<String> getListOfStopwords() {
-        return listOfStopwords;
+    public boolean contains(String word) {
+        return listOfStopwords.contains(word);
     }
 }

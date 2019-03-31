@@ -13,14 +13,14 @@ public class Read {
     public List<Article> readTag(String fileName, String tag) {
         String line;
         FileReader fileReader = null;
-        String txt = "";
-        String tit = "";
-        String bod = "";
+        StringBuilder txt = new StringBuilder();
+        StringBuilder tit = new StringBuilder();
+        StringBuilder bod = new StringBuilder();
         List<Article> articles = new ArrayList<Article>();
         boolean readableTag = false;
         boolean readableTitle = false;
         boolean readableBody = false;
-        String tg = "";
+        StringBuilder tg = new StringBuilder();
 
         try {
             fileReader = new FileReader(fileName);
@@ -30,59 +30,59 @@ public class Read {
                 if (line.length() != 0) {
                     int i = 0;
                     while (i < line.length()) {
-                        if (readableTag == true) {
+                        if (readableTag) {
                             if (line.charAt(i) == '<' && line.charAt(i + 1) == '/' && line.charAt(i + 2) == 'D') {
-                                txt += " ";
+                                txt.append(" ");
                             } else if (line.charAt(i) != '<') {
-                                txt += line.charAt(i);
+                                txt.append(line.charAt(i));
                             }
                         }
-                        if (readableTitle == true) {
+                        if (readableTitle) {
                             if (line.charAt(i) == '<' && line.charAt(i + 1) == '/' && line.charAt(i + 2) == 'T') {
-                                tit += " ";
+                                tit.append(" ");
                             } else if (line.charAt(i) != '<') {
-                                tit += line.charAt(i);
+                                tit.append(line.charAt(i));
                             }
                         }
-                        if (readableBody == true) {
+                        if (readableBody) {
                             if (line.charAt(i) == '<' && line.charAt(i + 1) == '/' && line.charAt(i + 2) == 'B') {
-                                bod += " ";
+                                bod.append(" ");
                             } else if (line.charAt(i) != '<') {
-                                bod += line.charAt(i);
+                                bod.append(line.charAt(i));
                             }
                         }
                         if (line.charAt(i) == '<') {
                             i++;
                             while (line.charAt(i) != '>') {
-                                tg += line.charAt(i);
+                                tg.append(line.charAt(i));
                                 i++;
                             }
-                            if (tg.equals(tag)) {
+                            if (tg.toString().equals(tag)) {
                                 readableTag = true;
                             }
-                            if (tg.equals(("/" + tag))) {
+                            if (tg.toString().equals(("/" + tag))) {
                                 readableTag = false;
                             }
-                            if (tg.equals("TITLE")) {
+                            if (tg.toString().equals("TITLE")) {
                                 readableTitle = true;
                             }
-                            if (tg.equals(("/" + "TITLE"))) {
+                            if (tg.toString().equals(("/" + "TITLE"))) {
                                 readableTitle = false;
                             }
-                            if (tg.equals("BODY")) {
+                            if (tg.toString().equals("BODY")) {
                                 readableBody = true;
                             }
-                            if (tg.equals(("/" + "BODY"))) {
+                            if (tg.toString().equals(("/" + "BODY"))) {
                                 readableBody = false;
                             }
-                            if (tg.equals("/" + "REUTERS")) {
-                                List<String> retList = new ArrayList<String>(Arrays.asList(txt.split(" ")));
-                                articles.add(new Article(retList, tit, bod));
-                                txt = "";
-                                tit = "";
-                                bod = "";
+                            if (tg.toString().equals("/" + "REUTERS")) {
+                                List<String> retList = new ArrayList<String>(Arrays.asList(txt.toString().split(" ")));
+                                articles.add(new Article(retList, tit.toString(), bod.toString()));
+                                txt = new StringBuilder();
+                                tit = new StringBuilder();
+                                bod = new StringBuilder();
                             }
-                            tg = "";
+                            tg = new StringBuilder();
                         }
                         i++;
                     }

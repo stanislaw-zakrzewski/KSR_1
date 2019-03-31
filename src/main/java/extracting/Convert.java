@@ -23,13 +23,12 @@ class Convert {
     }
 
     static Map<String, Float> articlesToVector(List<Article> articles) {
-        Random random = new Random();
         Map<String, Float> vector = new HashMap<>();
         for(Article article : articles) {
             List<String> wordsInArticles = contentToWords(article.getContent());
             for(String word : wordsInArticles) {
                 if(!vector.containsKey(word)) {
-                    vector.put(word, random.nextFloat());
+                    vector.put(word, 0f);
                 }
             }
         }

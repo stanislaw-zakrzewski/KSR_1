@@ -1,5 +1,6 @@
 package extracting;
 
+import extracting.feature_extractors.ExtractorRemoveStopWords;
 import parsing.Article;
 
 import java.util.ArrayList;
@@ -26,15 +27,21 @@ public class MainExtractor {
 
         List<String> vector = new ArrayList<>();
 
+        ExtractorRemoveStopWords extractorRemoveStopWords = new ExtractorRemoveStopWords();
+
         for(String tag : tags) {
+            System.out.println(tag);
             Map<String, Float> vectorPart = Convert.articlesToVector(articlesByTags.get(tag));
-            //TODO feature extraction
+            //Remove StopWords
+            vectorPart = extractorRemoveStopWords.extract(vectorPart, articles);
+            //TODO First words
             for(String element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
                 if(!vector.contains(element)) {
                     vector.add(element);
                 }
             }
         }
+        System.out.println();
 
         return vector;
     }
