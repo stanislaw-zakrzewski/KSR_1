@@ -1,3 +1,8 @@
+import parsing.Article;
+import parsing.Read;
+
+import java.util.List;
+
 import extracting.NElementsSelector;
 import extracting.feature_extractors.Stopwords;
 
@@ -19,5 +24,13 @@ public class Main {
         System.out.println(Stopwords.getInstance().getListOfStopwords().stream().anyMatch(t -> t.equals("the")));
         e.forEach(System.out::println);
         System.out.println("Hello");
+        Read read = new Read();
+
+        List<Article> lst = read.readTag("src\\main\\resources\\sgm\\reut2-000.sgm", "PLACES");
+
+        for (Article art:
+             lst) {
+            art.printAll();
+        }
     }
 }
