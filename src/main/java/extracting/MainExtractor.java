@@ -1,6 +1,8 @@
 package extracting;
 
 import extracting.feature_extractors.ExtractorFirstWords;
+import extracting.feature_extractors.ExtractorRemoveFrequentOccurances;
+import extracting.feature_extractors.ExtractorRemoveRarelyOccurringWords;
 import extracting.feature_extractors.ExtractorRemoveStopWords;
 import parsing.Article;
 
@@ -30,16 +32,23 @@ public class MainExtractor {
 
         ExtractorRemoveStopWords extractorRemoveStopWords = new ExtractorRemoveStopWords();
         ExtractorFirstWords extractorFirstWords = new ExtractorFirstWords();
+        ExtractorRemoveFrequentOccurances extractorRemoveFrequentOccurances = new ExtractorRemoveFrequentOccurances();
+        ExtractorRemoveRarelyOccurringWords extractorRemoveRarelyOccurringWords = new ExtractorRemoveRarelyOccurringWords();
 
         for(String tag : tags) {
-            System.out.println(tag);
+            System.out.println("-----------------" + tag + articlesByTags.get(tag).size());
+            //System.out.println(tag + "\t\t" + articlesByTags.get(tag).size());
             Map<String, Float> vectorPart = Converter.articlesToVector(articlesByTags.get(tag));
             //Remove StopWords
-            vectorPart = extractorRemoveStopWords.extract(vectorPart, articles);
+            vectorPart = extractorRemoveStopWords.extract(vectorPart, articlesByTags.get(tag));
             //First words
-            vectorPart = extractorFirstWords.extract(vectorPart, articles);
-
+            vectorPart = extractorFirstWords.extract(vectorPart, articlesByTags.get(tag));
+            //TODO Remove frequent occurances
+            //vectorPart = extractorRemoveFrequentOccurances.extract(vectorPart, articlesByTags.get(tag));
+            //Remove rarely occurring words USE ARTICLES INSTEAD OF ARTICLES BY TAGS
+            vectorPart = extractorRemoveRarelyOccurringWords.extract(vectorPart, articles);
             for(String element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
+                System.out.println(tag + "\t\t" + element);
                 if(!vector.contains(element)) {
                     vector.add(element);
                 }
