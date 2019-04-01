@@ -12,7 +12,7 @@ public class Stopwords {
         listOfStopwords = new HashSet<>();
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("src\\main\\resources\\stopwords.txt"));
+            scanner = new Scanner(new File("src/main/resources/stopwords.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

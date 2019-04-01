@@ -24,7 +24,7 @@ public class MainExtractor {
         }
 
         Map<String, List<Article>> articlesByTags = new HashMap<>();
-        for(String tag : tags) {
+        for (String tag : tags) {
             articlesByTags.put(tag, articles.stream().filter(a -> a.getTags().contains(tag)).collect(Collectors.toList()));
         }
 
@@ -35,24 +35,32 @@ public class MainExtractor {
         ExtractorRemoveFrequentOccurances extractorRemoveFrequentOccurances = new ExtractorRemoveFrequentOccurances();
         ExtractorRemoveRarelyOccurringWords extractorRemoveRarelyOccurringWords = new ExtractorRemoveRarelyOccurringWords();
 
-        for(String tag : tags) {
-            System.out.println("-----------------" + tag + articlesByTags.get(tag).size());
+        for (String tag : tags) {
+            if(articlesByTags.get(tag).size() > 20) System.out.println(articlesByTags.get(tag).size() + "\t\t" + tag);
             //System.out.println(tag + "\t\t" + articlesByTags.get(tag).size());
             Map<String, Float> vectorPart = Converter.articlesToVector(articlesByTags.get(tag));
+
+            //TODO Stemizacja PorterStemmer
+
             //Remove StopWords
             vectorPart = extractorRemoveStopWords.extract(vectorPart, articlesByTags.get(tag));
+
             //First words
             vectorPart = extractorFirstWords.extract(vectorPart, articlesByTags.get(tag));
+
             //TODO Remove frequent occurances
             //vectorPart = extractorRemoveFrequentOccurances.extract(vectorPart, articlesByTags.get(tag));
+
             //Remove rarely occurring words USE ARTICLES INSTEAD OF ARTICLES BY TAGS
             vectorPart = extractorRemoveRarelyOccurringWords.extract(vectorPart, articles);
-            for(String element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
-                System.out.println(tag + "\t\t" + element);
-                if(!vector.contains(element)) {
+
+            for (String element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
+                if(articlesByTags.get(tag).size() > 20) System.out.println(element);
+                if (!vector.contains(element)) {
                     vector.add(element);
                 }
             }
+            if(articlesByTags.get(tag).size() > 20)  System.out.println();
         }
         System.out.println();
 

@@ -1,23 +1,17 @@
 import extracting.MainExtractor;
 import parsing.Article;
-import parsing.Read;
+import parsing.ReadAll;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Read read = new Read();
+        ReadAll readAll = new ReadAll();
+        List<Article> arts = readAll.readAll("src/main/resources/sgm/", "PLACES");
 
-        List<Article> lst = read.readTag("src\\main\\resources\\sgm\\reut2-000.sgm", "PLACES");
-
-        List<String> vector = MainExtractor.createVector(lst, 2);
-        for(String word : vector) {
-            //System.out.println(word);
+        List<String> vector = MainExtractor.createVector(arts, 3);
+        for (String word : vector) {
+            System.out.println(word);
         }
-
-        /*for (Article art:
-             lst) {
-            art.printAll();
-        }*/
     }
 }
