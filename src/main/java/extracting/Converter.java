@@ -5,6 +5,7 @@ import parsing.Article;
 import java.text.BreakIterator;
 import java.util.*;
 
+//TODO Fix this garbage
 public class Converter {
     public static List<String> contentToWords(String text) {
         List<String> words = new ArrayList<>();
@@ -22,10 +23,10 @@ public class Converter {
         return words;
     }
 
-    public static Map<String, Float> articlesToVector(List<Article> articles) {
-        Map<String, Float> vector = new HashMap<>();
-        for(Article article : articles) {
-            List<String> wordsInArticles = contentToWords(article.getContent());
+    public static Map<Object, Float> articlesToVector(List<Object> articles) {
+        Map<Object, Float> vector = new HashMap<>();
+        for(Object article : articles) {
+            List<String> wordsInArticles = contentToWords(((Article)article).getContent());
             for(String word : wordsInArticles) {
                 if(!vector.containsKey(word)) {
                     vector.put(word, 0f);

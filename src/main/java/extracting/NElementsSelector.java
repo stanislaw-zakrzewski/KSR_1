@@ -9,8 +9,8 @@ import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 public class NElementsSelector {
-    public static List<String> selectN(Map<String, Float> vector, int n) {
-        List<Entry<String, Float>> greatest = findGreatest(vector, n);
+    public static List<Object> selectN(Map<Object, Float> vector, int n) {
+        List<Entry<Object, Float>> greatest = findGreatest(vector, n);
         return greatest.stream().map(Entry::getKey).collect(Collectors.toList());
     }
 

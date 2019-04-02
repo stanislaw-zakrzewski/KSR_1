@@ -6,11 +6,19 @@ import parsing.Article;
 import java.util.*;
 
 public class ExtractorRemoveRarelyOccurringWords implements Extractor {
-    @Override
-    public Map<String, Float> extract(Map<String, Float> vector, List<Article> articles) {
+
+    /***
+     *
+     * @param vector - used
+     * @param elements - used
+     * @param elementsForTag - unused in this case
+     * @param tag - unused in this case
+     * @return updated vector with removed rarely occurring elements
+     */
+    public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Map<String, Integer> occurrances = new HashMap<>();
-        for(Article article : articles) {
-            List<String> words = new ArrayList<>(new HashSet<>(Converter.contentToWords(article.getContent())));
+        for(Object article : elements) {
+            List<String> words = new ArrayList<>(new HashSet<>(Converter.contentToWords(((Article)article).getContent())));
             for(String word : words) {
                 if(vector.containsKey(word)) {
                     if (occurrances.containsKey(word)) {

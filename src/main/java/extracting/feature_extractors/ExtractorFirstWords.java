@@ -9,9 +9,9 @@ import java.util.Map;
 public class ExtractorFirstWords implements Extractor {
 
     @Override
-    public Map<String, Float> extract(Map<String, Float> vector, List<Article> articles) {
-        for(Article article : articles) {
-            List<String> words = Converter.contentToWords(article.getContent());
+    public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
+        for(Object article : elements) {
+            List<String> words = Converter.contentToWords(((Article)article).getContent());
             for (String word : words) {
                 if (vector.containsKey(word)) {
                     vector.replace(word, vector.get(word) + 10);
