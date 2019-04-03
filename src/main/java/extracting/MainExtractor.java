@@ -21,11 +21,14 @@ public class MainExtractor {
 
             //TODO Remove frequent occurances
 
+            System.out.println("--" + tag);
             for (Object element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
+                System.out.println(element);
                 if (!vector.contains(element)) {
                     vector.add(element);
                 }
             }
+            System.out.println();
         }
         return vector;
     }
