@@ -7,26 +7,25 @@ import java.util.List;
 import java.util.Map;
 
 public class MainExtractor {
-    public static List<Object> createVector(List<Object> elements, Map<String, List<Object>> elementsByTags, List<String> tags, int numberOfElementsPerTag, List<Extractor> extractors) {
-        List<Object> vector = new ArrayList<>();
+    public static List<List<Object>> createVector(List<Object> elements, Map<String, List<Object>> elementsByTags, List<String> tags, int numberOfElementsPerTag, List<Extractor> extractors) {
+        List<List<Object>> vector = new ArrayList<>();
 
-        for (String tag : tags) {
-            Map<Object, Float> vectorPart = Converter.articlesToVector(elementsByTags.get(tag));
+        for (int i = 0; i < tags.size(); i++) {
+            Map<Object, Float> vectorPart = Converter.articlesToVector(elementsByTags.get(tags.get(i)));
 
             for(Extractor extractor : extractors) {
-                vectorPart = extractor.extract(vectorPart, elements, elementsByTags.get(tag), tag);
+                vectorPart = extractor.extract(vectorPart, elements, elementsByTags.get(tags.get(i)), tags.get(i));
             }
 
             //TODO Stemizacja PorterStemmer
 
             //TODO Remove frequent occurances
 
-            System.out.println("--" + tag);
+            System.out.println("--" + tags.get(i));
+            vector.add(new ArrayList<Object>());
             for (Object element : NElementsSelector.selectN(vectorPart, numberOfElementsPerTag)) {
+                vector.get(i).add(element);
                 System.out.println(element);
-                if (!vector.contains(element)) {
-                    vector.add(element);
-                }
             }
             System.out.println();
         }
