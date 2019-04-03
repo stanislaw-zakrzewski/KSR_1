@@ -2,6 +2,9 @@ import extracting.MainExtractor;
 import extracting.feature_extractors.Extractor;
 import extracting.feature_extractors.ExtractorFirstWords;
 import extracting.feature_extractors.ExtractorRemoveStopWords;
+import knn_classification.VectorForElement;
+import matching_words.word_comparators.NGrams;
+import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 import parsing.ReadAll;
 
@@ -29,16 +32,41 @@ public class Main {
                 }
         );
 
+        List<Object> toRemove = new ArrayList<>();
+        for(Object article : articles) {
+            if(((Article)article).getTags().size() != 1) {
+                toRemove.add(article);
+            } else {
+                if(!tags.contains(((Article)article).getTags().get(0))) {
+                    toRemove.add(article);
+                }
+            }
+        }
+        articles.removeAll(toRemove);
+
         List<Extractor> extractors = new ArrayList<>();
         extractors.add(new ExtractorRemoveStopWords());
         extractors.add(new ExtractorFirstWords());
 
-        List<Object> vector = MainExtractor.createVector(articles, articlesByTags, tags, 5, extractors);
+        List<List<Object>> vector = MainExtractor.createVector(articles, articlesByTags, tags, 5, extractors);
+
+        WordComparator comparator = new NGrams();
+
+        List<List<Float>> testVectors = new LinkedList<>();
+        articles.forEach(a -> testVectors.add(VectorForElement.generateVector(vector, a, comparator)));
+
+        for(int i = 0; i < testVectors.size(); i++) {
+            System.out.println(((Article)articles.get(i)).getTags().get(0));
+            testVectors.get(i).forEach(v -> System.out.print(v + "  |  "));
+            System.out.println();
+            System.out.println();
+        }
 
         //TODO After reding all the articles we should filter them
 
-        for (Object word : vector) {
-            System.out.println((String) word);
+        for (List<Object> words : vector) {
+            words.forEach(w -> System.out.print(w + "\t"));
+            System.out.println();
         }
     }
 }
