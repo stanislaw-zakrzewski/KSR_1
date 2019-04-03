@@ -21,12 +21,12 @@ public class VectorForElement {
                 }
             }
         }
-        /*float max = vector.stream().max(Comparator.comparing(Float::floatValue)).get();
+        float max = vector.stream().max(Comparator.comparing(Float::floatValue)).get();
         if(max != 0) {
             for (int i = 0; i < vector.size(); i++) {
                 vector.set(i, vector.get(i)/max);
             }
-        }*/
+        }
         return vector;
     }
 }
