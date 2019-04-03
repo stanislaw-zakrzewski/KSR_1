@@ -10,7 +10,7 @@ public class ExtractorFirstWords implements Extractor {
 
     @Override
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
-        for(Object article : elements) {
+        for(Object article : elementsForTag) {
             List<String> words = Converter.contentToWords(((Article)article).getContent());
             for (String word : words) {
                 if (vector.containsKey(word)) {

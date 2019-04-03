@@ -1,5 +1,7 @@
 import extracting.MainExtractor;
 import extracting.feature_extractors.Extractor;
+import extracting.feature_extractors.ExtractorFirstWords;
+import extracting.feature_extractors.ExtractorRemoveStopWords;
 import parsing.Article;
 import parsing.ReadAll;
 
@@ -12,7 +14,7 @@ public class Main {
         List<String> tags = Arrays.asList("west-germany", "usa", "france", "uk", "canada", "japan");
 
         ReadAll readAll = new ReadAll();
-        List<Object> articles = new ArrayList<>();// readAll.readAll("src/main/resources/sgm/", "PLACES");
+        List<Object> articles = readAll.readAll("src/main/resources/sgm/", "PLACES");
 
         Map<String, List<Object>> articlesByTags = new HashMap<>();
 
@@ -28,12 +30,10 @@ public class Main {
         );
 
         List<Extractor> extractors = new ArrayList<>();
+        extractors.add(new ExtractorRemoveStopWords());
+        extractors.add(new ExtractorFirstWords());
 
-        //ReadAll readAll = new ReadAll();
-        //List<Article> arts = readAll.readAll("src/main/resources/sgm/", "PLACES");
-
-
-        List<Object> vector = MainExtractor.createVector(articles, articlesByTags, tags, 2, extractors);
+        List<Object> vector = MainExtractor.createVector(articles, articlesByTags, tags, 5, extractors);
 
         //TODO After reding all the articles we should filter them
 
