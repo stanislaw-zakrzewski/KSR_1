@@ -48,21 +48,41 @@ public class Main {
         extractors.add(new ExtractorRemoveStopWords());
         extractors.add(new ExtractorFirstWords());
 
-        List<List<Object>> vector = MainExtractor.createVector(articles, articlesByTags, tags, 5, extractors);
+        List<List<Object>> vector = MainExtractor.createVector(articles, articlesByTags, tags, 10, extractors);
 
         WordComparator comparator = new NGrams();
 
         List<List<Float>> testVectors = new LinkedList<>();
         articles.forEach(a -> testVectors.add(VectorForElement.generateVector(vector, a, comparator)));
 
+        Map<String, List<Float>> ret = new HashMap<>();
+        for(String tag : tags) {
+            List<Float> pom = new ArrayList<>();
+            for(int i = 0; i < tags.size(); i++) {
+                pom.add(0.f);
+            }
+            ret.put(tag, pom);
+        }
+
+
         for(int i = 0; i < testVectors.size(); i++) {
             System.out.println(((Article)articles.get(i)).getTags().get(0));
             testVectors.get(i).forEach(v -> System.out.print(v + "  |  "));
+            List<Float> pom = ret.get(((Article)articles.get(i)).getTags().get(0));
+            for(int j = 0; j < testVectors.get(i).size(); j++) {
+                pom.set(j, pom.get(j) + testVectors.get(i).get(j));
+            }
             System.out.println();
             System.out.println();
         }
 
         //TODO After reding all the articles we should filter them
+
+        for(String tag : tags) {
+            System.out.println(tag);
+            ret.get(tag).forEach(r -> System.out.print(r + "  |  "));
+            System.out.println();
+        }
 
         for (List<Object> words : vector) {
             words.forEach(w -> System.out.print(w + "\t"));
