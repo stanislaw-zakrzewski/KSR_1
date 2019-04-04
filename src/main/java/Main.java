@@ -3,6 +3,7 @@ import extracting.feature_extractors.Extractor;
 import extracting.feature_extractors.ExtractorFirstWords;
 import extracting.feature_extractors.ExtractorRemoveStopWords;
 import knn_classification.VectorForElement;
+import knn_classification.knnNetwork;
 import matching_words.word_comparators.NGrams;
 import matching_words.word_comparators.WordComparator;
 import parsing.Article;
@@ -48,7 +49,7 @@ public class Main {
         extractors.add(new ExtractorRemoveStopWords());
         extractors.add(new ExtractorFirstWords());
 
-        List<List<Object>> vector = MainExtractor.createVector(articles, articlesByTags, tags, 10, extractors);
+        List<List<Object>> vector = MainExtractor.createVector(articles, articlesByTags, tags, 5, extractors);
 
         WordComparator comparator = new NGrams();
 
@@ -65,7 +66,7 @@ public class Main {
         }
 
 
-        for(int i = 0; i < testVectors.size(); i++) {
+        /*for(int i = 0; i < testVectors.size(); i++) {
             System.out.println(((Article)articles.get(i)).getTags().get(0));
             testVectors.get(i).forEach(v -> System.out.print(v + "  |  "));
             List<Float> pom = ret.get(((Article)articles.get(i)).getTags().get(0));
@@ -74,7 +75,7 @@ public class Main {
             }
             System.out.println();
             System.out.println();
-        }
+        }*/
 
         //TODO After reding all the articles we should filter them
 
@@ -87,6 +88,16 @@ public class Main {
         for (List<Object> words : vector) {
             words.forEach(w -> System.out.print(w + "\t"));
             System.out.println();
+        }
+
+        knnNetwork network = new knnNetwork(vector.size(), tags);
+        for(int i = 0; i < testVectors.size(); i++) {
+            network.addVector(articles.get(i), testVectors.get(i));
+        }
+        Map<Object, String> oko = network.classify(10,4);
+
+        for(Object o : oko.keySet()) {
+            System.out.println(((Article)o).getTags().get(0) + "    " + oko.get(o));
         }
     }
 }

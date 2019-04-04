@@ -2,6 +2,7 @@ package knn_classification;
 
 import extracting.NElementsSelector;
 import knn_classification.calculate_distance.Distance;
+import knn_classification.calculate_distance.EuclideanDistance;
 import parsing.Article;
 
 import java.util.*;
@@ -30,10 +31,11 @@ public class knnNetwork {
         vectors.keySet().forEach(key -> answer.put(key, ""));
 
         uncoverNLabels(uncoveredLabelsForTagsCount);
+        Distance distance = new EuclideanDistance();
 
         for (Object o : answer.keySet()) {
-            if (!answer.get(o).equals("")) {
-
+            if (answer.get(o).equals("")) {
+                answer.replace(o, getLabel(o, distance, k));
             }
         }
 
@@ -107,7 +109,7 @@ public class knnNetwork {
             for (Object key : kElements.keySet()) {
                 closest.put((String) key, sumList(kElements.get(key)));
             }
-            String min = "";
+            String min = (String)(closest.keySet().toArray()[0]);
             for (String key : closest.keySet()) {
                 if (closest.get(key) < closest.get(min)) {
                     min = key;
