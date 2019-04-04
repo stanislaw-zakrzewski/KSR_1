@@ -12,29 +12,20 @@ import parsing.ReadAll;
 import java.util.*;
 
 public class Main {
+    private static final int k = 10;
+    private static final int numberOfElementsUncoveredForEachTag = 20;
+    private static final List<String> tags = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
+    private static final int numberOfElementsPerTag = 5;
+    private static final float trainToTestRatio = 0.4f;
+
     public static void main(String[] args) {
-
         //Parametry do klasyfikacji (1/3)
-        List<String> tags = Arrays.asList("west-germany", "usa", "france", "uk", "canada", "japan");
-
         ReadAll readAll = new ReadAll();
-        List<Object> articles = readAll.readAll("src/main/resources/sgm/", "PLACES");
+        List<Object> allArticles = readAll.readAll("src/main/resources/sgm/", "PLACES");
 
-        Map<String, List<Object>> articlesByTags = new HashMap<>();
-
-        tags.forEach(tag -> articlesByTags.put(tag, new ArrayList<>()));
-        articles.forEach(article -> {
-                    List<String> tagsForArticle = ((Article) article).getTags();
-                    if (tagsForArticle.size() == 1) {
-                        if (tags.contains(tagsForArticle.get(0))) {
-                            articlesByTags.get(tagsForArticle.get(0)).add(article);
-                        }
-                    }
-                }
-        );
-
+        //Remove all articles that have tags count other than 1 and if they have 1 check if it is in the list of tags
         List<Object> toRemove = new ArrayList<>();
-        for(Object article : articles) {
+        for(Object article : allArticles) {
             if(((Article)article).getTags().size() != 1) {
                 toRemove.add(article);
             } else {
@@ -43,61 +34,52 @@ public class Main {
                 }
             }
         }
-        articles.removeAll(toRemove);
+        allArticles.removeAll(toRemove);
 
+        List<Object> trainArticles = new ArrayList<>();
+        List<Object> testArticles = new ArrayList<>();
+        for(int i = 0; i < allArticles.size(); i++) {
+            if(((float)i)/((float)allArticles.size()) < trainToTestRatio) {
+                trainArticles.add(allArticles.get(i));
+            } else {
+                testArticles.add(allArticles.get(i));
+            }
+        }
+
+        Map<String, List<Object>> trainArticlesByTags = new HashMap<>();
+
+        tags.forEach(tag -> trainArticlesByTags.put(tag, new ArrayList<>()));
+        trainArticles.forEach(article -> {
+                    List<String> tagsForArticle = ((Article) article).getTags();
+                    if (tagsForArticle.size() == 1) {
+                        if (tags.contains(tagsForArticle.get(0))) {
+                            trainArticlesByTags.get(tagsForArticle.get(0)).add(article);
+                        }
+                    }
+                }
+        );
+
+        //Create list of extractors
         List<Extractor> extractors = new ArrayList<>();
         extractors.add(new ExtractorRemoveStopWords());
         extractors.add(new ExtractorFirstWords());
 
-        List<List<Object>> vector = MainExtractor.createVector(articles, articlesByTags, tags, 5, extractors);
+        //Generate vector using extractors
+        List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, tags, numberOfElementsPerTag, extractors);
 
+        //Generate vectors for articles in test set
         WordComparator comparator = new NGrams();
-
         List<List<Float>> testVectors = new LinkedList<>();
-        articles.forEach(a -> testVectors.add(VectorForElement.generateVector(vector, a, comparator)));
+        testArticles.forEach(a -> testVectors.add(VectorForElement.generateVector(vector, a, comparator)));
 
-        Map<String, List<Float>> ret = new HashMap<>();
-        for(String tag : tags) {
-            List<Float> pom = new ArrayList<>();
-            for(int i = 0; i < tags.size(); i++) {
-                pom.add(0.f);
-            }
-            ret.put(tag, pom);
-        }
-
-
-        /*for(int i = 0; i < testVectors.size(); i++) {
-            System.out.println(((Article)articles.get(i)).getTags().get(0));
-            testVectors.get(i).forEach(v -> System.out.print(v + "  |  "));
-            List<Float> pom = ret.get(((Article)articles.get(i)).getTags().get(0));
-            for(int j = 0; j < testVectors.get(i).size(); j++) {
-                pom.set(j, pom.get(j) + testVectors.get(i).get(j));
-            }
-            System.out.println();
-            System.out.println();
-        }*/
-
-        //TODO After reding all the articles we should filter them
-
-        for(String tag : tags) {
-            System.out.println(tag);
-            ret.get(tag).forEach(r -> System.out.print(r + "  |  "));
-            System.out.println();
-        }
-
-        for (List<Object> words : vector) {
-            words.forEach(w -> System.out.print(w + "\t"));
-            System.out.println();
-        }
-
+        //Use knn to classify articles
         knnNetwork network = new knnNetwork(vector.size(), tags);
         for(int i = 0; i < testVectors.size(); i++) {
-            network.addVector(articles.get(i), testVectors.get(i));
+            network.addVector(testArticles.get(i), testVectors.get(i));
         }
-        Map<Object, String> oko = network.classify(10,200);
-
-        for(Object o : oko.keySet()) {
-            System.out.println(((Article)o).getTags().get(0) + "    " + oko.get(o));
+        Map<Object, String> classifiedArticles = network.classify(k,numberOfElementsUncoveredForEachTag);
+        for(Object o : classifiedArticles.keySet()) {
+            System.out.println(((Article)o).getTags().get(0) + "    " + classifiedArticles.get(o));
         }
     }
 }
