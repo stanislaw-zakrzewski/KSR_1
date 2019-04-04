@@ -94,7 +94,7 @@ public class Main {
         for(int i = 0; i < testVectors.size(); i++) {
             network.addVector(articles.get(i), testVectors.get(i));
         }
-        Map<Object, String> oko = network.classify(10,4);
+        Map<Object, String> oko = network.classify(10,200);
 
         for(Object o : oko.keySet()) {
             System.out.println(((Article)o).getTags().get(0) + "    " + oko.get(o));
