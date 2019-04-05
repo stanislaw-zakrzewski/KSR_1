@@ -27,7 +27,7 @@ public class knnNetwork {
         }
     }
 
-    public Map<Object, String> classify(int k, int uncoveredLabelsForTagsCount) {
+    public Map<Object, String> classify(int k, float uncoveredLabelsForTagsCount) {
         vectors.keySet().forEach(key -> answer.put(key, ""));
 
         uncoverNLabels(uncoveredLabelsForTagsCount);
@@ -42,7 +42,7 @@ public class knnNetwork {
         return answer;
     }
 
-    private void uncoverNLabels(int n) {
+    private void uncoverNLabels(float n) {
         Map<String, Integer> uncoverdLabelsCount = new HashMap<>();
         tags.forEach(tag -> uncoverdLabelsCount.put(tag, 0));
         for (Object o : vectors.keySet()) {

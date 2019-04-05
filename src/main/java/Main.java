@@ -9,16 +9,70 @@ import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 import parsing.ReadAll;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
-    private static final int k = 10;
-    private static final int numberOfElementsUncoveredForEachTag = 20;
-    private static final List<String> tags = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
-    private static final int numberOfElementsPerTag = 5;
-    private static final float trainToTestRatio = 0.4f;
 
     public static void main(String[] args) {
+        int k = 0;
+        float fractionOfUncoveredForEachTag = 0;
+        //List<String> tags = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
+        int numberOfElementsPerTag = 0;
+        float trainToTestRatio = 0;
+
+        //Wczytaj config
+        String line;
+        FileReader fileReader = null;
+        List<String> tgs = new ArrayList<>();
+
+        try {
+            fileReader = new FileReader("src/main/resources/config.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while ((line = bufferedReader.readLine()) != null) {
+                //System.out.println(line);
+                String[] lines = line.split(" = ");
+                for (int d=0;d<lines.length;d++) {
+                    System.out.println(d+"  wartosc  "+lines[d]);
+                }
+                for (String l : lines) {
+                    //System.out.println(l);
+                    switch (l) {
+                        case "k":
+                            k = Integer.valueOf(lines[1]);
+                            break;
+                        case "fractionOfUncoveredForEachTag":
+                            fractionOfUncoveredForEachTag = Float.valueOf(lines[1]);
+                            break;
+                        case "tags":
+                            String[] tg = lines[1].split(", ");
+                            tgs = Arrays.asList(tg);
+                            break;
+                        case "numberOfElementsPerTag":
+                            numberOfElementsPerTag = Integer.valueOf(lines[1]);
+                            break;
+                        case "trainToTestRatio":
+                            trainToTestRatio = Float.valueOf(lines[1]);
+                            break;
+                        default:
+                            System.out.println("DUPA");
+                            break;
+                    }
+                }
+
+            }
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final List<String> tags = tgs;
+
         //Parametry do klasyfikacji (1/3)
         ReadAll readAll = new ReadAll();
         List<Object> allArticles = readAll.readAll("src/main/resources/sgm/", "PLACES");
@@ -77,7 +131,7 @@ public class Main {
         for(int i = 0; i < testVectors.size(); i++) {
             network.addVector(testArticles.get(i), testVectors.get(i));
         }
-        Map<Object, String> classifiedArticles = network.classify(k,numberOfElementsUncoveredForEachTag);
+        Map<Object, String> classifiedArticles = network.classify(k,fractionOfUncoveredForEachTag);
         for(Object o : classifiedArticles.keySet()) {
             System.out.println(((Article)o).getTags().get(0) + "    " + classifiedArticles.get(o));
         }

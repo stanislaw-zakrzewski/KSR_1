@@ -1,0 +1,5 @@
+k = 10
+fractionOfUncoveredForEachTag = 20
+tags = "west-germany", "usa", "france", "uk", "canada", "japan"
+numberOfElementsPerTag = 5
+trainToTestRatio = 0.4f
