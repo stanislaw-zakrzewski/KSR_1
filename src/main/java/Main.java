@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
@@ -131,7 +130,7 @@ public class Main {
             System.out.print(++i + "\t");
             System.out.println(((Article) o).getTags().get(0) + "    " + classifiedArticles.get(o));
         }
-        System.out.println(Precision.calculate(tags, correctlabels, resultlabels));
+        System.out.println("Precision: " + Precision.calculate(tags, correctlabels, resultlabels));
     }
 
     private static Map<String, List<Object>> getElementsForTags(List<Object> elements, List<String> tags) {
