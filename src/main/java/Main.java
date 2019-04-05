@@ -101,8 +101,8 @@ public class Main {
             }
         }
 
-        Map<String, List<Object>> trainArticlesByTags = getElementsForTags(trainArticles);
-        Map<String, List<Object>> testArticlesByTags = getElementsForTags(testArticles);
+        Map<String, List<Object>> trainArticlesByTags = getElementsForTags(trainArticles, tags);
+        Map<String, List<Object>> testArticlesByTags = getElementsForTags(testArticles, tags);
 
         //Check how many elements are there for each tag
         for (String o : testArticlesByTags.keySet()) {
@@ -140,7 +140,7 @@ public class Main {
         System.out.println(Precision.calculate(tags, correctlabels, resultlabels));
     }
 
-    private static Map<String, List<Object>> getElementsForTags(List<Object> elements) {
+    private static Map<String, List<Object>> getElementsForTags(List<Object> elements, List<String> tags) {
         Map<String, List<Object>> elementsForTags = new HashMap<>();
         tags.forEach(tag -> elementsForTags.put(tag, new ArrayList<>()));
         elements.forEach(article -> {
