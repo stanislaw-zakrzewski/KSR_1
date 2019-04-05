@@ -8,12 +8,13 @@ import matching_words.word_comparators.NGrams;
 import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 import parsing.ReadAll;
+import results.Precision;
 
 import java.util.*;
 
 public class Main {
-    private static final int k = 10;
-    private static final int numberOfElementsUncoveredForEachTag = 20;
+    private static final int k = 40;
+    private static final int numberOfElementsUncoveredForEachTag = 50;
     private static final List<String> tags = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
     private static final int numberOfElementsPerTag = 5;
     private static final float trainToTestRatio = 0.4f;
@@ -25,11 +26,11 @@ public class Main {
 
         //Remove all articles that have tags count other than 1 and if they have 1 check if it is in the list of tags
         List<Object> toRemove = new ArrayList<>();
-        for(Object article : allArticles) {
-            if(((Article)article).getTags().size() != 1) {
+        for (Object article : allArticles) {
+            if (((Article) article).getTags().size() != 1) {
                 toRemove.add(article);
             } else {
-                if(!tags.contains(((Article)article).getTags().get(0))) {
+                if (!tags.contains(((Article) article).getTags().get(0))) {
                     toRemove.add(article);
                 }
             }
@@ -38,26 +39,21 @@ public class Main {
 
         List<Object> trainArticles = new ArrayList<>();
         List<Object> testArticles = new ArrayList<>();
-        for(int i = 0; i < allArticles.size(); i++) {
-            if(((float)i)/((float)allArticles.size()) < trainToTestRatio) {
+        for (int i = 0; i < allArticles.size(); i++) {
+            if (((float) i) / ((float) allArticles.size()) < trainToTestRatio) {
                 trainArticles.add(allArticles.get(i));
             } else {
                 testArticles.add(allArticles.get(i));
             }
         }
 
-        Map<String, List<Object>> trainArticlesByTags = new HashMap<>();
+        Map<String, List<Object>> trainArticlesByTags = getElementsForTags(trainArticles);
+        Map<String, List<Object>> testArticlesByTags = getElementsForTags(testArticles);
 
-        tags.forEach(tag -> trainArticlesByTags.put(tag, new ArrayList<>()));
-        trainArticles.forEach(article -> {
-                    List<String> tagsForArticle = ((Article) article).getTags();
-                    if (tagsForArticle.size() == 1) {
-                        if (tags.contains(tagsForArticle.get(0))) {
-                            trainArticlesByTags.get(tagsForArticle.get(0)).add(article);
-                        }
-                    }
-                }
-        );
+        //Check how many elements are there for each tag
+        for (String o : testArticlesByTags.keySet()) {
+            System.out.println(o + "  " + testArticlesByTags.get(o).size());
+        }
 
         //Create list of extractors
         List<Extractor> extractors = new ArrayList<>();
@@ -74,12 +70,34 @@ public class Main {
 
         //Use knn to classify articles
         knnNetwork network = new knnNetwork(vector.size(), tags);
-        for(int i = 0; i < testVectors.size(); i++) {
+        for (int i = 0; i < testVectors.size(); i++) {
             network.addVector(testArticles.get(i), testVectors.get(i));
         }
-        Map<Object, String> classifiedArticles = network.classify(k,numberOfElementsUncoveredForEachTag);
-        for(Object o : classifiedArticles.keySet()) {
-            System.out.println(((Article)o).getTags().get(0) + "    " + classifiedArticles.get(o));
+        Map<Object, String> classifiedArticles = network.classify(k, numberOfElementsUncoveredForEachTag);
+        int i = 0;
+        List<String> correctlabels = new ArrayList<>();
+        List<String> resultlabels = new ArrayList<>();
+        for (Object o : classifiedArticles.keySet()) {
+            correctlabels.add(((Article) o).getTags().get(0));
+            resultlabels.add(classifiedArticles.get(o));
+            System.out.print(++i + "\t");
+            System.out.println(((Article) o).getTags().get(0) + "    " + classifiedArticles.get(o));
         }
+        System.out.println(Precision.calculate(tags, correctlabels, resultlabels));
+    }
+
+    private static Map<String, List<Object>> getElementsForTags(List<Object> elements) {
+        Map<String, List<Object>> elementsForTags = new HashMap<>();
+        tags.forEach(tag -> elementsForTags.put(tag, new ArrayList<>()));
+        elements.forEach(article -> {
+                    List<String> tagsForArticle = ((Article) article).getTags();
+                    if (tagsForArticle.size() == 1) {
+                        if (tags.contains(tagsForArticle.get(0))) {
+                            elementsForTags.get(tagsForArticle.get(0)).add(article);
+                        }
+                    }
+                }
+        );
+        return elementsForTags;
     }
 }
