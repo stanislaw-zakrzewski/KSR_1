@@ -35,13 +35,8 @@ public class Main {
             fileReader = new FileReader("src/main/resources/config.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
-                //System.out.println(line);
                 String[] lines = line.split(" = ");
-                for (int d=0;d<lines.length;d++) {
-                    System.out.println(d+"  wartosc  "+lines[d]);
-                }
                 for (String l : lines) {
-                    //System.out.println(l);
                     switch (l) {
                         case "k":
                             k = Integer.valueOf(lines[1]);
@@ -60,7 +55,6 @@ public class Main {
                             trainToTestRatio = Float.valueOf(lines[1]);
                             break;
                         default:
-                            System.out.println("DUPA");
                             break;
                     }
                 }
@@ -127,7 +121,7 @@ public class Main {
         for (int i = 0; i < testVectors.size(); i++) {
             network.addVector(testArticles.get(i), testVectors.get(i));
         }
-        Map<Object, String> classifiedArticles = network.classify(k, 0.1f);
+        Map<Object, String> classifiedArticles = network.classify(k, fractionOfUncoveredForEachTag);
         int i = 0;
         List<String> correctlabels = new ArrayList<>();
         List<String> resultlabels = new ArrayList<>();
