@@ -12,6 +12,7 @@ public class knnNetwork {
     private Map<Object, String> answer;
     private final int vectorSize;
     private final List<String> tags;
+    private Map<String, Integer> tagsCount;
 
 
     public knnNetwork(int vectorSize, List<String> tags) {
@@ -19,18 +20,24 @@ public class knnNetwork {
         this.vectorSize = vectorSize;
         this.tags = tags;
         answer = new HashMap<>();
+        tagsCount = new HashMap<>();
+        for(String tag : tags) {
+            tagsCount.put(tag, 0);
+        }
     }
 
     public void addVector(Object objectToAdd, List<Float> vectorToAdd) {
         if (vectorToAdd.size() == vectorSize) {
             vectors.put(objectToAdd, vectorToAdd);
         }
+        String tag = ((Article)objectToAdd).getTags().get(0);
+        tagsCount.replace(tag, tagsCount.get(tag) + 1);
     }
 
-    public Map<Object, String> classify(int k, int uncoveredLabelsForTagsCount) {
+    public Map<Object, String> classify(int k, float uncoveredLabelsPercent) {
         vectors.keySet().forEach(key -> answer.put(key, ""));
 
-        uncoverNLabels(uncoveredLabelsForTagsCount);
+        uncoverNLabels(uncoveredLabelsPercent);
         Distance distance = new EuclideanDistance();
 
         for (Object o : answer.keySet()) {
@@ -42,20 +49,24 @@ public class knnNetwork {
         return answer;
     }
 
-    private void uncoverNLabels(int n) {
-        Map<String, Integer> uncoverdLabelsCount = new HashMap<>();
-        tags.forEach(tag -> uncoverdLabelsCount.put(tag, 0));
+    private void uncoverNLabels(float n) {
+        Map<String, Integer> uncoveredLabelsCount = new HashMap<>();
+        tags.forEach(tag -> uncoveredLabelsCount.put(tag, (int)(tagsCount.get(tag) * n)));
         for (Object o : vectors.keySet()) {
             String tag = ((Article) o).getTags().get(0);
-            if (uncoverdLabelsCount.containsKey(tag)) {
-                if (uncoverdLabelsCount.get(tag) == n - 1) {
-                    uncoverdLabelsCount.remove(tag);
+            if (uncoveredLabelsCount.containsKey(tag)) {
+                if (uncoveredLabelsCount.get(tag) == 1) {
+                    uncoveredLabelsCount.remove(tag);
                 } else {
-                    uncoverdLabelsCount.replace(tag, uncoverdLabelsCount.get(tag) + 1);
+                    uncoveredLabelsCount.replace(tag, uncoveredLabelsCount.get(tag) - 1);
                 }
                 answer.replace(o, tag);
             }
         }
+    }
+
+    private void uncoverNLabelsForTag() {
+
     }
 
     private String getLabel(Object object, Distance distance, int k) {

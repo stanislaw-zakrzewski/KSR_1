@@ -73,7 +73,7 @@ public class Main {
         for (int i = 0; i < testVectors.size(); i++) {
             network.addVector(testArticles.get(i), testVectors.get(i));
         }
-        Map<Object, String> classifiedArticles = network.classify(k, numberOfElementsUncoveredForEachTag);
+        Map<Object, String> classifiedArticles = network.classify(k, 0.1f);
         int i = 0;
         List<String> correctlabels = new ArrayList<>();
         List<String> resultlabels = new ArrayList<>();
