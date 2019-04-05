@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Komputerowe systemy rozpoznawania" />
         <module name="KSR.KSR_1" />
-        <module name="zadanie1" />
         <module name="KSR_1" />
+        <module name="zadanie1" />
       </profile>
     </annotationProcessing>
   </component>
