@@ -45,7 +45,7 @@ public class ConfusionMatrix {
             }
         }
         maxLength++;
-        int lineLenght =  (maxLength+1) * (tags.size()+1) + tags.size() + 1;
+        int lineLenght =  (maxLength+1) * (tags.size()+1) + tags.size() + 2;
 
         System.out.println("Confusion matrix:");
         printLine(lineLenght);
