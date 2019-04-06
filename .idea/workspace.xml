@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41ade00b-97fb-4451-8e28-c55de9bc0be7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/StanfordLemmatizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorFirstWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorFirstWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveFrequentOccurances.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveFrequentOccurances.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveRarelyOccurringWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveRarelyOccurringWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveStopWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveStopWords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/stopwords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stopwords.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="136" column="67" selection-start-line="136" selection-start-column="67" selection-end-line="136" selection-end-column="67" />
+            <state relative-caret-position="203">
+              <caret line="112" column="43" selection-start-line="112" selection-start-column="43" selection-end-line="112" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+            <state relative-caret-position="493">
+              <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/stopwords.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84643">
-              <caret line="4979" column="7" selection-start-line="4979" selection-start-column="7" selection-end-line="4979" selection-end-column="7" />
+            <state relative-caret-position="84558">
+              <caret line="4974" column="7" selection-start-line="4974" selection-start-column="7" selection-end-line="4974" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -95,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="493">
               <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -177,12 +168,12 @@
         <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorFirstWords.java" />
         <option value="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" />
         <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveStopWords.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/stopwords.txt" />
         <option value="$PROJECT_DIR$/src/main/resources/config.txt" />
         <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/StanfordLemmatizer.java" />
         <option value="$PROJECT_DIR$/src/main/java/extracting/Converter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/stopwords.txt" />
       </list>
     </option>
   </component>
@@ -316,7 +307,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554542727322" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554547766975" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/stanford-corenlp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -374,18 +365,18 @@
       <workItem from="1554278321938" duration="2656000" />
       <workItem from="1554452273998" duration="1894000" />
       <workItem from="1554466475692" duration="8479000" />
-      <workItem from="1554540238733" duration="2479000" />
+      <workItem from="1554540238733" duration="5251000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31262000" />
+    <option name="totallyTimeSpent" value="34034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17686805" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17686805" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -395,7 +386,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969603" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.32735777" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.32735777" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3998441" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -604,27 +595,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/stopwords.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84643">
-          <caret line="4979" column="7" selection-start-line="4979" selection-start-column="7" selection-end-line="4979" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveStopWords.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="20" column="77" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -672,20 +646,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="136" column="67" selection-start-line="136" selection-start-column="67" selection-end-line="136" selection-end-column="67" />
+        <state relative-caret-position="493">
+          <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/stopwords.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        <state relative-caret-position="84558">
+          <caret line="4974" column="7" selection-start-line="4974" selection-start-column="7" selection-end-line="4974" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="112" column="43" selection-start-line="112" selection-start-column="43" selection-end-line="112" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
