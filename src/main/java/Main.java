@@ -1,6 +1,7 @@
 import extracting.MainExtractor;
 import extracting.feature_extractors.Extractor;
 import extracting.feature_extractors.ExtractorFirstWords;
+import extracting.feature_extractors.ExtractorRemoveNumbers;
 import extracting.feature_extractors.ExtractorRemoveStopWords;
 import knn_classification.VectorForElement;
 import knn_classification.knnNetwork;
@@ -106,7 +107,7 @@ public class Main {
         List<Extractor> extractors = new ArrayList<>();
         extractors.add(new ExtractorRemoveStopWords());
         extractors.add(new ExtractorFirstWords());
-
+        extractors.add(new ExtractorRemoveNumbers());
         //Generate vector using extractors
         List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, tags, numberOfElementsPerTag, extractors);
 
