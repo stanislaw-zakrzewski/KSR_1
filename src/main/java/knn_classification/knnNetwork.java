@@ -1,6 +1,7 @@
 package knn_classification;
 
 import extracting.NElementsSelector;
+import knn_classification.calculate_distance.ChebyshevDistance;
 import knn_classification.calculate_distance.Distance;
 import knn_classification.calculate_distance.EuclideanDistance;
 import parsing.Article;
@@ -38,7 +39,7 @@ public class knnNetwork {
         vectors.keySet().forEach(key -> answer.put(key, ""));
 
         uncoverNLabels(uncoveredLabelsPercent);
-        Distance distance = new EuclideanDistance();
+        Distance distance = new ChebyshevDistance();
 
         for (Object o : answer.keySet()) {
             if (answer.get(o).equals("")) {
