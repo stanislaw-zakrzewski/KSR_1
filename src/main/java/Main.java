@@ -4,56 +4,99 @@ import extracting.feature_extractors.ExtractorFirstWords;
 import extracting.feature_extractors.ExtractorRemoveNumbers;
 import extracting.feature_extractors.ExtractorRemoveStopWords;
 import knn_classification.VectorForElement;
+import knn_classification.calculate_distance.ChebyshevDistance;
+import knn_classification.calculate_distance.Distance;
+import knn_classification.calculate_distance.EuclideanDistance;
+import knn_classification.calculate_distance.ManhattanDistance;
 import knn_classification.knnNetwork;
 import matching_words.word_comparators.NGrams;
 import matching_words.word_comparators.WordComparator;
+import matching_words.word_comparators.WordComparator2;
 import parsing.Article;
 import parsing.ReadAll;
 import results.ConfusionMatrix;
 import results.Precision;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
 
     public static void main(String[] args) {
+        //Variables read from file
+        String tagClass = "";
+        String folderPath = "";
+        int articlesToReadCount = 0;
         int k = 0;
         float fractionOfUncoveredForEachTag = 0;
-        //List<String> tags = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
         int numberOfElementsPerTag = 0;
         float trainToTestRatio = 0;
+        Distance distance = null;
+        WordComparator wordComparator = null;
 
         //Wczytaj config
         String line;
-        FileReader fileReader = null;
-        List<String> tgs = new ArrayList<>();
+        List<String> tags = new ArrayList<>();
 
         try {
-            fileReader = new FileReader("src/main/resources/config.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/config.txt"));
             while ((line = bufferedReader.readLine()) != null) {
                 String[] lines = line.split(" = ");
                 for (String l : lines) {
                     switch (l) {
+                        case "tagClass":
+                            tagClass = lines[1];
+                            break;
+                        case "folderPath":
+                            folderPath = lines[1];
+                            break;
+                        case "articlesToReadCount":
+                            articlesToReadCount = Integer.parseInt(lines[1]);
+                            break;
                         case "k":
                             k = Integer.valueOf(lines[1]);
                             break;
                         case "fractionOfUncoveredForEachTag":
-                            fractionOfUncoveredForEachTag = Float.valueOf(lines[1]);
+                            fractionOfUncoveredForEachTag = Float.parseFloat(lines[1]);
                             break;
                         case "tags":
                             String[] tg = lines[1].split(", ");
-                            tgs = Arrays.asList(tg);
+                            tags = Arrays.asList(tg);
                             break;
                         case "numberOfElementsPerTag":
                             numberOfElementsPerTag = Integer.valueOf(lines[1]);
                             break;
                         case "trainToTestRatio":
                             trainToTestRatio = Float.valueOf(lines[1]);
+                            break;
+                        case "distanceKNN":
+                            switch (lines[1]) {
+                                case ("chebyshev"):
+                                    distance = new ChebyshevDistance();
+                                    break;
+                                case ("euclidean"):
+                                    distance = new EuclideanDistance();
+                                    break;
+                                case ("manhattan"):
+                                    distance = new ManhattanDistance();
+                                    break;
+                            }
+                            break;
+                        case "wordSimilarity":
+                            switch (lines[1]) {
+                                case ("NGrams"):
+                                    wordComparator = new NGrams();
+                                    break;
+                                case ("wordComparator2"):
+                                    wordComparator = new WordComparator2();
+                                    break;
+                            }
                             break;
                         default:
                             break;
@@ -62,16 +105,12 @@ public class Main {
 
             }
             bufferedReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        final List<String> tags = tgs;
 
-        //Parametry do klasyfikacji (1/3)
-        ReadAll readAll = new ReadAll();
-        List<Object> allArticles = readAll.readAll("src/main/resources/sgm/", "PLACES");
+        //Read all articles
+        List<Object> allArticles = ReadAll.read(folderPath, tagClass, articlesToReadCount);
 
         //Remove all articles that have tags count other than 1 and if they have 1 check if it is in the list of tags
         List<Object> toRemove = new ArrayList<>();
@@ -113,18 +152,19 @@ public class Main {
         List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, tags, numberOfElementsPerTag, extractors);
 
         //Generate vectors for articles in test set
-        WordComparator comparator = new NGrams();
         List<List<Float>> testVectors = new LinkedList<>();
         VectorForElement vectorForElement = new VectorForElement();
-        testArticles.forEach(a -> testVectors.add(vectorForElement.generateVector(vector, a, comparator)));
+        for (Object o : testArticles) {
+            testVectors.add(vectorForElement.generateVector(vector, o, wordComparator));
+        }
 
         //Use knn to classify articles
         knnNetwork network = new knnNetwork(vector.size(), tags);
         for (int i = 0; i < testVectors.size(); i++) {
             network.addVector(testArticles.get(i), testVectors.get(i));
         }
-        Map<Object, String> classifiedArticles = network.classify(k, fractionOfUncoveredForEachTag);
-        int i = 0;
+
+        Map<Object, String> classifiedArticles = network.classify(k, fractionOfUncoveredForEachTag, distance);
         List<String> correctlabels = new ArrayList<>();
         List<String> resultlabels = new ArrayList<>();
 
@@ -133,7 +173,7 @@ public class Main {
             correctlabels.add(((Article) o).getTags().get(0));
             resultlabels.add(classifiedArticles.get(o));
         }
-        System.out.println("Pecision:" + Precision.calculate(tags, correctlabels, resultlabels));
+        System.out.println("Pecision: " + Precision.calculate(tags, correctlabels, resultlabels));
         System.out.println();
         ConfusionMatrix.calculate(tags, correctlabels, resultlabels);
     }

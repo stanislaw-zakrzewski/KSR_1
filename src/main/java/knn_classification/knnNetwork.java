@@ -1,9 +1,7 @@
 package knn_classification;
 
 import extracting.NElementsSelector;
-import knn_classification.calculate_distance.ChebyshevDistance;
 import knn_classification.calculate_distance.Distance;
-import knn_classification.calculate_distance.EuclideanDistance;
 import parsing.Article;
 
 import java.util.*;
@@ -35,11 +33,10 @@ public class knnNetwork {
         tagsCount.replace(tag, tagsCount.get(tag) + 1);
     }
 
-    public Map<Object, String> classify(int k, float uncoveredLabelsPercent) {
+    public Map<Object, String> classify(int k, float uncoveredLabelsPercent, Distance distance) {
         vectors.keySet().forEach(key -> answer.put(key, ""));
 
         uncoverNLabels(uncoveredLabelsPercent);
-        Distance distance = new ChebyshevDistance();
 
         for (Object o : answer.keySet()) {
             if (answer.get(o).equals("")) {
@@ -66,10 +63,6 @@ public class knnNetwork {
         }
     }
 
-    private void uncoverNLabelsForTag() {
-
-    }
-
     private String getLabel(Object object, Distance distance, int k) {
         if (!answer.get(object).equals("")) {
             return answer.get(object);
@@ -84,7 +77,9 @@ public class knnNetwork {
             }
         }
 
-        List<Object> toRemove = NElementsSelector.selectN(distances, distances.size() - k);
+        int w = distances.size() -k;
+        if (w <=0) w = 1;
+        List<Object> toRemove = NElementsSelector.selectN(distances, w);
         for (Object rm : toRemove) {
             distances.remove(rm);
         }

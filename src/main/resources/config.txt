@@ -1,5 +1,10 @@
-k = 10
+tagClass = PEOPLE
+folderPath = src/main/resources/sgm/
+articlesToReadCount = 2
+k = 3
 fractionOfUncoveredForEachTag = 0.1f
-tags = west-germany, usa, france, uk, canada, japan
-numberOfElementsPerTag = 10
-trainToTestRatio = 0.4f
+tags = reagan, ongpin
+numberOfElementsPerTag = 3
+trainToTestRatio = 0.5f
+distanceKNN = manhattan
+wordSimilarity = NGrams

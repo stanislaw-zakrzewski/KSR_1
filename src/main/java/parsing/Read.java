@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Read {
-    public List<Article> readTag(String fileName, String tag) {
+    public static List<Article> readTag(String fileName, String tag) {
         String line;
         FileReader fileReader = null;
         StringBuilder txt = new StringBuilder();

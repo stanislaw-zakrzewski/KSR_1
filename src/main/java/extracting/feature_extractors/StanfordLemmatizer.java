@@ -22,7 +22,7 @@ public class StanfordLemmatizer {
 
     protected StanfordCoreNLP pipeline;
 
-    public StanfordLemmatizer() {
+    private StanfordLemmatizer() {
         // Create StanfordCoreNLP object properties, with POS tagging
         // (required for lemmatization), and lemmatization
         Properties props;
