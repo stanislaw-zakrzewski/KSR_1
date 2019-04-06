@@ -1,10 +1,10 @@
 tagClass = PEOPLE
 folderPath = src/main/resources/sgm/
-articlesToReadCount = 2
-k = 3
+articlesToReadCount = 23
+k = 5
 fractionOfUncoveredForEachTag = 0.1f
 tags = reagan, ongpin
-numberOfElementsPerTag = 3
+numberOfElementsPerTag = 5
 trainToTestRatio = 0.5f
 distanceKNN = manhattan
 wordSimilarity = NGrams
