@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ExtractorRemoveFrequentOccurances implements Extractor {
+    private Converter converter;
+
+    public ExtractorRemoveFrequentOccurances() {
+        converter = new Converter();
+    }
 
     /***
      *
@@ -20,7 +25,7 @@ public class ExtractorRemoveFrequentOccurances implements Extractor {
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Map<String, Integer> occurrances = new HashMap<>();
         for(Object article : elementsForTag) {
-            List<String> words = Converter.contentToWords(((Article)article).getContent());
+            List<String> words = converter.contentToWords(((Article)article).getContent());
             for(String word : words) {
                 if(vector.containsKey(word)) {
                     if (occurrances.containsKey(word)) {

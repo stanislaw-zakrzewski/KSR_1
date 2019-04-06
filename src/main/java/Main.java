@@ -8,6 +8,7 @@ import matching_words.word_comparators.NGrams;
 import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 import parsing.ReadAll;
+import results.ConfusionMatrix;
 import results.Precision;
 
 import java.io.BufferedReader;
@@ -114,7 +115,8 @@ public class Main {
         //Generate vectors for articles in test set
         WordComparator comparator = new NGrams();
         List<List<Float>> testVectors = new LinkedList<>();
-        testArticles.forEach(a -> testVectors.add(VectorForElement.generateVector(vector, a, comparator)));
+        VectorForElement vectorForElement = new VectorForElement();
+        testArticles.forEach(a -> testVectors.add(vectorForElement.generateVector(vector, a, comparator)));
 
         //Use knn to classify articles
         knnNetwork network = new knnNetwork(vector.size(), tags);
@@ -131,7 +133,8 @@ public class Main {
             System.out.print(++i + "\t");
             System.out.println(((Article) o).getTags().get(0) + "    " + classifiedArticles.get(o));
         }
-        System.out.println(Precision.calculate(tags, correctlabels, resultlabels));
+        System.out.println("Pecision:" + Precision.calculate(tags, correctlabels, resultlabels));
+        ConfusionMatrix.calculate(tags, correctlabels, resultlabels);
     }
 
     private static Map<String, List<Object>> getElementsForTags(List<Object> elements, List<String> tags) {

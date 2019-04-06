@@ -6,7 +6,11 @@ import parsing.Article;
 import java.util.*;
 
 public class ExtractorRemoveRarelyOccurringWords implements Extractor {
+    private Converter converter;
 
+    public ExtractorRemoveRarelyOccurringWords() {
+        converter = new Converter();
+    }
     /***
      *
      * @param vector - used
@@ -18,7 +22,7 @@ public class ExtractorRemoveRarelyOccurringWords implements Extractor {
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Map<String, Integer> occurrances = new HashMap<>();
         for(Object article : elements) {
-            List<String> words = new ArrayList<>(new HashSet<>(Converter.contentToWords(((Article)article).getContent())));
+            List<String> words = new ArrayList<>(new HashSet<>(converter.contentToWords(((Article)article).getContent())));
             for(String word : words) {
                 if(vector.containsKey(word)) {
                     if (occurrances.containsKey(word)) {

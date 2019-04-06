@@ -1,5 +1,5 @@
 k = 10
-fractionOfUncoveredForEachTag = 20
+fractionOfUncoveredForEachTag = 0.1f
 tags = west-germany, usa, france, uk, canada, japan
-numberOfElementsPerTag = 5
+numberOfElementsPerTag = 4
 trainToTestRatio = 0.4f
