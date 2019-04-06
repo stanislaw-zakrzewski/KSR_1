@@ -9,11 +9,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class VectorForElement {
-    public static List<Float> generateVector(List<List<Object>> objectsVector, Object element, WordComparator comparator) {
+    private Converter converter;
+    public VectorForElement() {
+        converter = new Converter();
+    }
+
+    public List<Float> generateVector(List<List<Object>> objectsVector, Object element, WordComparator comparator) {
         List<Float> vector = new LinkedList<>();
         objectsVector.forEach(e -> vector.add(0f));
 
-        List<String> words = Converter.contentToWords(((Article)element).getContent());
+        List<String> words = converter.contentToWords(((Article)element).getContent());
         for (String word : words) {
             for (int i = 0; i < objectsVector.size(); i++) {
                 for (Object word2 : (objectsVector.get(i))) {

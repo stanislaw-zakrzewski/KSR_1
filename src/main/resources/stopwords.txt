@@ -4967,3 +4967,13 @@ corp
 cts
 co
 has
+oper
+shr
+ct
+<
+bank
+finance
+qtr
+'s
+-lrb-
+january

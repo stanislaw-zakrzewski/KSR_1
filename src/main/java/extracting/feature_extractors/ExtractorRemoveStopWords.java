@@ -18,7 +18,7 @@ public class ExtractorRemoveStopWords implements Extractor {
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         List<String> toRemove = new ArrayList<>();
         for (Object key : vector.keySet()) {
-            if (Stopwords.getInstance().contains((String) key)) {
+            if (Stopwords.getInstance().contains(((String) key).toLowerCase())) {
                 toRemove.add((String) key);
             }
         }
