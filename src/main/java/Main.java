@@ -9,9 +9,9 @@ import knn_classification.calculate_distance.Distance;
 import knn_classification.calculate_distance.EuclideanDistance;
 import knn_classification.calculate_distance.ManhattanDistance;
 import knn_classification.knnNetwork;
-import matching_words.word_comparators.NGrams;
+import matching_words.word_comparators.GeneralizedNGrams;
 import matching_words.word_comparators.WordComparator;
-import matching_words.word_comparators.WordComparator2;
+import matching_words.word_comparators.NGrams;
 import parsing.Article;
 import parsing.ReadAll;
 import results.ConfusionMatrix;
@@ -86,11 +86,11 @@ public class Main {
                             break;
                         case "wordSimilarity":
                             switch (lines[1]) {
+                                case ("GeneralizedNGrams"):
+                                    wordComparator = new GeneralizedNGrams();
+                                    break;
                                 case ("NGrams"):
                                     wordComparator = new NGrams();
-                                    break;
-                                case ("wordComparator2"):
-                                    wordComparator = new WordComparator2();
                                     break;
                             }
                             break;
