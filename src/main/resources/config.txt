@@ -1,9 +1,9 @@
-tagClass = PEOPLE
+tagClass = PLACES
 folderPath = src/main/resources/sgm/
 articlesToReadCount = 23
 k = 5
 fractionOfUncoveredForEachTag = 0.1f
-tags = reagan, ongpin
+tags = west-germany, usa, france, uk, canada, japan
 numberOfElementsPerTag = 5
 trainToTestRatio = 0.5f
 distanceKNN = manhattan
