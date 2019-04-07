@@ -35,20 +35,38 @@
 Celem zadania było poznanie oraz zaimplementowanie różnych metod ekstrakcji cech z tekstów, określania podobieństwa oraz klasyfikacji tekstów.
 
 \section{Wprowadzenie}
-{\color{blue}
-We wprowadzeniu należy zaprezentować całą teorię potrzebną do realizacji
-zadania (przy czym należy tu ograniczyć się wyłącznie do tego, co było
-wykorzystane) tak aby osoba, która nigdy wcześniej nie zetknęła się z tą
-tematyką, potrafiła zrozumieć dalszy opis. Część ta powinna wprowadzać
-wszystkie wykorzystywane wzory, oznaczenia itp., do których należy się
-odwoływać w dalszej części niniejszgo sprawozdania. Zamieszczony tu własny
-opis teorii (a nie skopiowany!) należy poprzeć odwołaniami bibliograficznymi
-do literatury zamieszczonej na końcu. }
+	Celem projektu jest stworzenie programu pozwalającego na klasyfikację  wybranego zbioru elementów. Klasyfikatorem wybranym do tego celu jest metoda k-najbliższych sąsiadów.
+	
+	Algorytm k najbliższych sąsiadów, nazywamy też potocznie algorytmem knn, pozwala na klasyfikację zbioru wieloelementowego według określonych etykiet. Na początku działania algorytmu k najbliższych sąsiadów określane są wektory dla każdego z elementów podlegających klasyfikacji. W naszym przypadku określanie wektorów polega na odpowiednim przetworzeniu tekstu zawierającego się w elementach zbioru do klasyfikacji. Następnie wektory są umieszczane na przestrzeni n elementowej, gdzie n stanowi liczebność elementów w wektorze. Odsłaniane są etykiety, domyślnie 10\% dla każdej z etykiet. Odsłonięcie etykiet stanowi jeden ze sposobów rozwiązania problemu zimnego startu. Następnie kolejne etykiety są nadawane kolejnym elementom, poprzez znalezienie k najbliższych elementów i wybranie spośród etykiet należących do danych elementów tych, które są najliczniejsze, w przypadku identycznej liczebności etykiet wybierana jest ta, której średnia odległość do aktualnie klasyfikowanego elementu jest mniejsza.
+	
+	Do wytworzenia wektora cech stosowane są dwa warianty ekstrakcji cech typu Dictionary Matching (DM). W obu przypadkach teksty znajdujące się w artykułach są początkowo poddane procesowi lemmatyzacji. Proces lemmatyzacji jest to czynność mająca na celu znalezienia lemmy dla danego słowa, lemma jest to forma podstawowa wyrazu w obszarze części mowy, którą reprezentuje. Następnie następuje proces przyznawania punktów dla poszczególnych słów. Wybierane zostają słowa mające najwięcej punktów. Pierwszy z na początku usuwa wszystkie słowa znajdujące się na przygotowanej wcześniej stop-liście, usuwa wartości liczbowe oraz zwiększa punktację słów znajdujących się bliżej początku tekstu. Drugi sposób bazuje natomiast na algorytmie TFIDF oraz również usuwane są wszelkie wartości liczbowe. 
+	
+	Algorytm TFIDF jest jedną z metod obliczania wagi słów w oparciu o liczbę ich wystąpień. Jest on stosowany między innymi w wyszukiwarkach internetorych. Jest on obliczany przy pomocy wzoru:
+\[ \left ( tf-idf \right )_{i,j}=tf_{i,j} \times idf_{i} \]
+gdzie \( tf_{i,j} \) to tak zwany „term frequency” opisany wzorem:
+\[ tf_{i,j}=log \frac{n_{i,j}}{\sum _{k}n_{k,j}} \]
+gdzie: \( n_{i,j} \) jest liczbą wystąpień termu \( \left ( t_{i} \right ) \) w dokumencie \( d_{j}\), a mianownik jest dumą liczby wystąpień wszystkich termów w dokumencie \( d_{j} \cdot idf_{i} \) to „inverse document frequency” wyraża się wzorem:
+\[ idf_{i}=log \frac{|D|}{| \left \{ d: t_{i} \epsilon d \right \} |} \]
+gdzie:
+\( |D| \) - liczba dokumentów w korpusie
+\( | \left \{ d: t_{i} \epsilon d \right \} | \) - liczba dokumentów zawierających przynajmniej jedno wystąpienie danego termu.
+
+	Powstałe w wyniku działania obu ekstraktorów cech wektory są używane do wytworzenia wektorów liczbowych pozwalających na umieszczenie elementów w przestrzeni liczbowej, co jest wymagane w algorytmie k najbliższych sąsiadów.
+	
+	Obliczenia odległości dokonano w trzech metrykach.
+	
+	Pierwszą z nich jest metryka Euklidesa, odległość \( d \) obliczana jest przy pomocy wzoru: 
+\[ d\left ( x,y \right )=\sqrt{\left ( x_{1}-y_{1} \right )^{2} + \left ( x_{2}-y_{2} \right )^{2} + ... + \left ( x_{n}-y_{n} \right )^{2}} \]
+
+	Drugą z nich jest metryka Manhattana, nazywana również metryką uliczną, taksówkarską lub miejską. Odległość jest obliczana przy pomocy wzoru:
+\[ d\left ( x,y \right )=\sum|x_{i}-y_{i}| \]
+
+	Trzecią i zarazem ostatnią jest metryka Czebyszewa, odległość jest obliczana przy pomocy wzoru:
+\[ d\left ( x,y \right )=\frac{\sum|x_{i} \cdot y_{i}|}{\sqrt{ \sum x_{i}^{2} \cdot \sum y_{i}^{2} }} \]
+
 
 \section{Opis implementacji}
 Algorytmy zostały zaimplementowane w języku Java w wersji 11. Dodatkowo na potrzemy procesu lemmatyzacji wykorzystano, udostępnioną przez Stanford Natural Language Processing Group, biliotekę CoreNLP w wersji 3.9.2. Biblioteka ta jest udostępniona z licencją GNU General Public License v3 co pozwala nam korzystać z niej w naszym programie. Biblioteka ta jest bardzo obszerna, w naszym programie wykorzystujemy jedynie funkcjonalność lemmatyzacji. Jest ona zaimplementowana w klasie StanfordLemmatizer. Implementacja tej klasy została bezpośrednio zaczerpnięta z dokumentacji[5]. Poniżej przedstawiono uproszczony diagram klas. Zaznaczone zostały na nim kluczowe dla działania naszego programu klasy.\\
-{\color{red}
-Tutaj diagramy uml wraz z podpisami\\}
 
 \begin{figure}[ht]
 	\makebox[\linewidth]{
@@ -66,6 +84,8 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 	\item tagClass - tag dla którego etykiety będzie nadawał program
 	\item folderPath - ścieżka do folderu z plikami z danymi
 	\item articlesToReadCount - liczba plików z artykułami, które program ma wczytać
+	\item k - 
+	\item fractionOfUncoveredForEachTag - 
 	\item tags - etykiety, według których program ma klasyfikować
 	\item numberOfElementsPerTag - liczba elementów jakie ma zawierać w sobie cecha dla każdej z etykiet
 	\item trainToTestRatio - stosunek zbioru treningowego do testowego
@@ -95,15 +115,33 @@ cel konkretnego testu. Najlepiej byłoby wyraźnie wyszczególnić (ponumerować
 poszczególne eksperymenty tak, aby łatwo było się do nich odwoływać dalej.}
 
 \section{Wyniki}
-{\color{blue}
-W tej sekcji należy zaprezentować, dla każdego przeprowadzonego eksperymentu,
-kompletny zestaw wyników w postaci tabel, wykresów itp. Powinny być one tak
-ponazywane, aby było wiadomo, do czego się odnoszą. Wszystkie tabele i wykresy
-należy oczywiście opisać (opisać co jest na osiach, w kolumnach itd.) stosując
-się do przyjętych wcześniej oznaczeń. Nie należy tu komentować i interpretować
-wyników, gdyż miejsce na to jest w kolejnej sekcji. Tu również dobrze jest
-wprowadzić oznaczenia (tabel, wykresów) aby móc się do nich odwoływać
-poniżej.}
+Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach poniżej. Początkowa konfiguracja programu znajduje się poniżej, przy kolejnych eksperymentach zostały wspominanie tylko te parametry które były zmienione.
+\begin{enumerate}
+	\item tagClass = PLACES
+	\item articlesToReadCount = 23
+	\item k = 3
+	\item fractionOfUncoveredForEachTag = 0.1
+	\item tags = west-germany, usa, france, uk, canada, japan
+	\item numberOfElementsPerTag = 5
+	\item trainToTestRatio = 0.6
+	\item distanceKNN = euclidean
+	\item wordSimilarity = NGrams
+	\item extractors = 1
+\end{enumerate}
+Poniżej znajdują się wyniki dla przedstawionych powyższej parametrów.
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.39534885 & 0.3923077  \\ \hline
+usa          & 0.83159405 & 0.9416126  \\ \hline
+france       & 0.5064935  & 0.35779816 \\ \hline
+uk           & 0.62025315 & 0.24873096 \\ \hline
+canada       & 0.49079755 & 0.23738873 \\ \hline
+japan        & 0.5652174  & 0.23636363 \\ \hline
+\end{tabular}
+\caption{Parametry bazowe}
+\end{table}
 
 \section{Dyskusja}
 {\color{blue}
