@@ -30,6 +30,7 @@
 
 \begin{document}
 \maketitle
+\newpage
 
 \section{Cel}
 Celem zadania było poznanie oraz zaimplementowanie różnych metod ekstrakcji cech z tekstów, określania podobieństwa oraz klasyfikacji tekstów.
@@ -80,7 +81,7 @@ Interfejs Extractor służy i znajdująca się w nim metoda extract jest wykorzy
 Klasa knnNetwork zawiera w sobie implementację algorytmu k najbliższych sąsiadów do ustalania przynależności wektorów odpowiadającycm przekazanym do programu elementom. Klasa pozwala na dodawanie wektorów wraz z odpowiadającymi im elementami, a następnie klasyfikowanie ich przy przekazaniu odpowiedniego parametru k oznaczającego liczbę sąsiadów, uncoveredLabelFraction zapomocą którego przekazujemy jaka część tekstów będzie miała odkryte etykiety oraz distance, metrykę obliczania dystansu pomiędzy wektorami.\\
 Pakiet calculatedistance zawiera w sobie interfejs Distance oraz implementujące go klasy ChebyshevDistance(metryka Czebyszewa), EuclideanDistance(metryka Euklidesa) oraz ManhattanDistance(metryka uliczna). Są to wymagane przez treść zadania metryki pomiaru odległości pomiędzy wektorami.\\
 Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sobie wszystkie potrzebne do działania programu parametry. Są to odpowiednio:
-\begin{enumerate}
+\begin{itemize}
 	\item tagClass - tag dla którego etykiety będzie nadawał program
 	\item folderPath - ścieżka do folderu z plikami z danymi
 	\item articlesToReadCount - liczba plików z artykułami, które program ma wczytać
@@ -92,17 +93,17 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 	\item distanceKNN - metryka pomiaru dystansu w przestrzeni dla algorytmu knn
 	\item wordSimilarity - metryka podobieństwa słów
 	\item extractors - zestaw ekstraktorów
-\end{enumerate}
+\end{itemize}
 
 
 \section{Materiały i metody}
-Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 11, 19), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet,\\
+Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 13, 21), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet,\\
 DODANIE OPISU DRUGIEGO TAGA\\
 natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\% odkrytych etykiet.
 
 \section{Wyniki}
 Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach poniżej. Początkowa konfiguracja programu znajduje się poniżej, przy kolejnych eksperymentach zostały wspominanie tylko te parametry które były zmienione.
-\begin{enumerate}
+\begin{itemize}
 	\item tagClass = PLACES
 	\item articlesToReadCount = 23
 	\item k = 3
@@ -113,7 +114,7 @@ Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach
 	\item distanceKNN = euclidean
 	\item wordSimilarity = NGrams
 	\item extractors = 1
-\end{enumerate}
+\end{itemize}
 Poniżej znajdują się wyniki dla przedstawionych powyższej parametrów.
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -256,22 +257,252 @@ japan        & 0.76649743 & 0.7190476   \\ \hline
 \end{table}
 Multi-Class Pecision: 0.85633856
 
+\subsection{Eksperymento 3 - Różne wartości parametru k}
+k = 3
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.39534885 & 0.3923077  \\ \hline
+usa          & 0.83159405 & 0.9416126  \\ \hline
+france       & 0.5064935  & 0.35779816 \\ \hline
+uk           & 0.62025315 & 0.24873096 \\ \hline
+canada       & 0.49079755 & 0.23738873 \\ \hline
+japan        & 0.5652174  & 0.23636363 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla k = 3}
+\end{table}
+Multi-Class Pecision: 0.7962223
+
+k = 5
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.59       & 0.43382353 \\ \hline
+usa          & 0.83722854 & 0.93855786 \\ \hline
+france       & 0.46666667 & 0.26168224 \\ \hline
+uk           & 0.46025103 & 0.28795812 \\ \hline
+canada       & 0.6566265  & 0.29945055 \\ \hline
+japan        & 0.5660377  & 0.29411766 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla k = 5}
+\end{table}
+Multi-Class Pecision: 0.8016709
+
+k = 8
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 1.0        & 0.09375    \\ \hline
+usa          & 0.8347242  & 0.95040554 \\ \hline
+france       & 0.44827586 & 0.10655738 \\ \hline
+uk           & 0.6        & 0.29210526 \\ \hline
+canada       & 0.625      & 0.375      \\ \hline
+japan        & 0.58278143 & 0.43781096 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla k = 8}
+\end{table}
+Multi-Class Pecision: 0.81002545
+
+k = 13
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall      \\ \hline
+west-germany & 0.61290324 & 0.2753623   \\ \hline
+usa          & 0.8147582  & 0.98611754  \\ \hline
+france       & 1.0        & 0.094339624 \\ \hline
+uk           & 1.0        & 0.09793814  \\ \hline
+canada       & 0.67832166 & 0.297546    \\ \hline
+japan        & 1.0        & 1.0         \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla k = 13}
+\end{table}
+Multi-Class Pecision: 0.81129676
+
+k = 21
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 1.0        & 0.09375    \\ \hline
+usa          & 0.81465435 & 0.9944815  \\ \hline
+france       & 1.0        & 0.09615385 \\ \hline
+uk           & 1.0        & 0.104      \\ \hline
+canada       & 0.7826087  & 0.26548672 \\ \hline
+japan        & 1.0        & 0.09952607 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla k = 21}
+\end{table}
+Multi-Class Pecision: 0.81674534
+
+\subsection{Eksperymento 4 - Różne ekstraktory}
+Ekstraktor nr 1
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.39534885 & 0.3923077  \\ \hline
+usa          & 0.83159405 & 0.9416126  \\ \hline
+france       & 0.5064935  & 0.35779816 \\ \hline
+uk           & 0.62025315 & 0.24873096 \\ \hline
+canada       & 0.49079755 & 0.23738873 \\ \hline
+japan        & 0.5652174  & 0.23636363 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla ekstraktora 1.}
+\end{table}
+Multi-Class Pecision: 0.7962223
+
+Ekstraktor nr 2
+articlesToReadCount = 10
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall      \\ \hline
+west-germany & 0.17948718 & 0.13461539  \\ \hline
+usa          & 0.81395346 & 0.94287044  \\ \hline
+france       & 0.6363636  & 0.1         \\ \hline
+uk           & 0.30555555 & 0.17837837  \\ \hline
+canada       & 0.6060606  & 0.104166664 \\ \hline
+japan        & 0.19444445 & 0.10144927  \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla ekstraktora 2.}
+\end{table}
+Multi-Class Pecision: 0.77324516
+
+\subsection{Eksperymento 5 - Inny tag}
+Eksperymenty dla tagu TOPICS oraz etykiet coffe, gold. Pozostałe parametry standardowe.
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label  & Precision & Recall    \\ \hline
+coffee & 0.9811321 & 0.9122807 \\ \hline
+gold   & 0.9074074 & 0.98      \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla tagu TOPISC}
+\end{table}
+Multi-Class Pecision: 0.94392526
+
+distanceKNN = manhattan
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label  & Precision  & Recall     \\ \hline
+coffee & 0.94827586 & 0.94827586 \\ \hline
+gold   & 0.93877554 & 0.93877554 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla tagu TOPISC i dystansu miejskiego}
+\end{table}
+Multi-Class Pecision: 0.94392526
+
+distanceKNN = chebyshev
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label  & Precision  & Recall     \\ \hline
+coffee & 0.98245615 & 0.9655172  \\ \hline
+gold   & 0.96       & 0.97959185 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla tagu TOPISC i dystansu Czebyszewa}
+\end{table}
+Multi-Class Pecision: 0.97196263
+
+extractors = 2
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label  & Precision & Recall      \\ \hline
+coffee & 0.6213592 & 1.0         \\ \hline
+gold   & 1.0       & 0.093023255 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla tagu TOPISC i 2. ekstraktora}
+\end{table}
+Multi-Class Pecision: 0.635514
+
+trainToTestRatio = 0.3f
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label  & Precision & Recall    \\ \hline
+coffee & 0.975     & 0.975     \\ \hline
+gold   & 0.9714286 & 0.9714286 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla tagu TOPISC i stosunku zbiorów 0.3}
+\end{table}
+Multi-Class Pecision: 0.97333336
+
+k = 5
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label  & Precision  & Recall \\ \hline
+coffee & 0.91935486 & 1.0    \\ \hline
+gold   & 1.0        & 0.9    \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla tagu TOPISC i k = 5}
+\end{table}
+Multi-Class Pecision: 0.95327103
+
+\subsection{Eksperymento 6 - Nasz zbiór tekstów}
+Standardowe parametry
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label      & Precision & Recall      \\ \hline
+movie      & 0.5641026 & 1.0         \\ \hline
+restaurant & 1.0       & 0.055555556 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla własnych tekstów}
+\end{table}
+Multi-Class Pecision: 0.575
+
+Uogólniona miara Ngramów
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label      & Precision  & Recall     \\ \hline
+movie      & 0.72727275 & 0.8888889  \\ \hline
+restaurant & 0.8888889  & 0.72727275 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla własnych tekstów i uogólnionej miary NGramów}
+\end{table}
+Multi-Class Pecision: 0.8
+
+k = 8
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label      & Precision & Recall     \\ \hline
+movie      & 0.5897436 & 1.0        \\ \hline
+restaurant & 1.0       & 0.05882353 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla własnych tekstów i uogólnionej miary NGramów}
+\end{table}
+Multi-Class Pecision: 0.6
+
 \section{Dyskusja}
-{\color{blue}
-Sekcja ta powinna zawierać dokładną interpretację uzyskanych wyników
-eksperymentów wraz ze szczegółowymi wnioskami z nich płynącymi. Najcenniejsze
-są, rzecz jasna, wnioski o charakterze uniwersalnym, które mogą być istotne
-przy innych, podobnych zadaniach. Należy również omówić i wyjaśnić wszystkie
-napotakane problemy (jeśli takie były). Każdy wniosek powinien mieć poparcie
-we wcześniej przeprowadzonych eksperymentach (odwołania do konkretnych
-wyników). Jest to jedna z najważniejszych sekcji tego sprawozdania, gdyż
-prezentuje poziom zrozumienia badanego problemu.}
+	Napisanie programu klasyfikującego uświadomiło nam, że w rozpoznawaniu danego tekstu nie liczą się jedynie znaczenia poszczególnych słów. Pozytywny wpływ na jakość klasyfikacji miało między innymi dodanie do ekstrakcji cech „punktowanie” słów znajdujących się bliżej początku artykułu. Właściwość ta jest związana z podstawowymi założeniami artykułu prasowego, i w tekstach opracowanych przez nas recenzji, które mają na celu w pierwszych słowach określić kontekst danego tekstu. Zdajemy sobie sprawę, że dla innego typu tekstu pisanego, takiego jak na przykład opowiadanie cecha ta niekoniecznie będzie obecna, nastąpi wtedy konieczność stworzenia nowego modelu ekstrakcji cech, do którego przyjęcia nasz program jest zdolny.
+	
+	Zauważyliśmy, że uogólniona miara n-gramów pozwala na osiągnięcie lepszych wyników klasyfikacyjnych od trigramów. Dzieje się tak, ponieważ uogólniona miara n-gramów pozwala na wyższy stopień rozgraniczenia podobieństwa tekstów, poprzez uwzględnienie aspektów niebędących możliwymi do wyłapania w przypadku trigramów. Jedynym przeciwwskazaniem w użyciu uogólnionej miary n-gramów może być jej wyższa złożoność obliczeniowa.
+	
+	Z trzech miar pomiaru odległości między wektorami, najlepsze rezultaty daje według naszych badań metryka Euklidesa, zaraz za nią jest metryka Czebyszewa, natomiast na końcu plasuje się metryka uliczna. Dystans Euklidesa najlepiej więc oddaje odległość pomiędzy wektorami w przestrzeni dla zastosowania algorytmu k najbliższych sąsiadów.
+	
+	Algorytm TFIDF okazał się wolniejszy od alternatywnego rozwiązania w drugim sposobie ekstrakcji. Jest to spowodowane jego złożonością obliczeniową w porównaniu do usuwania słów ze stop listy i punktowaniu słów pojawiających się wcześniej. Osiągał on też mniejsze wartości. Jest on jednak w przeciwieństwie do stworzonej przez nas stop-listy uniwersalny.
+	
+	Normalizacja wektorów cech okazała się niezwykle kluczowa ze względu na różną długość artykułów i recenzji znajdujących się w zbiorach danych. Początkowe próby działania programu bez uniezależnienia wartości na wektorze od długości tekstów dawały bardzo niskie rezultaty.
+	
+	Rezultaty dla przygotowywanych przez nas tekstów były znacząco niższe niż dla tekstów zaczerpniętych z bazy Reutera. Jest to zapewnie spowodowane spójnym stylem i określoną formą tekstów Reutera, podczas gdy przygotowane przez nas teksty znacząco się różniły pod względem stylistycznym jak i formalnym.
+	
+	Program osiągnął średnią skuteczność na poziomie 90-95 procent dla tylko dwóch etykiet. Jest to przewidywany efekt. Skuteczność wzrastała nawet do 97 procent po zwiększeniu k z 3 do 5. Jest to wynik więcej niż satysfakcjonujący.
 
 \section{Wnioski}
-{\color{blue}W tej, przedostatniej, sekcji należy zamieścić podsumowanie
-najważniejszych wniosków z sekcji poprzedniej. Najlepiej jest je po prostu
-wypunktować. Znów, tak jak poprzednio, najistotniejsze są wnioski o
-charakterze uniwersalnym.}
+	Stworzenie systemu ekstrakcji cech dla danego rodzaju bądź zbioru tekstów jest zadaniem o wiele trudniejszym niż przypuszczaliśmy i wymaga nie tylko wiedzy o słowach jakie mogą się znaleźć w danym tekście, ale i dogłębnej wiedzy o wybranym typie tekstu, jak w naszym przypadku artykule jak i w wybranym przez nas, podobnej jeśli chodzi o cechy recenzji.
+	
+	Algorytm k najbliższych sąsiadów ma problem, w momencie, kiedy jedna z etykiet ma znacząco więcej przyporządkowanych do niej elementów. Ważne jest wtedy aby odpowiednio dobrać wartość k aby nie była zbyt wysoka. Należy też wtedy zadbać o to, aby do zbioru początkowo odkrytych etykiet dla elementów trafiły etykiety każdego rodzaju.
+	
+	Uniwersalne metody zawsze będą mniej skuteczne niż metody skrojone dokładnie pod dany przypadek. Jest to uniwersalna prawda, która w informatyce odgrywa znaczącą rolę w porównaniu do innych dziedzin. Mogliśmy ją zaobserwować na przykładzie porównania algorytmu TFIDF z stop-listą i wybieraniem słów pojawiających się wcześniej.
 
 
 \begin{thebibliography}{0}
@@ -292,7 +523,12 @@ Experiment With the MUC-3 Corpus}, University of Chicago,\\
   	\textsl{A systematic analysis of performance measures for classification tasks}, Information Processing and Management no 45,\\
   	Dostępny w internecie: \url {http://rali.iro.umontreal.ca/rali/sites/default/files/publis/SokolovaLapalme-JIPM09.pdf?fbclid=IwAR2M7_a4QxL_F4yCOB_Akp4ghkoUKrBnHT9xzCfuTcoVrLBe3lN3kIlPt00}
 
-  \bibitem{stanford} \url {https://stanfordnlp.github.io/CoreNLP}
+  \bibitem{stanford} Dokumentacja Stanford CoreNLP
+    \url {https://stanfordnlp.github.io/CoreNLP}
+    
+  \bibitem{notatki} Adam Niewiadomski.
+  	\textsl{Materiały, przykłady i ćwiczenia do przedmiotu
+Komputerowe Systemy Rozpoznawania}, 21 września 2009.\\
 
 \end{thebibliography}
 {\color{blue} 

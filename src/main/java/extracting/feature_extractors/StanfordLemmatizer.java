@@ -56,7 +56,7 @@ public class StanfordLemmatizer {
         }
         List<String> toRemove = new ArrayList<>();
         for(String s : lemmas) {
-            if(s.equals(".") || s.equals("-") || s.equals(",") || s.equals("!")) {
+            if(s.equals(".") || s.equals("-") || s.equals(",") || s.equals("!") || s.equals("&")) {
                 toRemove.add(s);
             }
         }
