@@ -15,11 +15,11 @@ public class ExtractorTFIDF implements Extractor {
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         n = elementsForTag.size();
         List<List<String>> allDocuments = new ArrayList<>();
-        for(Object o : elements) {
+        for(Object o : elementsForTag) {
             allDocuments.add(StanfordLemmatizer.getInstance().lemmatize(((Article)o).getContent()));
         }
         for(Object o : vector.keySet()) {
-            vector.replace(o, calculateTFIDFForSingleWord((String)o, allDocuments));
+            vector.replace(o, 1/calculateTFIDFForSingleWord((String)o, allDocuments));
         }
         return vector;
     }

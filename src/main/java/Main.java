@@ -103,7 +103,7 @@ public class Main {
                                     break;
                                 case "2":
                                     extractors.add(new ExtractorTFIDF());
-                                    extractors.add(new ExtractorFirstWords());
+                                    //extractors.add(new ExtractorFirstWords());
                                     extractors.add(new ExtractorRemoveNumbers());
                                     break;
                             }
