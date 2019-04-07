@@ -7,4 +7,5 @@ tags = west-germany, usa, france, uk, canada, japan
 numberOfElementsPerTag = 5
 trainToTestRatio = 0.5f
 distanceKNN = manhattan
-wordSimilarity = NGrams
+wordSimilarity = generalizedNGrams
+extractors = 1

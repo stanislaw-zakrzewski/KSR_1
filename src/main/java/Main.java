@@ -35,6 +35,8 @@ public class Main {
         float trainToTestRatio = 0;
         Distance distance = null;
         WordComparator wordComparator = null;
+        //Create list of extractors
+        List<Extractor> extractors = new ArrayList<>();
 
         //Wczytaj config
         String line;
@@ -86,7 +88,7 @@ public class Main {
                             break;
                         case "wordSimilarity":
                             switch (lines[1]) {
-                                case ("GeneralizedNGrams"):
+                                case ("generalizedNGrams"):
                                     wordComparator = new GeneralizedNGrams();
                                     break;
                                 case ("NGrams"):
@@ -94,6 +96,17 @@ public class Main {
                                     break;
                             }
                             break;
+                        case "extractors":
+                            switch (lines[1]) {
+                                case "1":
+                                    extractors.add(new ExtractorRemoveStopWords());
+                                    extractors.add(new ExtractorFirstWords());
+                                    extractors.add(new ExtractorRemoveNumbers());
+                                    break;
+                                case "2":
+
+                                    break;
+                            }
                         default:
                             break;
                     }
@@ -139,11 +152,6 @@ public class Main {
             System.out.println(o + "  " + testArticlesByTags.get(o).size());
         }
 
-        //Create list of extractors
-        List<Extractor> extractors = new ArrayList<>();
-        extractors.add(new ExtractorRemoveStopWords());
-        extractors.add(new ExtractorFirstWords());
-        extractors.add(new ExtractorRemoveNumbers());
         //Generate vector using extractors
         List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, tags, numberOfElementsPerTag, extractors);
 
