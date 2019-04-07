@@ -49,6 +49,11 @@ opis teorii (a nie skopiowany!) należy poprzeć odwołaniami bibliograficznymi
 do literatury zamieszczonej na końcu. }
 
 \section{Opis implementacji}
+Algorytmy zostały zaimplementowane w języku Java w wersji 11. Dodatkowo na potrzemy procesu lemmatyzacji wykorzystano, udostępnioną przez Stanford Natural Language Processing Group, biliotekę CoreNLP w wersji 3.9.2. Biblioteka ta jest udostępniona z licencją GNU General Public License v3 co pozwala nam korzystać z niej w naszym programie. Biblioteka ta jest bardzo obszerna, w naszym programie wykorzystujemy jedynie funkcjonalność lemmatyzacji. Jest ona zaimplementowana w klasie StanfordLemmatizer. Implementacja tej klasy została bezpośrednio zaczerpnięta z dokumentacji[5]. Poniżej przedstawiono uproszczony diagram klas. Zaznaczone zostały na nim kluczowe dla działania naszego programu klasy.\\
+{\color{red}
+Tutaj diagramy uml wraz z podpisami\\}
+Klasa Article odpowiada za przechowywanie informacji niezbędnych do działania programu. Wykorzystujemy ją zarówno do przetwarzania artukułów zawartych w zbiorze danych reuters jak i zestawu artykułów przygotowanego przez nas samych.\\
+
 {\color{blue}
 Należy tu zamieścić krótki i zwięzły opis zaprojektowanych klas oraz powiązań
 między nimi. Powinien się tu również znaleźć diagram UML  (diagram klas)
