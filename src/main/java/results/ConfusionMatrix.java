@@ -21,7 +21,7 @@ public class ConfusionMatrix {
         printConfusionMatrix(tags, matrix);
     }
 
-    public static String adjustLength(String word, int maxLength) {
+    private static String adjustLength(String word, int maxLength) {
         StringBuilder wordBuilder = new StringBuilder(word);
         while (wordBuilder.length() < maxLength) {
             wordBuilder.insert(0, " ");

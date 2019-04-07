@@ -12,7 +12,8 @@ import matching_words.word_comparators.NGrams;
 import parsing.Article;
 import parsing.ReadAll;
 import results.ConfusionMatrix;
-import results.Precision;
+import results.MultiClassPrecision;
+import results.PrecisionAndRecallForTags;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -133,6 +134,7 @@ public class Main {
             }
         }
         allArticles.removeAll(toRemove);
+        System.out.println(allArticles.size());
 
         List<Object> trainArticles = new ArrayList<>();
         List<Object> testArticles = new ArrayList<>();
@@ -177,7 +179,9 @@ public class Main {
             correctlabels.add(((Article) o).getTags().get(0));
             resultlabels.add(classifiedArticles.get(o));
         }
-        System.out.println("Pecision: " + Precision.calculate(tags, correctlabels, resultlabels));
+        System.out.println("Multi-Class Pecision: " + MultiClassPrecision.calculate(tags, correctlabels, resultlabels));
+        System.out.println();
+        PrecisionAndRecallForTags.show(tags, correctlabels, resultlabels);
         System.out.println();
         ConfusionMatrix.calculate(tags, correctlabels, resultlabels);
     }

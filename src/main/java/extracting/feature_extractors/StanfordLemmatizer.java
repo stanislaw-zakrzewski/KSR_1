@@ -6,6 +6,7 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -53,6 +54,13 @@ public class StanfordLemmatizer {
                 lemmas.add(token.get(CoreAnnotations.LemmaAnnotation.class));
             }
         }
+        List<String> toRemove = new ArrayList<>();
+        for(String s : lemmas) {
+            if(s.equals(".") || s.equals("-") || s.equals(",") || s.equals("!")) {
+                toRemove.add(s);
+            }
+        }
+        lemmas.removeAll(toRemove);
 
         return lemmas;
     }
