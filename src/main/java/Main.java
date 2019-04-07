@@ -1,8 +1,5 @@
 import extracting.MainExtractor;
-import extracting.feature_extractors.Extractor;
-import extracting.feature_extractors.ExtractorFirstWords;
-import extracting.feature_extractors.ExtractorRemoveNumbers;
-import extracting.feature_extractors.ExtractorRemoveStopWords;
+import extracting.feature_extractors.*;
 import knn_classification.VectorForElement;
 import knn_classification.calculate_distance.ChebyshevDistance;
 import knn_classification.calculate_distance.Distance;
@@ -104,7 +101,9 @@ public class Main {
                                     extractors.add(new ExtractorRemoveNumbers());
                                     break;
                                 case "2":
-
+                                    extractors.add(new ExtractorTFIDF());
+                                    extractors.add(new ExtractorFirstWords());
+                                    extractors.add(new ExtractorRemoveNumbers());
                                     break;
                             }
                         default:
@@ -120,6 +119,7 @@ public class Main {
 
         //Read all articles
         List<Object> allArticles = ReadAll.read(folderPath, tagClass, articlesToReadCount);
+        Collections.shuffle(allArticles);
 
         //Remove all articles that have tags count other than 1 and if they have 1 check if it is in the list of tags
         List<Object> toRemove = new ArrayList<>();
