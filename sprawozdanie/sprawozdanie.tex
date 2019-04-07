@@ -65,6 +65,14 @@ gdzie:
 	Trzecią i zarazem ostatnią jest metryka Czebyszewa, odległość jest obliczana przy pomocy wzoru:
 \[ d\left ( x,y \right )=\frac{\sum|x_{i} \cdot y_{i}|}{\sqrt{ \sum x_{i}^{2} \cdot \sum y_{i}^{2} }} \]
 
+	Podobieństwo pomiędzy poszczególnymi słowami wyznaczaliśmy przy pomocy dwóch spobów:
+Pierwszym z nich była uogólniona miara n-gramów. Obliczana jest przy pomocy wzoru:
+
+$$ \mu_{N}(s_{1}, s_{2})= \frac{2}{N^{2} + N}  \sum_{i=1}^{N(s_{1})} \sum_{j=1}^{N(s_{1})-i+1}  h(i,j) $$
+
+Drugim były natomiast trigramy. Ich użycie miało na celu pokazanie przewagi uogólnionej miary n-gramów nad miarą z jednym jasno określonym n. Obliczaja jest przy pomocy wzoru:
+
+$$ sim_{n}(s_{1}, s_{2}) = \frac{1}{N - n + 1} \sum_{i = 1}^{N-n+1} h(i) $$
 
 \section{Opis implementacji}
 Algorytmy zostały zaimplementowane w języku Java w wersji 11. Dodatkowo na potrzemy procesu lemmatyzacji wykorzystano, udostępnioną przez Stanford Natural Language Processing Group, biliotekę CoreNLP w wersji 3.9.2. Biblioteka ta jest udostępniona z licencją GNU General Public License v3 co pozwala nam korzystać z niej w naszym programie. Biblioteka ta jest bardzo obszerna, w naszym programie wykorzystujemy jedynie funkcjonalność lemmatyzacji. Jest ona zaimplementowana w klasie StanfordLemmatizer. Implementacja tej klasy została bezpośrednio zaczerpnięta z dokumentacji[5]. Poniżej przedstawiono uproszczony diagram klas. Zaznaczone zostały na nim kluczowe dla działania naszego programu klasy.\\
@@ -85,8 +93,8 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 	\item tagClass - tag dla którego etykiety będzie nadawał program
 	\item folderPath - ścieżka do folderu z plikami z danymi
 	\item articlesToReadCount - liczba plików z artykułami, które program ma wczytać
-	\item k - 
-	\item fractionOfUncoveredForEachTag - 
+	\item k - liczba najbliższych sąsiadów według których algorytm będzie klasyfikował
+	\item fractionOfUncoveredForEachTag - część elementów należących do każdej z etykiet, która ma zostać odkryta w klasyfikacji knn
 	\item tags - etykiety, według których program ma klasyfikować
 	\item numberOfElementsPerTag - liczba elementów jakie ma zawierać w sobie cecha dla każdej z etykiet
 	\item trainToTestRatio - stosunek zbioru treningowego do testowego
@@ -97,9 +105,7 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 
 
 \section{Materiały i metody}
-Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 13, 21), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet,\\
-DODANIE OPISU DRUGIEGO TAGA\\
-natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\% odkrytych etykiet.
+Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 11, 19), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet. W drugim przypadku według tagu TOPICS etykietowano przy pomocy dwóch etykiet (coffee i gold), przy równym podziale na zbiór treningowy i testowy. Natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\% odkrytych etykiet.
 
 \section{Wyniki}
 Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach poniżej. Początkowa konfiguracja programu znajduje się poniżej, przy kolejnych eksperymentach zostały wspominanie tylko te parametry które były zmienione.
@@ -115,7 +121,9 @@ Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach
 	\item wordSimilarity = NGrams
 	\item extractors = 1
 \end{itemize}
-Poniżej znajdują się wyniki dla przedstawionych powyższej parametrów.
+Poniżej znajdują się wyniki dla przedstawionych powyższej parametrów.\\
+
+
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -129,7 +137,9 @@ japan        & 0.5652174  & 0.23636363 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla parametrów bazowych}
 \end{table}
-Multi-Class Pecision: 0.7962223
+Multi-Class Pecision: 0.7962223\\
+\\
+\\
 \begin{table}[H]
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -143,7 +153,7 @@ japan        & 5            & 163  & 0      & 0  & 0      & 52    \\ \hline
 \end{tabular}
 \caption{Przypisanie tagów dla parametrów bazowych}
 \end{table}
-\subsection{Eksperymento 1 - Różne metryki odległości}
+\subsection{Eksperymenty 1 - Różne metryki odległości}
 Metryka euklidesowa
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -158,8 +168,9 @@ japan        & 0.5652174  & 0.23636363 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla metryki euklidesowej}
 \end{table}
-Multi-Class Pecision: 0.7962223
-
+Multi-Class Pecision: 0.7962223\\
+\\
+\\
 Metryka uliczna
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -174,8 +185,9 @@ japan        & 0.53797466 & 0.425      \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla metryki ulicznej}
 \end{table}
-Multi-Class Pecision: 0.78732294
-
+Multi-Class Pecision: 0.78732294\\
+\\
+\\
 Metryka Czebyszewa
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -192,8 +204,8 @@ japan        & 0.49222797 & 0.4589372  \\ \hline
 \end{table}
 Multi-Class Pecision: 0.7954958
 
-\subsection{Eksperymento 2 - różne metryki porównywania słów}
-NGramy, n = 3
+\subsection{Eksperymenty 2 - różne metryki porównywania słów}
+NGramy dla n = 3
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -207,9 +219,10 @@ japan        & 0.5652174  & 0.23636363 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla NGramów, n = 3}
 \end{table}
-Multi-Class Pecision: 0.7962223
-
-NGramy, n = 2
+Multi-Class Pecision: 0.7962223\\
+\\
+\\
+NGramy dla n = 2
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -223,9 +236,10 @@ japan        & 0.47619048 & 0.09756097 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla NGramów, n = 2}
 \end{table}
-Multi-Class Pecision: 0.7675263
-
-NGramy, n = 4
+Multi-Class Pecision: 0.7675263\\
+\\
+\\
+NGramy dla n = 4
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -239,8 +253,9 @@ japan        & 0.6884058  & 0.4871795  \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla NGramów, n = 4}
 \end{table}
-Multi-Class Pecision: 0.80366874
-
+Multi-Class Pecision: 0.80366874\\
+\\
+\\
 Uogólnione NGramy
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -257,7 +272,7 @@ japan        & 0.76649743 & 0.7190476   \\ \hline
 \end{table}
 Multi-Class Pecision: 0.85633856
 
-\subsection{Eksperymento 3 - Różne wartości parametru k}
+\subsection{Eksperymenty 3 - Różne wartości parametru k}
 k = 3
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -272,8 +287,9 @@ japan        & 0.5652174  & 0.23636363 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla k = 3}
 \end{table}
-Multi-Class Pecision: 0.7962223
-
+Multi-Class Pecision: 0.7962223\\
+\\
+\\
 k = 5
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -288,8 +304,9 @@ japan        & 0.5660377  & 0.29411766 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla k = 5}
 \end{table}
-Multi-Class Pecision: 0.8016709
-
+Multi-Class Pecision: 0.8016709\\
+\\
+\\
 k = 8
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -304,8 +321,9 @@ japan        & 0.58278143 & 0.43781096 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla k = 8}
 \end{table}
-Multi-Class Pecision: 0.81002545
-
+Multi-Class Pecision: 0.81002545\\
+\\
+\\
 k = 13
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -320,8 +338,9 @@ japan        & 1.0        & 1.0         \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla k = 13}
 \end{table}
-Multi-Class Pecision: 0.81129676
-
+Multi-Class Pecision: 0.81129676\\
+\\
+\\
 k = 21
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -338,7 +357,7 @@ japan        & 1.0        & 0.09952607 \\ \hline
 \end{table}
 Multi-Class Pecision: 0.81674534
 
-\subsection{Eksperymento 4 - Różne ekstraktory}
+\subsection{Eksperymenty 4 - Różne ekstraktory}
 Ekstraktor nr 1
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -353,8 +372,9 @@ japan        & 0.5652174  & 0.23636363 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla ekstraktora 1.}
 \end{table}
-Multi-Class Pecision: 0.7962223
-
+Multi-Class Pecision: 0.7962223\\
+\\
+\\
 Ekstraktor nr 2
 articlesToReadCount = 10
 \begin{table}[H]
@@ -372,7 +392,7 @@ japan        & 0.19444445 & 0.10144927  \\ \hline
 \end{table}
 Multi-Class Pecision: 0.77324516
 
-\subsection{Eksperymento 5 - Inny tag}
+\subsection{Eksperymenty 5 - Inny tag}
 Eksperymenty dla tagu TOPICS oraz etykiet coffe, gold. Pozostałe parametry standardowe.
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -383,9 +403,10 @@ gold   & 0.9074074 & 0.98      \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla tagu TOPISC}
 \end{table}
-Multi-Class Pecision: 0.94392526
-
-distanceKNN = manhattan
+Multi-Class Pecision: 0.94392526\\
+\\
+\\
+distance = manhattan
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -395,9 +416,10 @@ gold   & 0.93877554 & 0.93877554 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla tagu TOPISC i dystansu miejskiego}
 \end{table}
-Multi-Class Pecision: 0.94392526
-
-distanceKNN = chebyshev
+Multi-Class Pecision: 0.94392526\\
+\\
+\\
+distance = chebyshev
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -407,8 +429,9 @@ gold   & 0.96       & 0.97959185 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla tagu TOPISC i dystansu Czebyszewa}
 \end{table}
-Multi-Class Pecision: 0.97196263
-
+Multi-Class Pecision: 0.97196263\\
+\\
+\\
 extractors = 2
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -419,9 +442,10 @@ gold   & 1.0       & 0.093023255 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla tagu TOPISC i 2. ekstraktora}
 \end{table}
-Multi-Class Pecision: 0.635514
-
-trainToTestRatio = 0.3f
+Multi-Class Pecision: 0.635514\\
+\\
+\\
+trainToTestRatio = 0.3
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
@@ -431,8 +455,9 @@ gold   & 0.9714286 & 0.9714286 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla tagu TOPISC i stosunku zbiorów 0.3}
 \end{table}
-Multi-Class Pecision: 0.97333336
-
+Multi-Class Pecision: 0.97333336\\
+\\
+\\
 k = 5
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -445,7 +470,7 @@ gold   & 1.0        & 0.9    \\ \hline
 \end{table}
 Multi-Class Pecision: 0.95327103
 
-\subsection{Eksperymento 6 - Nasz zbiór tekstów}
+\subsection{Eksperymenty 6 - Nasz zbiór tekstów}
 Standardowe parametry
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -456,8 +481,9 @@ restaurant & 1.0       & 0.055555556 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla własnych tekstów}
 \end{table}
-Multi-Class Pecision: 0.575
-
+Multi-Class Pecision: 0.575\\
+\\
+\\
 Uogólniona miara Ngramów
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -468,8 +494,9 @@ restaurant & 0.8888889  & 0.72727275 \\ \hline
 \end{tabular}
 \caption{Precision i Recall dla własnych tekstów i uogólnionej miary NGramów}
 \end{table}
-Multi-Class Pecision: 0.8
-
+Multi-Class Pecision: 0.8\\
+\\
+\\
 k = 8
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
@@ -531,5 +558,4 @@ Experiment With the MUC-3 Corpus}, University of Chicago,\\
 Komputerowe Systemy Rozpoznawania}, 21 września 2009.\\
 
 \end{thebibliography}
-{\color{blue} 
 \end{document}
