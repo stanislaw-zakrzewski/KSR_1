@@ -173,7 +173,6 @@ every
 start
 hand
 might
-American
 show
 part
 about
@@ -206,7 +205,6 @@ off
 always
 move
 like
-night
 live
 Mr
 point
@@ -270,7 +268,6 @@ sit
 away
 until
 power
-hour
 game
 often
 yet
@@ -306,7 +303,6 @@ learn
 real
 change
 team
-minute
 best
 several
 idea
@@ -364,7 +360,6 @@ research
 girl
 guy
 early
-food
 before
 moment
 himself
@@ -398,7 +393,6 @@ actually
 buy
 probably
 human
-wait
 serve
 market
 die
@@ -473,7 +467,6 @@ pull
 return
 free
 military
-price
 report
 less
 according
@@ -573,7 +566,6 @@ patient
 worker
 news
 test
-movie
 certain
 north
 love
@@ -590,7 +582,6 @@ computer
 type
 attention
 draw
-film
 tree
 source
 red
@@ -925,7 +916,6 @@ onto
 reveal
 direction
 weapon
-employee
 cultural
 contain
 peace
@@ -941,8 +931,6 @@ shake
 fly
 interview
 manage
-chair
-fish
 particular
 camera
 structure
@@ -975,7 +963,6 @@ past
 edge
 individual
 specific
-writer
 trouble
 necessary
 throughout
@@ -986,12 +973,10 @@ institution
 middle
 sea
 dream
-bar
 beautiful
 property
 instead
 improve
-stuff
 detail
 method
 sign
@@ -1033,7 +1018,6 @@ step
 Mrs
 yard
 beat
-violence
 total
 tend
 investment
@@ -1050,7 +1034,6 @@ civil
 kitchen
 consumer
 shot
-budget
 wish
 painting
 scientist
@@ -1072,7 +1055,6 @@ interesting
 break
 audience
 rich
-dinner
 figure
 vote
 western
@@ -1092,16 +1074,13 @@ wind
 key
 professional
 mission
-fast
 alone
-customer
 suffer
 speech
 successful
 option
 participant
 southern
-fresh
 eventually
 no
 forest
@@ -1109,7 +1088,6 @@ video
 global
 reform
 access
-restaurant
 judge
 publish
 cost
@@ -1185,7 +1163,6 @@ once
 camp
 brain
 feature
-afternoon
 AM
 weekend
 dozen
@@ -1249,7 +1226,6 @@ screen
 gain
 resident
 hide
-gold
 club
 future
 farm
@@ -1309,7 +1285,6 @@ tiny
 block
 protection
 settle
-feed
 collect
 additional
 while
@@ -1367,7 +1342,6 @@ chairman
 baseball
 soft
 ignore
-egg
 measure
 belief
 demonstrate
@@ -1376,10 +1350,8 @@ murder
 gift
 religion
 review
-editor
 past
 engage
-coffee
 document
 speed
 cross
@@ -1387,7 +1359,6 @@ influence
 anyway
 threaten
 commit
-female
 youth
 wave
 move
@@ -1423,7 +1394,6 @@ hey
 mistake
 focus
 smile
-location
 clothes
 quiet
 dress
@@ -1459,7 +1429,6 @@ key
 academic
 visit
 Internet
-healthy
 fire
 negative
 following
@@ -1490,7 +1459,6 @@ supply
 fully
 cut
 will
-actor
 birth
 search
 tie
@@ -1520,8 +1488,6 @@ tall
 plate
 hate
 otherwise
-writing
-press
 male
 start
 alive
@@ -1562,12 +1528,9 @@ sweet
 lead
 engine
 fourth
-salt
 expand
 importance
 metal
-fat
-ticket
 software
 disappear
 corporate
@@ -1578,13 +1541,10 @@ urban
 mental
 increasingly
 lunch
-educational
 somewhere
 farmer
 above
-sugar
 planet
-favorite
 explore
 obtain
 enemy
@@ -1655,7 +1615,6 @@ fear
 thanks
 fruit
 under
-expensive
 yellow
 conclusion
 prime
@@ -1665,7 +1624,6 @@ conclude
 analyst
 dance
 limit
-like
 regulation
 being
 last
@@ -1703,7 +1661,6 @@ crew
 deep
 accident
 male
-meal
 hearing
 traffic
 muscle
@@ -1781,8 +1738,6 @@ steal
 pursue
 slip
 percentage
-meat
-funny
 neither
 soil
 influence
@@ -1874,7 +1829,6 @@ aside
 anywhere
 bond
 file
-pleasure
 master
 era
 requirement
@@ -1894,8 +1848,6 @@ stir
 judgment
 clean
 except
-beer
-English
 reference
 tear
 doubt
@@ -1915,7 +1867,6 @@ seed
 surprised
 rest
 fashion
-pepper
 separate
 busy
 intervention
@@ -1928,7 +1879,6 @@ cite
 welfare
 vegetable
 gray
-dish
 beach
 improvement
 everywhere
@@ -1936,7 +1886,6 @@ opening
 overall
 divide
 initial
-terrible
 oppose
 contemporary
 route
@@ -1978,7 +1927,6 @@ proud
 flow
 faculty
 increased
-waste
 merely
 mass
 emphasize
@@ -2012,12 +1960,10 @@ grass
 unfortunately
 hat
 legislation
-succeed
 either
 celebrate
 achievement
 fishing
-drink
 accuse
 hand
 useful
@@ -2025,11 +1971,8 @@ land
 secret
 reject
 talent
-taste
 characteristic
-milk
 escape
-cast
 sentence
 unusual
 closely
@@ -2038,7 +1981,6 @@ height
 physician
 assess
 sleep
-plenty
 ride
 virtually
 first
@@ -2133,9 +2075,7 @@ selection
 primarily
 roof
 unable
-expense
 initiative
-diet
 arrest
 funding
 therapy
@@ -2147,20 +2087,15 @@ housing
 post
 purchase
 existing
-dark
 steel
 regarding
 shout
 remaining
-visual
 fairly
-chip
-violent
 silent
 suppose
 self
 bike
-tea
 perceive
 comparison
 settlement
@@ -2169,7 +2104,6 @@ planning
 far
 description
 later
-slow
 slide
 widely
 wedding
@@ -2196,12 +2130,10 @@ gain
 desert
 shall
 error
-release
 cop
 double
 walk
 sand
-Spanish
 rule
 hit
 print
@@ -2213,7 +2145,6 @@ existence
 album
 participation
 arrange
-atmosphere
 joint
 reply
 cycle
@@ -2222,7 +2153,6 @@ lock
 whole
 deserve
 consistent
-resistance
 discovery
 tear
 exposure
@@ -2233,13 +2163,9 @@ trust
 benefit
 pot
 grand
-mine
 hello
-coalition
 tale
 knife
-resolve
-racial
 phase
 present
 joke
@@ -2248,14 +2174,12 @@ symptom
 contact
 manufacturer
 philosophy
-potato
 interview
 foundation
 quote
 online
 pass
 negotiation
-good
 urge
 occasion
 dust
@@ -2272,10 +2196,8 @@ pack
 suicide
 numerous
 touch
-substance
 discipline
 elsewhere
-iron
 practical
 moreover
 passion
@@ -2293,8 +2215,6 @@ amazing
 intense
 advance
 employer
-shock
-inspire
 adjust
 retire
 sure
@@ -2304,7 +2224,6 @@ illness
 cap
 habit
 competitive
-juice
 congressional
 involvement
 dominate
@@ -2365,7 +2284,6 @@ disorder
 missile
 equally
 vary
-wire
 round
 distribution
 transportation
@@ -2375,7 +2293,6 @@ twin
 command
 commission
 interpretation
-breakfast
 stop
 strongly
 engineering
@@ -2389,7 +2306,6 @@ smell
 tablespoon
 capable
 nervous
-tourist
 light
 toss
 crucial
@@ -2397,7 +2313,6 @@ bury
 pray
 tomato
 exception
-butter
 deficit
 bathroom
 objective
@@ -2443,7 +2358,6 @@ recovery
 whisper
 watch
 gentleman
-corn
 moon
 inner
 junior
@@ -2456,8 +2370,6 @@ due
 straight
 publication
 pretty
-crop
-dig
 strike
 permanent
 plant
@@ -2522,13 +2434,11 @@ protein
 quit
 absence
 roll
-Latin
 rapidly
 jail
 comment
 diversity
 honest
-Palestinian
 pace
 employment
 speaker
@@ -2593,7 +2503,6 @@ dream
 fiber
 activist
 snap
-terrorism
 refugee
 incorporate
 hip
@@ -2626,14 +2535,11 @@ rough
 yell
 pregnant
 distant
-drama
 satellite
 personally
 wonder
 clock
 chocolate
-Italian
-Canadian
 ceiling
 sweep
 advertising
@@ -2668,7 +2574,6 @@ cooperation
 string
 ceremony
 communicate
-taste
 cheek
 lost
 profile
@@ -2690,7 +2595,6 @@ stranger
 infection
 cabinet
 broken
-apple
 electric
 proceed
 track
@@ -2728,20 +2632,16 @@ chemical
 translate
 accurate
 whereas
-terror
 though
 expansion
 elite
-dirt
 odd
-rice
 bullet
 tight
 Bible
 chart
 solar
 decline
-conservative
 process
 square
 stick
@@ -2757,7 +2657,6 @@ strip
 interpret
 friendly
 tournament
-fiction
 detect
 balance
 likely
@@ -2907,7 +2806,6 @@ deer
 split
 violate
 partnership
-pollution
 emission
 steady
 vital
@@ -2941,7 +2839,6 @@ leather
 distribute
 evolution
 ill
-tribe
 shelf
 can
 grandfather
@@ -2952,17 +2849,13 @@ wisdom
 council
 vulnerable
 instance
-garlic
 capability
 poetry
-celebrity
 gradually
 stability
 doubt
-fantasy
 scared
 guide
-plot
 framework
 gesture
 depending
@@ -2991,7 +2884,6 @@ custom
 store
 economist
 fifteen
-soup
 celebration
 efficient
 damage
@@ -3014,14 +2906,12 @@ wealthy
 galaxy
 given
 fund
-ski
 limitation
 OK
 trace
 appointment
 preference
 meter
-explosion
 arrest
 publicly
 incredible
@@ -3069,7 +2959,7 @@ tent
 examination
 publisher
 strengthen
-  proposed
+proposed
 myth
 sophisticated
 cow
@@ -3079,10 +2969,8 @@ asleep
 tennis
 nerve
 barrel
-bombing
 membership
 ratio
-menu
 purchase
 controversial
 desperate
@@ -3133,7 +3021,6 @@ romantic
 cotton
 motor
 sue
-flavor
 overlook
 float
 undergo
@@ -3141,7 +3028,6 @@ sequence
 demonstration
 jet
 orange
-consumption
 assert
 blade
 temporary
@@ -3164,7 +3050,6 @@ absolute
 chef
 discrimination
 offensive
-German
 suit
 boom
 register
@@ -3314,12 +3199,10 @@ brick
 recruit
 patch
 consensus
-horror
 recording
 changing
 painter
 colonial
-pie
 sake
 gaze
 courage
@@ -3333,7 +3216,6 @@ confusion
 slice
 occupation
 dear
-coal
 sacred
 criminal
 formula
@@ -3427,8 +3309,6 @@ excited
 sculpture
 compound
 integrate
-flour
-bitter
 bare
 slope
 rent
@@ -3437,14 +3317,12 @@ serving
 subtle
 greatly
 bishop
-drinking
 delay
 cry
 acceptance
 collapse
 shop
 pump
-candy
 evil
 final
 finance
@@ -3504,7 +3382,6 @@ flash
 developer
 reliable
 excitement
-beef
 stretch
 architecture
 occasional
@@ -3518,7 +3395,6 @@ airplane
 monthly
 duck
 dose
-Korean
 plead
 initiate
 lecture
@@ -3577,23 +3453,19 @@ crystal
 hay
 wish
 top
-written
 motive
 label
 flood
 pen
 ownership
-nightmare
 notice
 inspection
 supervisor
 consult
 arena
-laugh
 diagnosis
 possession
 forgive
-warm
 consistently
 basement
 project
@@ -3647,7 +3519,6 @@ welcome
 tune
 continuing
 harm
-railroad
 endure
 radiation
 horn
@@ -3692,7 +3563,6 @@ blue
 boost
 bat
 alarm
-festival
 grip
 weird
 undermine
@@ -3714,7 +3584,6 @@ rhetoric
 convinced
 driving
 vitamin
-enthusiasm
 accommodate
 praise
 injure
@@ -3736,8 +3605,6 @@ lobby
 profound
 format
 trait
-currency
-turkey
 reserve
 beam
 abuse
@@ -3759,7 +3626,6 @@ convey
 rush
 twist
 complexity
-fork
 disk
 relieve
 suspicion
@@ -3771,7 +3637,6 @@ meaningful
 sidewalk
 technological
 signature
-pleasant
 wow
 suspend
 rebel
@@ -3828,7 +3693,6 @@ precise
 anxious
 structural
 residential
-loud
 diagnose
 carbohydrate
 liberty
@@ -3850,7 +3714,6 @@ hers
 pastor
 jazz
 opera
-Japanese
 bite
 frame
 evil
@@ -3901,7 +3764,6 @@ practically
 program
 picture
 tune
-eating
 age
 volunteer
 hint
@@ -3934,7 +3796,6 @@ full-time
 feel
 lamp
 garbage
-servant
 addition
 regulatory
 diplomatic
@@ -3947,7 +3808,6 @@ chin
 trail
 necessity
 confess
-racism
 starter
 interior
 banking
@@ -3956,11 +3816,9 @@ gravity
 enroll
 diminish
 prevention
-Arab
 value
 minimize
 chop
-performer
 intent
 isolate
 pump
@@ -3991,13 +3849,11 @@ precious
 prohibit
 representative
 content
-realistic
 hidden
 command
 tender
 wake
 gathering
-outstanding
 stumble
 lonely
 automobile
@@ -4009,15 +3865,12 @@ silly
 hook
 tide
 shared
-hopefully
 readily
 cooperate
 revolutionary
-romance
 hardware
 pillow
 kit
-cook
 spread
 continent
 seal
@@ -4076,19 +3929,16 @@ loyalty
 credit
 shock
 talented
-gasoline
 stiff
 output
 nominee
 extended
 please
-diabetes
 slap
 toxic
 alleged
 jaw
 grief
-mysterious
 rocket
 donate
 inmate
@@ -4129,7 +3979,6 @@ bloody
 defeat
 associated
 withdrawal
-refrigerator
 nest
 near
 thoroughly
@@ -4139,11 +3988,9 @@ condemn
 steam
 accent
 escape
-optimistic
 unite
 cage
 equip
-shrimp
 homeland
 exchange
 rack
@@ -4151,7 +3998,6 @@ costume
 wolf
 courtroom
 statute
-cartoon
 besides
 productivity
 grin
@@ -4279,7 +4125,6 @@ sexy
 entrepreneur
 syndrome
 bureau
-seat
 workplace
 ambition
 touchdown
@@ -4296,7 +4141,6 @@ dissolve
 object
 statistical
 gut
-metropolitan
 rolling
 aesthetic
 spell
@@ -4339,7 +4183,6 @@ donation
 diary
 sibling
 irony
-spoon
 midst
 alley
 upset
@@ -4353,9 +4196,7 @@ pin
 hockey
 passing
 persist
-supplier
 known
-momentum
 purse
 shed
 liquid
@@ -4396,17 +4237,13 @@ consent
 comprise
 reminder
 alike
-placement
 dough
 grandchild
 dam
 reportedly
-well-known
-surrounding
 ecological
 outfit
 unprecedented
-columnist
 workout
 preliminary
 patent
@@ -4429,7 +4266,6 @@ custody
 banker
 beast
 interfere
-oak
 case
 eighth
 notebook
@@ -4439,7 +4275,6 @@ attendance
 speculation
 uncover
 behalf
-innovative
 shark
 reward
 mill
@@ -4460,10 +4295,8 @@ someday
 instant
 debut
 proclaim
-worldwide
 hike
 required
-confrontation
 colorful
 ideal
 constitution
@@ -4485,7 +4318,6 @@ shrink
 model
 emerging
 dot
-wheat
 fierce
 envision
 rational
@@ -4501,8 +4333,6 @@ unfair
 terrain
 deploy
 risky
-pasta
-genre
 distract
 merit
 planner
@@ -4571,9 +4401,7 @@ listener
 lightning
 legally
 sleeve
-disappointment
 disturb
-rib
 excessive
 high-tech
 debris
@@ -4597,7 +4425,6 @@ spare
 halfway
 cure
 equality
-cemetery
 harassment
 deliberately
 fame
@@ -4631,7 +4458,6 @@ steer
 legislator
 rally
 programming
-cheer
 outlet
 intact
 vendor
@@ -4642,7 +4468,6 @@ elaborate
 intellectual
 conception
 auction
-steak
 comply
 triumph
 shareholder
@@ -4658,7 +4483,6 @@ jurisdiction
 inevitably
 feminist
 constraint
-emotionally
 expedition
 allegedly
 compromise
@@ -4670,7 +4494,6 @@ dumb
 bulk
 sprinkle
 mortality
-philosophical
 conversion
 patron
 municipal
@@ -4706,7 +4529,6 @@ screening
 impulse
 forbid
 fur
-brutal
 predator
 poke
 opt
@@ -4753,7 +4575,6 @@ prevail
 overnight
 denial
 rental
-fantastic
 fragment
 level
 screw
@@ -4763,10 +4584,7 @@ liquid
 headache
 policeman
 yield
-projection
 battle
-suitable
-mention
 graduation
 drill
 cruel
@@ -4848,7 +4666,6 @@ soak
 ribbon
 meantime
 transmit
-screen
 harvest
 consecutive
 republican
@@ -4896,9 +4713,7 @@ honestly
 troubled
 bow
 twentieth
-balanced
 foreigner
-launch
 convenience
 delight
 weave
@@ -4936,10 +4751,8 @@ butterfly
 bronze
 drown
 inherent
-praise
 nationwide
 spit
-harvest
 kneel
 vacuum
 selected
@@ -4977,3 +4790,5 @@ qtr
 's
 -lrb-
 january
+I
+
