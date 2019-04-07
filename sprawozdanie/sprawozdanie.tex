@@ -94,25 +94,11 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 	\item extractors - zestaw ekstraktorów
 \end{enumerate}
 
-{\color{blue}
-Należy tu zamieścić krótki i zwięzły opis zaprojektowanych klas oraz powiązań
-między nimi. Powinien się tu również znaleźć diagram UML  (diagram klas)
-prezentujący najistotniejsze elementy stworzonej aplikacji. Należy także
-podać, w jakim języku programowania została stworzona aplikacja. }
 
 \section{Materiały i metody}
-{\color{blue}
-W tym miejscu należy opisać, jak przeprowadzone zostały wszystkie badania,
-których wyniki i dyskusja zamieszczane są w dalszych sekcjach. Opis ten
-powinien być na tyle dokładny, aby osoba czytająca go potrafiła wszystkie
-przeprowadzone badania samodzielnie powtórzyć w celu zweryfikowania ich
-poprawności (a zatem m.in. należy zamieścić tu opis architektury sieci,
-wartości współczynników użytych w kolejnych eksperymentach, sposób
-inicjalizacji wag, metodę uczenia itp. oraz informacje o danych, na których
-prowadzone były badania). Przy opisie należy odwoływać się i stosować do
-opisanych w sekcji drugiej wzorów i oznaczeń, a także w jasny sposób opisać
-cel konkretnego testu. Najlepiej byłoby wyraźnie wyszczególnić (ponumerować)
-poszczególne eksperymenty tak, aby łatwo było się do nich odwoływać dalej.}
+Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 11, 19), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet,\\
+DODANIE OPISU DRUGIEGO TAGA\\
+natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\% odkrytych etykiet.
 
 \section{Wyniki}
 Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach poniżej. Początkowa konfiguracja programu znajduje się poniżej, przy kolejnych eksperymentach zostały wspominanie tylko te parametry które były zmienione.
@@ -130,7 +116,7 @@ Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach
 \end{enumerate}
 Poniżej znajdują się wyniki dla przedstawionych powyższej parametrów.
 \begin{table}[H]
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|c|c|c|}
 \hline
 Label        & Precision  & Recall     \\ \hline
 west-germany & 0.39534885 & 0.3923077  \\ \hline
@@ -140,8 +126,135 @@ uk           & 0.62025315 & 0.24873096 \\ \hline
 canada       & 0.49079755 & 0.23738873 \\ \hline
 japan        & 0.5652174  & 0.23636363 \\ \hline
 \end{tabular}
-\caption{Parametry bazowe}
+\caption{Precision i Recall dla parametrów bazowych}
 \end{table}
+Multi-Class Pecision: 0.7962223
+\begin{table}[H]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+             & west-germany & usa  & france & uk & canada & japan \\ \hline
+west-germany & 51           & 74   & 0      & 2  & 3      & 0     \\ \hline
+usa          & 57           & 4064 & 31     & 57 & 71     & 36    \\ \hline
+france       & 1            & 65   & 39     & 0  & 2      & 2     \\ \hline
+uk           & 10           & 273  & 5      & 98 & 7      & 1     \\ \hline
+canada       & 5            & 248  & 2      & 1  & 80     & 1     \\ \hline
+japan        & 5            & 163  & 0      & 0  & 0      & 52    \\ \hline
+\end{tabular}
+\caption{Przypisanie tagów dla parametrów bazowych}
+\end{table}
+\subsection{Eksperymento 1 - Różne metryki odległości}
+Metryka euklidesowa
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.39534885 & 0.3923077  \\ \hline
+usa          & 0.83159405 & 0.9416126  \\ \hline
+france       & 0.5064935  & 0.35779816 \\ \hline
+uk           & 0.62025315 & 0.24873096 \\ \hline
+canada       & 0.49079755 & 0.23738873 \\ \hline
+japan        & 0.5652174  & 0.23636363 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla metryki euklidesowej}
+\end{table}
+Multi-Class Pecision: 0.7962223
+
+Metryka uliczna
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.5566038  & 0.4402985  \\ \hline
+usa          & 0.8411453  & 0.914457   \\ \hline
+france       & 0.32407406 & 0.2651515  \\ \hline
+uk           & 0.45026177 & 0.22994652 \\ \hline
+canada       & 0.45614034 & 0.31610942 \\ \hline
+japan        & 0.53797466 & 0.425      \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla metryki ulicznej}
+\end{table}
+Multi-Class Pecision: 0.78732294
+
+Metryka Czebyszewa
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.64788735 & 0.35384616 \\ \hline
+usa          & 0.8515893  & 0.91464823 \\ \hline
+france       & 0.37195122 & 0.5126051  \\ \hline
+uk           & 0.4652778  & 0.17539267 \\ \hline
+canada       & 0.52517986 & 0.43843845 \\ \hline
+japan        & 0.49222797 & 0.4589372  \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla metryki Czebyszewa}
+\end{table}
+Multi-Class Pecision: 0.7954958
+
+\subsection{Eksperymento 2 - różne metryki porównywania słów}
+NGramy, n = 3
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.39534885 & 0.3923077  \\ \hline
+usa          & 0.83159405 & 0.9416126  \\ \hline
+france       & 0.5064935  & 0.35779816 \\ \hline
+uk           & 0.62025315 & 0.24873096 \\ \hline
+canada       & 0.49079755 & 0.23738873 \\ \hline
+japan        & 0.5652174  & 0.23636363 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla NGramów, n = 3}
+\end{table}
+Multi-Class Pecision: 0.7962223
+
+NGramy, n = 2
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.5416667  & 0.104      \\ \hline
+usa          & 0.80586374 & 0.94232106 \\ \hline
+france       & 0.22972973 & 0.16037735 \\ \hline
+uk           & 0.26666668 & 0.12276215 \\ \hline
+canada       & 0.4347826  & 0.16574585 \\ \hline
+japan        & 0.47619048 & 0.09756097 \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla NGramów, n = 2}
+\end{table}
+Multi-Class Pecision: 0.7675263
+
+NGramy, n = 4
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall     \\ \hline
+west-germany & 0.5652174  & 0.36879432 \\ \hline
+usa          & 0.847703   & 0.9302486  \\ \hline
+france       & 0.36619717 & 0.23853211 \\ \hline
+uk           & 0.41411042 & 0.34526855 \\ \hline
+canada       & 0.6785714  & 0.23312883 \\ \hline
+japan        & 0.6884058  & 0.4871795  \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla NGramów, n = 4}
+\end{table}
+Multi-Class Pecision: 0.80366874
+
+Uogólnione NGramy
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Label        & Precision  & Recall      \\ \hline
+west-germany & 0.7589286  & 0.65891474  \\ \hline
+usa          & 0.8819797  & 0.9648311   \\ \hline
+france       & 0.46666667 & 0.7241379   \\ \hline
+uk           & 0.7490196  & 0.49354005  \\ \hline
+canada       & 1.0        & 0.099415205 \\ \hline
+japan        & 0.76649743 & 0.7190476   \\ \hline
+\end{tabular}
+\caption{Precision i Recall dla UogólnionychNGramów}
+\end{table}
+Multi-Class Pecision: 0.85633856
 
 \section{Dyskusja}
 {\color{blue}
