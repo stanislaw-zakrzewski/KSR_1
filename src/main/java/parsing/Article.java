@@ -1,11 +1,14 @@
 package parsing;
 
+import extracting.feature_extractors.StanfordLemmatizer;
+
 import java.util.List;
 
 public class Article {
     private List<String> tags;
     private String title;
     private String content;
+    private List<String> lemmatizedWords;
 
     public Article(List<String> tags, String title, String content) {
         this.tags = tags;
@@ -23,6 +26,13 @@ public class Article {
 
     public String getContent() {
         return content;
+    }
+
+    public List<String> getLemmatizedWords() {
+        if(lemmatizedWords == null) {
+            lemmatizedWords = StanfordLemmatizer.getInstance().lemmatize(content);
+        }
+        return lemmatizedWords;
     }
 
     public void printAll() {

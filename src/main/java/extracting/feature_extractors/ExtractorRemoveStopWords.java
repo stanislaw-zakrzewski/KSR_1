@@ -1,5 +1,7 @@
 package extracting.feature_extractors;
 
+import results.Stopwatch;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ public class ExtractorRemoveStopWords implements Extractor {
      * @return updated vector, with removed stopwords
      */
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
+        Stopwatch stopwatch = new Stopwatch();
         List<String> toRemove = new ArrayList<>();
         for (Object key : vector.keySet()) {
             if (Stopwords.getInstance().contains(((String) key).toLowerCase())) {
@@ -25,6 +28,7 @@ public class ExtractorRemoveStopWords implements Extractor {
         for (String key : toRemove) {
             vector.remove(key);
         }
+        System.out.println("ExtractorRemoveStopWords: " + stopwatch.getTime());
         return vector;
     }
 }

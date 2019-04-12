@@ -3,20 +3,21 @@ package extracting.feature_extractors;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.CoreNLPProtos;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.simple.Sentence;
 import edu.stanford.nlp.util.CoreMap;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class StanfordLemmatizer {
     private static StanfordLemmatizer instance;
+    private static Map<String, String> zmiana;
 
     public static StanfordLemmatizer getInstance() {
         if (instance == null) {
             instance = new StanfordLemmatizer();
+            zmiana = new HashMap<>();
         }
         return instance;
     }
@@ -37,7 +38,22 @@ public class StanfordLemmatizer {
 
     public List<String> lemmatize(String documentText)
     {
-        List<String> lemmas = new LinkedList<String>();
+        List<String> lemmas = new LinkedList<>();
+
+        String[] words = documentText.split("\\W+");
+        for(String word : words) {
+            if(!word.equals("")) {
+                if (!zmiana.containsKey(word)) {
+                    Sentence sentence = new Sentence(word);
+                    zmiana.put(word, sentence.lemma(0));
+                }
+                lemmas.add(zmiana.get(word));
+            }
+        }
+        return  lemmas;
+        /*
+
+
 
         // create an empty Annotation just with the given text
         Annotation document = new Annotation(documentText);
@@ -50,18 +66,15 @@ public class StanfordLemmatizer {
         for(CoreMap sentence: sentences) {
             // Iterate over all tokens in a sentence
             for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+                if(!zmiana.containsKey(token.value())) {
+                    zmiana.put(token.value(), token.get(CoreAnnotations.LemmaAnnotation.class));
+                }
                 // Retrieve and add the lemma for each word into the list of lemmas
-                lemmas.add(token.get(CoreAnnotations.LemmaAnnotation.class));
+                lemmas.add(zmiana.get(token.value()));
+                //lemmas.add(token.get(CoreAnnotations.LemmaAnnotation.class));
             }
         }
-        List<String> toRemove = new ArrayList<>();
-        for(String s : lemmas) {
-            if(s.equals(".") || s.equals("-") || s.equals(",") || s.equals("!") || s.equals("&")) {
-                toRemove.add(s);
-            }
-        }
-        lemmas.removeAll(toRemove);
 
-        return lemmas;
+        return lemmas;*/
     }
 }

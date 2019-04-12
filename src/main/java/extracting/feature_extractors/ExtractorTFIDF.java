@@ -1,6 +1,7 @@
 package extracting.feature_extractors;
 
 import parsing.Article;
+import results.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class ExtractorTFIDF implements Extractor {
 
     @Override
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
+        Stopwatch stopwatch = new Stopwatch();
         n = elementsForTag.size();
         List<List<String>> allDocuments = new ArrayList<>();
         for(Object o : elementsForTag) {
@@ -21,6 +23,7 @@ public class ExtractorTFIDF implements Extractor {
         for(Object o : vector.keySet()) {
             vector.replace(o, 1/calculateTFIDFForSingleWord((String)o, allDocuments));
         }
+        System.out.println("ExtractorTFIDF: " + stopwatch.getTime());
         return vector;
     }
 

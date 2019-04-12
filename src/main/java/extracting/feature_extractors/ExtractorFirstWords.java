@@ -2,28 +2,31 @@ package extracting.feature_extractors;
 
 import extracting.Converter;
 import parsing.Article;
+import results.Stopwatch;
 
 import java.util.List;
 import java.util.Map;
 
 public class ExtractorFirstWords implements Extractor {
-    private Converter converter;
 
     public ExtractorFirstWords() {
-        converter = new Converter();
+        Converter converter = new Converter();
     }
 
     @Override
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
+        Stopwatch stopwatch = new Stopwatch();
+
         for(Object article : elementsForTag) {
-            List<String> words = converter.contentToWords(((Article)article).getContent());
-            for (String word : words) {
+            for (String word : ((Article) article).getLemmatizedWords()) {
                 if (vector.containsKey(word)) {
-                    vector.replace(word, vector.get(word) + 10);
+                    vector.replace(word, vector.get(word) + 1);
                     break;
                 }
             }
         }
+
+        System.out.println("ExtractorFirstWords: " + stopwatch.getTime());
         return vector;
     }
 }

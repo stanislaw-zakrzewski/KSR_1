@@ -14,6 +14,7 @@ import parsing.ReadAll;
 import results.ConfusionMatrix;
 import results.MultiClassPrecision;
 import results.PrecisionAndRecallForTags;
+import results.Stopwatch;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,6 +24,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+        Stopwatch stopwatch = new Stopwatch();
         //Variables read from file
         String tagClass = "";
         String folderPath = "";
@@ -98,8 +100,10 @@ public class Main {
                             switch (lines[1]) {
                                 case "1":
                                     extractors.add(new ExtractorRemoveStopWords());
-                                    extractors.add(new ExtractorFirstWords());
                                     extractors.add(new ExtractorRemoveNumbers());
+                                    //extractors.add(new ExtractorRemoveRarelyOccuring(3));
+                                    //extractors.add(new ExtractorTFIDF());
+                                    extractors.add(new ExtractorFirstWords());
                                     break;
                                 case "2":
                                     extractors.add(new ExtractorTFIDF());
@@ -184,6 +188,7 @@ public class Main {
         PrecisionAndRecallForTags.show(tags, correctlabels, resultlabels);
         System.out.println();
         ConfusionMatrix.calculate(tags, correctlabels, resultlabels);
+        System.out.println("Cały program: " + stopwatch.getTime());
     }
 
     private static Map<String, List<Object>> getElementsForTags(List<Object> elements, List<String> tags) {
