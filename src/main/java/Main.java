@@ -101,7 +101,7 @@ public class Main {
                                 case "1":
                                     extractors.add(new ExtractorRemoveStopWords());
                                     extractors.add(new ExtractorRemoveNumbers());
-                                    //extractors.add(new ExtractorRemoveRarelyOccuring(3));
+                                    extractors.add(new ExtractorRemoveRarelyOccuring(3));
                                     //extractors.add(new ExtractorTFIDF());
                                     extractors.add(new ExtractorFirstWords());
                                     break;

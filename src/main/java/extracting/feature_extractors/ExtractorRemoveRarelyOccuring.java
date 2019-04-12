@@ -29,7 +29,6 @@ public class ExtractorRemoveRarelyOccuring implements Extractor {
                 }
             }
             while(wordsInDocumentsCount.values().remove(wordsCount-1));
-            System.out.println(wordsInDocumentsCount.size());
         }
         for(String key : wordsInDocumentsCount.keySet()) {
             if(wordsInDocumentsCount.get(key) < wordsCount) {
