@@ -1,12 +1,7 @@
-package extracting.feature_extractors;
+package data_management;
 
-import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.CoreNLPProtos;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.simple.Sentence;
-import edu.stanford.nlp.util.CoreMap;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package results;
+package data_management;
 
 import knn_classification.calculate_distance.ChebyshevDistance;
 import knn_classification.calculate_distance.Distance;

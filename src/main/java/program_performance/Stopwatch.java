@@ -1,4 +1,4 @@
-package results;
+package program_performance;
 
 public class Stopwatch {
     private long startTime;

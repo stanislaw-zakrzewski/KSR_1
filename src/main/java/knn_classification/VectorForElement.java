@@ -2,7 +2,7 @@ package knn_classification;
 
 import matching_words.word_comparators.OurComparator;
 import matching_words.word_comparators.WordComparator;
-import parsing.Article;
+import data_management.Article;
 
 import java.util.Comparator;
 import java.util.LinkedList;

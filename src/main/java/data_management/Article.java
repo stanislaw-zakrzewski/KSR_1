@@ -1,6 +1,6 @@
-package parsing;
+package data_management;
 
-import extracting.feature_extractors.StanfordLemmatizer;
+import data_management.StanfordLemmatizer;
 
 import java.util.ArrayList;
 import java.util.List;

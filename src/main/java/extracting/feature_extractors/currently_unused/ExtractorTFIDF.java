@@ -1,10 +1,11 @@
-package extracting.feature_extractors;
+package extracting.feature_extractors.currently_unused;
 
-import parsing.Article;
-import results.Stopwatch;
+import extracting.feature_extractors.Extractor;
+import data_management.StanfordLemmatizer;
+import data_management.Article;
+import program_performance.Stopwatch;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

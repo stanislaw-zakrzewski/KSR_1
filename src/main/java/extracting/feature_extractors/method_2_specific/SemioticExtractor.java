@@ -3,7 +3,7 @@ package extracting.feature_extractors.method_2_specific;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import parsing.Article;
+import data_management.Article;
 
 import java.util.*;
 

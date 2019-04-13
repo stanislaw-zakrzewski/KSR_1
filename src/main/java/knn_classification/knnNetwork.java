@@ -2,7 +2,7 @@ package knn_classification;
 
 import extracting.NElementsSelector;
 import knn_classification.calculate_distance.Distance;
-import parsing.Article;
+import data_management.Article;
 
 import java.util.*;
 

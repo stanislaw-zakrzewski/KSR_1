@@ -23,10 +23,11 @@ public class GeneralizedNGrams implements WordComparator{
         }
 
         //TODO think about this
-        if((h * (2f/((N*N)+N))) < .5) {
+        float ret = h * (2f / ((N * N) + N));
+        if(ret < .5) {
             return 0;
         }
 
-        return (h * (2f/((N*N)+N)));
+        return ret;
     }
 }

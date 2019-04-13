@@ -1,6 +1,4 @@
-package extracting;
-
-import parsing.Article;
+package data_management;
 
 import java.util.HashMap;
 import java.util.HashSet;

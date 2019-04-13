@@ -1,3 +1,4 @@
+import data_management.ConfigReader;
 import extracting.MainExtractor;
 import extracting.feature_extractors.*;
 import extracting.feature_extractors.method_1_specific.ExtractorFirstWords;
@@ -8,8 +9,9 @@ import knn_classification.VectorForElement;
 import knn_classification.knnNetwork;
 import matching_words.word_comparators.OurComparator;
 import matching_words.word_comparators.WordComparator;
-import parsing.Article;
-import parsing.ReadAll;
+import data_management.Article;
+import data_management.ReadAll;
+import program_performance.Stopwatch;
 import results.*;
 
 import java.util.*;

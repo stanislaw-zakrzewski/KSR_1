@@ -1,6 +1,6 @@
 package extracting.feature_extractors;
 
-import results.Stopwatch;
+import program_performance.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.List;

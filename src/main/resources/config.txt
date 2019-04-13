@@ -1,11 +1,11 @@
-tagClass = PLACES
-folderPath = src/main/resources/sgm/
+tagClass = REVIEWS
+folderPath = src/main/resources/ourTexts/
 articlesToReadCount = 22
-k = 5
+k = 3
 fractionOfUncoveredForEachTag = 0.1f
-tags = west-germany, usa, france, uk, canada, japan
+tags = movie, restaurant
 numberOfElementsPerTag = 5
-trainToTestRatio = 0.6f
+trainToTestRatio = 0.4f
 distanceKNN = euclidean
 wordSimilarity = generalizedNGrams
 extractors = 1

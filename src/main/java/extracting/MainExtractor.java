@@ -1,9 +1,9 @@
 package extracting;
 
+import data_management.Converter;
 import extracting.feature_extractors.Extractor;
-import results.Stopwatch;
+import program_performance.Stopwatch;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

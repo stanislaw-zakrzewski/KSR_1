@@ -1,8 +1,8 @@
 package extracting.feature_extractors.method_1_specific;
 
 import extracting.feature_extractors.Extractor;
-import parsing.Article;
-import results.Stopwatch;
+import data_management.Article;
+import program_performance.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
