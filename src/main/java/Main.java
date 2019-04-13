@@ -71,14 +71,14 @@ public class Main {
             extractors.add(new ExtractorRemoveNumbers());
             if (ext == 1) {
                 //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
-                extractors.add(new ExtractorFirstWords(1));
+                extractors.add(new ExtractorFirstWords(10));
                 //extractors.add(new ExtractorTFIDF());
             } else {
                 extractors.add(new ExtractorOurMethod());
                 extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
                 extractors.add(new ExtractorFirstWords(10));
             }
-            List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
+            List<Object> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
 
             VectorForElement vectorForElement = new VectorForElement();
             if (ext == 1) {

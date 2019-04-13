@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class VectorForElement {
-    public List<Float> generateVector(List<List<Object>> objectsVector, Object element, WordComparator comparator) {
+    public List<Float> generateVector(List<Object> objectsVector, Object element, WordComparator comparator) {
         List<Float> vector = new LinkedList<>();
-        objectsVector.forEach(e -> vector.add(0f));
+        for(int i = 0; i < objectsVector.size(); i++) {
+            vector.add(0.f);
+        }
 
         List<String> words = ((Article) element).getLemmatizedWords();
 
@@ -22,10 +24,7 @@ public class VectorForElement {
 
         for (String word : words) {
             for (int i = 0; i < objectsVector.size(); i++) {
-                for (Object word2 : (objectsVector.get(i))) {
-                    float similarity = comparator.similarity(word, word2);
-                    vector.set(i, vector.get(i) + comparator.similarity(word, word2));
-                }
+                vector.set(i, vector.get(i) + comparator.similarity(word, objectsVector.get(i)));
             }
         }
         Optional<Float> max = vector.stream().max(Comparator.comparing(Float::floatValue));
