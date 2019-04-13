@@ -13,7 +13,7 @@ public class Converter {
         }
         Map<Object, Float> vector = new HashMap<>();
         for(String word : words) {
-            vector.put(word, 0.f);
+            vector.put(word, 1.f);
         }
         return vector;
     }

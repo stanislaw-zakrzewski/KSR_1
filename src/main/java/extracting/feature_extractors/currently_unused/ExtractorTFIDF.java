@@ -22,7 +22,7 @@ public class ExtractorTFIDF implements Extractor {
             allDocuments.add(StanfordLemmatizer.getInstance().lemmatize(((Article)o).getContent()));
         }
         for(Object o : vector.keySet()) {
-            vector.replace(o, 1/calculateTFIDFForSingleWord((String)o, allDocuments));
+            vector.replace(o, calculateTFIDFForSingleWord((String)o, allDocuments)/elementsForTag.size());
         }
         System.out.println("ExtractorTFIDF: " + stopwatch.getTime());
         return vector;

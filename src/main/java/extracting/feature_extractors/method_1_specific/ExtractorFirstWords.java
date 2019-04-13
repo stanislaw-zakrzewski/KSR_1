@@ -22,7 +22,7 @@ public class ExtractorFirstWords implements Extractor {
         for (Object article : elementsForTag) {
             for (String word : ((Article) article).getLemmatizedWords()) {
                 if (vector.containsKey(word)) {
-                    vector.replace(word, vector.get(word) + 1.0f/firstWordsCount);
+                    vector.replace(word, vector.get(word) * (1 + (1.0f/firstWordsCount)/10));
                     if(wordsCounter == firstWordsCount) {
                         break;
                     } else {

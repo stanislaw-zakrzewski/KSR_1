@@ -1,9 +1,9 @@
-tagClass = REVIEWS
-folderPath = src/main/resources/ourTexts/
+tagClass = PLACES
+folderPath = src/main/resources/sgm/
 articlesToReadCount = 22
-k = 3
+k = 5
 fractionOfUncoveredForEachTag = 0.1f
-tags = movie, restaurant
+tags = west-germany, usa, france, uk, canada, japan
 numberOfElementsPerTag = 5
 trainToTestRatio = 0.4f
 distanceKNN = euclidean

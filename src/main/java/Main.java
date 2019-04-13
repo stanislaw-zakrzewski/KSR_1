@@ -1,6 +1,7 @@
 import data_management.ConfigReader;
 import extracting.MainExtractor;
 import extracting.feature_extractors.*;
+import extracting.feature_extractors.currently_unused.ExtractorTFIDF;
 import extracting.feature_extractors.method_1_specific.ExtractorFirstWords;
 import extracting.feature_extractors.method_1_specific.ExtractorRemoveFrequentOccurences;
 import extracting.feature_extractors.method_2_specific.SemioticExtractor;
@@ -73,6 +74,7 @@ public class Main {
             extractors.add(new ExtractorRemoveNumbers());
             if (ext == 1) {
                 //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
+                //extractors.add(new ExtractorTFIDF());
                 extractors.add(new ExtractorFirstWords(10));
                 //extractors.add(new ExtractorTFIDF());
             } else {
