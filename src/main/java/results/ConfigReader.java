@@ -17,6 +17,7 @@ import java.util.List;
 public class ConfigReader {
     private String folderPath;
     private String tagClass;
+    private String extractor;
     private List<String> tags;
     private int articlesToReadCount;
     private int numberOfElementsPerTag;
@@ -39,6 +40,9 @@ public class ConfigReader {
                         break;
                     case "tagClass":
                         tagClass = keyValue[1];
+                        break;
+                    case "extractors":
+                        extractor = keyValue[1];
                         break;
                     //List<String> values
                     case "tags":
@@ -103,6 +107,10 @@ public class ConfigReader {
 
     public String getTagClass() {
         return tagClass;
+    }
+
+    public String getExtractor() {
+        return extractor;
     }
 
     public List<String> getTags() {

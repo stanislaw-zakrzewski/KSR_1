@@ -8,4 +8,4 @@ numberOfElementsPerTag = 5
 trainToTestRatio = 0.6f
 distanceKNN = euclidean
 wordSimilarity = NGrams
-extractors = 1
+extractors = 2

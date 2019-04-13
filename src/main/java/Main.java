@@ -1,4 +1,5 @@
-import extracting.feature_extractors.SemioticExtractor;
+import extracting.MainExtractor;
+import extracting.feature_extractors.*;
 import knn_classification.VectorForElement;
 import knn_classification.knnNetwork;
 import parsing.Article;
@@ -24,7 +25,7 @@ public class Main {
             if (((Article) article).getTags().size() != 1) {
                 toRemove.add(article);
             } else {
-                if (! config.getTags().contains(((Article) article).getTags().get(0))) {
+                if (!config.getTags().contains(((Article) article).getTags().get(0))) {
                     toRemove.add(article);
                 }
             }
@@ -50,38 +51,47 @@ public class Main {
             System.out.println(o + "  " + testArticlesByTags.get(o).size());
         }
 
-        //Generate vector using extractors
-        //List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, tags, numberOfElementsPerTag, extractors);
-
-        //Generate vectors for articles in test set
         List<List<Float>> testVectors = new LinkedList<>();
-        VectorForElement vectorForElement = new VectorForElement();
-        for (Object o : testArticles) {
-            //testVectors.add(vectorForElement.generateVector(vector, o, wordComparator));
-            testVectors.add(SemioticExtractor.getInstance().calculateVector(o));// vectorForElement.generateVector(vector, o, wordComparator));
+        knnNetwork network = null;
+        if (config.getExtractor().equals("1")) {
+            //Generate vector pattern using extractors
+            List<Extractor> extractors = new ArrayList<>();
+            extractors.add(new ExtractorRemoveStopWords());
+            extractors.add(new ExtractorRemoveNumbers());
+            extractors.add(new ExtractorFirstWords());
+            List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
+
+
+            VectorForElement vectorForElement = new VectorForElement();
+            for (Object o : testArticles) {
+                testVectors.add(vectorForElement.generateVector(vector, o, config.getWordSimilarity()));
+            }
+
+            network = new knnNetwork(vector.size(), config.getTags());
+        } else {
+            for (Object o : testArticles) {
+                testVectors.add(SemioticExtractor.getInstance().calculateVector(o));
+            }
+            network = new knnNetwork(11, config.getTags());
         }
 
         //Use knn to classify articles
-        //knnNetwork network = new knnNetwork(vector.size(), tags);
-        knnNetwork network = new knnNetwork(11, config.getTags());
         for (int i = 0; i < testVectors.size(); i++) {
             network.addVector(testArticles.get(i), testVectors.get(i));
         }
-
         Map<Object, String> classifiedArticles = network.classify(config.getK(), config.getFractionOfUncoveredForEachTag(), config.getDistance());
-        List<String> correctlabels = new ArrayList<>();
-        List<String> resultlabels = new ArrayList<>();
 
         //Show results of classification
+        List<String> correctLabels = new ArrayList<>();
+        List<String> resultLabels = new ArrayList<>();
         for (Object o : classifiedArticles.keySet()) {
-            correctlabels.add(((Article) o).getTags().get(0));
-            resultlabels.add(classifiedArticles.get(o));
+            correctLabels.add(((Article) o).getTags().get(0));
+            resultLabels.add(classifiedArticles.get(o));
         }
-        System.out.println("Multi-Class Pecision: " + MultiClassPrecision.calculate(config.getTags(), correctlabels, resultlabels));
+        System.out.println("Multi-Class Pecision: " + MultiClassPrecision.calculate(config.getTags(), correctLabels, resultLabels) + "\n");
+        PrecisionAndRecallForTags.show(config.getTags(), correctLabels, resultLabels);
         System.out.println();
-        PrecisionAndRecallForTags.show(config.getTags(), correctlabels, resultlabels);
-        System.out.println();
-        ConfusionMatrix.calculate(config.getTags(), correctlabels, resultlabels);
+        ConfusionMatrix.calculate(config.getTags(), correctLabels, resultLabels);
         System.out.println("Cały program: " + stopwatch.getTime());
     }
 
