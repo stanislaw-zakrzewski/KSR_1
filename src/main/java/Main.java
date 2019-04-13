@@ -1,6 +1,7 @@
 import extracting.MainExtractor;
 import extracting.feature_extractors.*;
 import extracting.feature_extractors.method_1_specific.ExtractorFirstWords;
+import extracting.feature_extractors.method_1_specific.ExtractorRemoveFrequentOccurences;
 import extracting.feature_extractors.method_2_specific.SemioticExtractor;
 import extracting.feature_extractors.method_3_specific.ExtractorOurMethod;
 import knn_classification.VectorForElement;
@@ -69,16 +70,20 @@ public class Main {
             extractors.add(new ExtractorRemoveStopWords());
             extractors.add(new ExtractorRemoveNumbers());
             if (ext == 1) {
-                extractors.add(new ExtractorFirstWords());
+                //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
+                extractors.add(new ExtractorFirstWords(1));
+                //extractors.add(new ExtractorTFIDF());
             } else {
                 extractors.add(new ExtractorOurMethod());
+                extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
+                extractors.add(new ExtractorFirstWords(10));
             }
             List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
 
             VectorForElement vectorForElement = new VectorForElement();
-            if(ext == 1) {
+            if (ext == 1) {
                 for (Object o : testArticles) {
-                        testVectors.add(vectorForElement.generateVector(vector, o, config.getWordSimilarity()));
+                    testVectors.add(vectorForElement.generateVector(vector, o, config.getWordSimilarity()));
                 }
             } else {
                 WordComparator our = new OurComparator();

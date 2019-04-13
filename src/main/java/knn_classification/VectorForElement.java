@@ -23,6 +23,7 @@ public class VectorForElement {
         for (String word : words) {
             for (int i = 0; i < objectsVector.size(); i++) {
                 for (Object word2 : (objectsVector.get(i))) {
+                    float similarity = comparator.similarity(word, word2);
                     vector.set(i, vector.get(i) + comparator.similarity(word, word2));
                 }
             }
