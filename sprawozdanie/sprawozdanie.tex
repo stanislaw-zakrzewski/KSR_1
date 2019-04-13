@@ -63,7 +63,7 @@ gdzie:
 \[ d\left ( x,y \right )=\sum|x_{i}-y_{i}| \]
 
 	Trzecią i zarazem ostatnią jest metryka Czebyszewa, odległość jest obliczana przy pomocy wzoru:
-\[ d\left ( x,y \right )=\frac{\sum|x_{i} \cdot y_{i}|}{\sqrt{ \sum x_{i}^{2} \cdot \sum y_{i}^{2} }} \]
+$$ d(x,y) = max_{i}   |x_{i}-y_{i}| $$
 
 	Podobieństwo pomiędzy poszczególnymi słowami wyznaczaliśmy przy pomocy dwóch spobów:
 Pierwszym z nich była uogólniona miara n-gramów. Obliczana jest przy pomocy wzoru:
@@ -106,6 +106,35 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 
 \section{Materiały i metody}
 Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 11, 19), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet. W drugim przypadku według tagu TOPICS etykietowano przy pomocy dwóch etykiet (coffee i gold), przy równym podziale na zbiór treningowy i testowy. Natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\% odkrytych etykiet.
+
+Do zbadania wyników klasyfikacji posłużyliśmy metodą tablicy pomyłek (zwaną również macierzą błędów, ang. confusin matrix). Pozwala ona ocenić jakoś klasyfikacji. Poniżej znajduje się tabela wyjaśniająca sposób jej tworzenia.
+\begin{table}[H]
+\begin{tabular}{|c|c|c|}
+\hline
+Klasa rzeczywista & Klasyfikacja jako Pozytywna                                                             & Klasyfikacja jako Negatywna                                                              \\ \hline \hline
+Pozytywna         & \begin{tabular}[c]{@{}c@{}}Prawdziwie Pozytywna\\ (ang. True Positive, TP)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Fałszywie Pozytywna\\ (ang. True Negative, TN)\end{tabular}   \\ \hline
+Negatywna         & \begin{tabular}[c]{@{}c@{}}Fałszywie Pozytywna\\ (ang. False Positive, FP)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Prawdziwie Negatywna\\ (ang. False Negative, FN)\end{tabular} \\ \hline
+\end{tabular}
+\caption{Macierz błędów}
+\end{table}
+Skrótów angielskich nazw będziemy używać dalej przy określaniu miar. Znając te wartości jesteśmy w stanie obliczyć kolejne miary:
+\begin{enumerate}
+	\item Accuracy
+	\item Precision
+	\item Recall (Sensitivity)
+\end{enumerate}
+opisane poniżej.
+\subsection{Accuracy}
+Dokładność (ang. Accuracy) jest ogólną efektywnością klasyfikacji. Wyraża się wzorem:
+$$ \frac{tp+tn}{tp+fn+fp+tn} $$
+
+\subsection{Precison}
+Precyzja (ang. Precision) oznacza zgodność etykiet z pozytywnymi cechami.
+$$ \frac{tp}{tp+fp} $$
+
+\subsection{Recall}
+Czułość (ang. Recall lub Sensitivity) to efektywność klasyfikowania pozytywnych cech. 
+$$ \frac{tp}{tp+fn} $$
 
 \section{Wyniki}
 Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach poniżej. Początkowa konfiguracja programu znajduje się poniżej, przy kolejnych eksperymentach zostały wspominanie tylko te parametry które były zmienione.
