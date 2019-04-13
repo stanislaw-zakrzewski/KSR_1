@@ -1,6 +1,5 @@
 package knn_classification;
 
-import extracting.Converter;
 import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 
@@ -10,10 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class VectorForElement {
-    public VectorForElement() {
-        Converter converter = new Converter();
-    }
-
     public List<Float> generateVector(List<List<Object>> objectsVector, Object element, WordComparator comparator) {
         List<Float> vector = new LinkedList<>();
         objectsVector.forEach(e -> vector.add(0f));

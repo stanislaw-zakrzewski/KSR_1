@@ -1,6 +1,6 @@
 tagClass = PLACES
 folderPath = src/main/resources/sgm/
-articlesToReadCount = 22
+articlesToReadCount = 10
 k = 3
 fractionOfUncoveredForEachTag = 0.1f
 tags = west-germany, usa, france, uk, canada, japan
