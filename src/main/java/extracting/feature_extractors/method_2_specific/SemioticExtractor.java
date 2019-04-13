@@ -1,4 +1,4 @@
-package extracting.feature_extractors;
+package extracting.feature_extractors.method_2_specific;
 
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;

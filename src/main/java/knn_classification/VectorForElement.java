@@ -1,5 +1,6 @@
 package knn_classification;
 
+import matching_words.word_comparators.OurComparator;
 import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 
@@ -13,7 +14,13 @@ public class VectorForElement {
         List<Float> vector = new LinkedList<>();
         objectsVector.forEach(e -> vector.add(0f));
 
-        for (String word : ((Article) element).getLemmatizedWords()) {
+        List<String> words = ((Article) element).getLemmatizedWords();
+
+        if (comparator instanceof OurComparator) {
+            words = ((Article) element).getOurWords();
+        }
+
+        for (String word : words) {
             for (int i = 0; i < objectsVector.size(); i++) {
                 for (Object word2 : (objectsVector.get(i))) {
                     vector.set(i, vector.get(i) + comparator.similarity(word, word2));

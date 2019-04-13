@@ -1,13 +1,12 @@
 package extracting;
 
-import extracting.feature_extractors.StanfordLemmatizer;
 import parsing.Article;
 
-import java.text.BreakIterator;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
-//TODO Fix this garbage
 public class Converter {
     public Map<Object, Float> articlesToVector(List<Object> articles) {
         HashSet<String> words = new HashSet<>();

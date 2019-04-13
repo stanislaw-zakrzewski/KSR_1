@@ -1,6 +1,7 @@
-package extracting.feature_extractors;
+package extracting.feature_extractors.method_1_specific;
 
 import extracting.Converter;
+import extracting.feature_extractors.Extractor;
 import parsing.Article;
 import results.Stopwatch;
 

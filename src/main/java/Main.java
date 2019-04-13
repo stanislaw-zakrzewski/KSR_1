@@ -1,7 +1,12 @@
 import extracting.MainExtractor;
 import extracting.feature_extractors.*;
+import extracting.feature_extractors.method_1_specific.ExtractorFirstWords;
+import extracting.feature_extractors.method_2_specific.SemioticExtractor;
+import extracting.feature_extractors.method_3_specific.ExtractorOurMethod;
 import knn_classification.VectorForElement;
 import knn_classification.knnNetwork;
+import matching_words.word_comparators.OurComparator;
+import matching_words.word_comparators.WordComparator;
 import parsing.Article;
 import parsing.ReadAll;
 import results.*;
@@ -53,26 +58,36 @@ public class Main {
 
         List<List<Float>> testVectors = new LinkedList<>();
         knnNetwork network = null;
-        if (config.getExtractor().equals("1")) {
-            //Generate vector pattern using extractors
-            List<Extractor> extractors = new ArrayList<>();
-            extractors.add(new ExtractorRemoveStopWords());
-            extractors.add(new ExtractorRemoveNumbers());
-            extractors.add(new ExtractorFirstWords());
-            List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
-
-
-            VectorForElement vectorForElement = new VectorForElement();
-            for (Object o : testArticles) {
-                testVectors.add(vectorForElement.generateVector(vector, o, config.getWordSimilarity()));
-            }
-
-            network = new knnNetwork(vector.size(), config.getTags());
-        } else {
+        int ext = Integer.parseInt(config.getExtractor());
+        if (ext == 2) {
             for (Object o : testArticles) {
                 testVectors.add(SemioticExtractor.getInstance().calculateVector(o));
             }
             network = new knnNetwork(11, config.getTags());
+        } else {
+            List<Extractor> extractors = new ArrayList<>();
+            extractors.add(new ExtractorRemoveStopWords());
+            extractors.add(new ExtractorRemoveNumbers());
+            if (ext == 1) {
+                extractors.add(new ExtractorFirstWords());
+            } else {
+                extractors.add(new ExtractorOurMethod());
+            }
+            List<List<Object>> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
+
+            VectorForElement vectorForElement = new VectorForElement();
+            if(ext == 1) {
+                for (Object o : testArticles) {
+                        testVectors.add(vectorForElement.generateVector(vector, o, config.getWordSimilarity()));
+                }
+            } else {
+                WordComparator our = new OurComparator();
+                for (Object o : testArticles) {
+                    testVectors.add(vectorForElement.generateVector(vector, o, our));
+                }
+            }
+
+            network = new knnNetwork(vector.size(), config.getTags());
         }
 
         //Use knn to classify articles

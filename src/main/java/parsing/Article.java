@@ -2,6 +2,7 @@ package parsing;
 
 import extracting.feature_extractors.StanfordLemmatizer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Article {
@@ -9,6 +10,7 @@ public class Article {
     private String title;
     private String content;
     private List<String> lemmatizedWords;
+    private List<String> ourWords;
 
     public Article(List<String> tags, String title, String content) {
         this.tags = tags;
@@ -33,6 +35,16 @@ public class Article {
             lemmatizedWords = StanfordLemmatizer.getInstance().lemmatize(content);
         }
         return lemmatizedWords;
+    }
+
+    public List<String> getOurWords() {
+        if(ourWords == null) {
+            ourWords = new ArrayList<>();
+            for(String word : getLemmatizedWords()) {
+                ourWords.add(Character.toString(word.charAt(0)) + word.charAt(word.length()-1) + word.length());
+            }
+        }
+        return ourWords;
     }
 
     public void printAll() {
