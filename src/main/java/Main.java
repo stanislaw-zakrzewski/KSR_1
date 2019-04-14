@@ -6,6 +6,7 @@ import extracting.feature_extractors.method_1_specific.ExtractorFirstWords;
 import extracting.feature_extractors.method_1_specific.ExtractorRemoveFrequentOccurences;
 import extracting.feature_extractors.method_2_specific.SemioticExtractor;
 import extracting.feature_extractors.method_3_specific.ExtractorOurMethod;
+import extracting.feature_extractors.method_4_specific.PoemExtractor;
 import knn_classification.VectorForElement;
 import knn_classification.knnNetwork;
 import matching_words.word_comparators.OurComparator;
@@ -68,14 +69,19 @@ public class Main {
                 testVectors.add(SemioticExtractor.getInstance().calculateVector(o));
             }
             network = new knnNetwork(11, config.getTags());
+        } else if(ext == 4) {
+            for (Object o : testArticles) {
+                testVectors.add(PoemExtractor.getInstance().calculateVector(o));
+            }
+            network = new knnNetwork(6, config.getTags());
         } else {
             List<Extractor> extractors = new ArrayList<>();
             extractors.add(new ExtractorRemoveStopWords());
             extractors.add(new ExtractorRemoveNumbers());
             if (ext == 1) {
                 //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
-                //extractors.add(new ExtractorTFIDF());
-                extractors.add(new ExtractorFirstWords(10));
+                extractors.add(new ExtractorTFIDF());
+                //extractors.add(new ExtractorFirstWords(10));
                 //extractors.add(new ExtractorTFIDF());
             } else {
                 extractors.add(new ExtractorOurMethod());
