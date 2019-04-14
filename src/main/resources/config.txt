@@ -1,11 +1,11 @@
-tagClass = PLACES
-folderPath = src/main/resources/sgm/
+tagClass = LITERATURE
+folderPath = src/main/resources/poems/
 articlesToReadCount = 10
 k = 5
 fractionOfUncoveredForEachTag = 0.1f
-tags = west-germany, usa, france, uk, canada, japan
+tags = article, poem
 numberOfElementsPerTag = 5
 trainToTestRatio = 0.4f
 distanceKNN = euclidean
 wordSimilarity = generalizedNGrams
-extractors = 1
+extractors = 4

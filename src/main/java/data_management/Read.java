@@ -30,6 +30,9 @@ public class Read {
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.length() != 0) {
                     int i = 0;
+                    if(readableBody) {
+                        bod.append("\n");
+                    }
                     while (i < line.length()) {
                         if (readableTag) {
                             if (line.charAt(i) == '<' && line.charAt(i + 1) == '/' && line.charAt(i + 2) == 'D') {

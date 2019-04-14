@@ -6,6 +6,7 @@ import data_management.StanfordLemmatizer;
 import java.util.*;
 
 public class PoemExtractor {
+    private int maxSyllabeCount = 0;
     private static PoemExtractor instance;
 
     public static PoemExtractor getInstance() {
@@ -20,21 +21,30 @@ public class PoemExtractor {
     }
 
     public List<Float> calculateVector(Object element) {
+        maxSyllabeCount = 0;
         List<Float> vector = new ArrayList<>();
         String content = ((Article) element).getContent();
+        List<String> lines = Arrays.asList(content.split("\n"));
         content = content.replaceAll("[,.:;\"']", "");
         content = content.replaceAll("-", "");
-        List<String> lines = Arrays.asList(content.split("\n"));
-        lines.remove("");
+
+
         List<List<String>> wordLines = new ArrayList<>();
         for (String line : lines) {
-            wordLines.add(Arrays.asList(line.split(" ")));
+            String[] words = line.split(" ");
+
+            wordLines.add(new ArrayList<>());
+            for (String word : words) {
+                if (!word.equals("")) {
+                    wordLines.get(wordLines.size() - 1).add(word);
+                }
+            }
         }
 
         //First 4 elements of vector represents different endings count of all lines for different length of endings
         List<String> endings = new ArrayList<>();
         for (String line : lines) {
-            if (line.length() >= 4) {
+            if (line.length() >= 10) {
                 int i = 0;
                 String pom = line;
                 while (!Character.isLetter(pom.charAt(pom.length() - 1))) {
@@ -53,10 +63,10 @@ public class PoemExtractor {
             checkCount(ending.substring(ending.length() - 3), endingsCount3);
             checkCount(ending, endingsCount4);
         }
-        vector.add((float) endingsCount1.size());
-        vector.add((float) endingsCount2.size());
-        vector.add((float) endingsCount3.size());
-        vector.add((float) endingsCount4.size());
+        vector.add((float) endingsCount1.size() / (float) lines.size());
+        vector.add((float) endingsCount2.size() / (float) lines.size());
+        vector.add((float) endingsCount3.size() / (float) lines.size());
+        vector.add((float) endingsCount4.size() / (float) lines.size());
 
         //Fifth element is syllables max difference count
         List<Integer> syllabesCount = new ArrayList<>();
@@ -66,14 +76,20 @@ public class PoemExtractor {
                 syllabesCount.set(i, syllabesCount.get(i) + syllablesIn(word));
             }
         }
-        vector.add((float) (Collections.max(syllabesCount) - Collections.min(syllabesCount)));
+        int maxLineLength = 0;
+        for (String line : lines) {
+            if (maxLineLength < line.length()) {
+                maxLineLength = line.length();
+            }
+        }
+        vector.add((float) (Collections.max(syllabesCount) - Collections.min(syllabesCount)) / (float) maxSyllabeCount);
 
         //Sixth element is max line length difference
         List<Integer> lineLengths = new ArrayList<>();
         for (String line : lines) {
             lineLengths.add(line.length());
         }
-        vector.add((float) (Collections.max(lineLengths) - Collections.min(lineLengths)));
+        vector.add((float) (Collections.max(lineLengths) - Collections.min(lineLengths)) / (float) maxLineLength);
 
         return vector;
     }
@@ -117,6 +133,9 @@ public class PoemExtractor {
         //There must be atleast one syllable
         if (numSyllables <= 0) {
             numSyllables = 1;
+        }
+        if(numSyllables > maxSyllabeCount) {
+            maxSyllabeCount = numSyllables;
         }
         return numSyllables;
     }
