@@ -24,9 +24,29 @@ public class PoemExtractor {
         maxSyllabeCount = 0;
         List<Float> vector = new ArrayList<>();
         String content = ((Article) element).getContent();
-        List<String> lines = Arrays.asList(content.split("\n"));
-        content = content.replaceAll("[,.:;\"']", "");
-        content = content.replaceAll("-", "");
+        String[] pomLines = content.split("\n");
+        LinkedList<String> lines = new LinkedList<>();
+        for(String line : pomLines) {
+            lines.addLast(line);
+        }
+
+        for(int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            line = line.replaceAll("[,]", "");
+            line = line.replaceAll("[.]", "");
+            line = line.replaceAll("[;]", "");
+            line = line.replaceAll("[']", "");
+            line = line.replaceAll("[”]", "");
+            lines.set(i, line);
+        }
+        String possiblyEmpty = lines.get(0);
+        if(possiblyEmpty.equals("")) {
+            lines.removeFirst();
+        }
+        possiblyEmpty = lines.get(lines.size()-1);
+        if(possiblyEmpty.equals("")) {
+            lines.removeLast();
+        }
 
 
         List<List<String>> wordLines = new ArrayList<>();
