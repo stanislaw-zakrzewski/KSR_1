@@ -21,11 +21,14 @@ public class PoemExtractor {
 
     public List<Float> calculateVector(Object element) {
         List<Float> vector = new ArrayList<>();
-        List<String> lines = Arrays.asList(((Article) element).getContent().split("\n"));
+        String content = ((Article) element).getContent();
+        content = content.replaceAll("[,.:;\"']", "");
+        content = content.replaceAll("-", "");
+        List<String> lines = Arrays.asList(content.split("\n"));
         lines.remove("");
         List<List<String>> wordLines = new ArrayList<>();
         for (String line : lines) {
-            wordLines.add(StanfordLemmatizer.getInstance().lemmatize(line));
+            wordLines.add(Arrays.asList(line.split(" ")));
         }
 
         //First 4 elements of vector represents different endings count of all lines for different length of endings
