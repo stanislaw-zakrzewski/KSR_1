@@ -11,16 +11,17 @@ public class NGrams implements WordComparator {
         s1 = s1.toLowerCase();
         s2 = s2.toLowerCase();
 
-        if (s1.length() > s2.length()) N = s1.length();
+        if (s1.length() < s2.length()) N = s1.length();
         else N = s2.length();
 
-        int n = 3;
+        int n = 2;
         int h = 0;
 
-        for (int i=0;i<s1.length()-n;i++) {
-            if (s2.contains((s1.substring(i, i+n)))) h++;
+        for (int i=0;i<N-n+1;i++) {
+            String ss = s1.substring(i, i+n);
+            if (s2.contains((ss))) h++;
         }
-
-        return ((float)h/((float)N-(float)n+1));
+        float d = ((float)h/((float)N-(float)n+1));
+        return d;
     }
 }
