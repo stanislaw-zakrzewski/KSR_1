@@ -14,7 +14,7 @@ public class NGrams implements WordComparator {
         if (s1.length() < s2.length()) N = s1.length();
         else N = s2.length();
 
-        int n = 2;
+        int n = 3;
         int h = 0;
 
         for (int i=0;i<N-n+1;i++) {
