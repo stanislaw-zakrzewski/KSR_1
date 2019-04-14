@@ -80,12 +80,12 @@ public class Main {
             extractors.add(new ExtractorRemoveNumbers());
             if (ext == 1) {
                 //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
-                extractors.add(new ExtractorTFIDF());
-                //extractors.add(new ExtractorFirstWords(10));
+                //extractors.add(new ExtractorTFIDF());
+                extractors.add(new ExtractorFirstWords(10));
                 //extractors.add(new ExtractorTFIDF());
             } else {
                 extractors.add(new ExtractorOurMethod());
-                extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
+                //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
                 extractors.add(new ExtractorFirstWords(10));
             }
             List<Object> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
@@ -122,6 +122,12 @@ public class Main {
         PrecisionAndRecallForTags.show(config.getTags(), correctLabels, resultLabels);
         System.out.println();
         ConfusionMatrix.calculate(config.getTags(), correctLabels, resultLabels);
+        float acc = 0;
+        for(String tag : config.getTags()) {
+            System.out.println(Accuraccy.calculate(tag, correctLabels, resultLabels));
+            acc +=Accuraccy.calculate(tag, correctLabels, resultLabels);
+        }
+        System.out.println("Accuracy: " + acc/config.getTags().size());
         System.out.println("Cały program: " + stopwatch.getTime());
     }
 
