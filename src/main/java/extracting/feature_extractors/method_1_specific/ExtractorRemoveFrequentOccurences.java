@@ -25,7 +25,7 @@ public class ExtractorRemoveFrequentOccurences implements Extractor {
         }
         for(Object o : elements) {
             for(String word : wordsInDocumentsCount.keySet()) {
-                if(((Article)o).getLemmatizedWords().contains(word)) {
+                if(((Article)o).getLemmas().contains(word)) {
                     wordsInDocumentsCount.replace(word, wordsInDocumentsCount.get(word) + 1);
                 }
             }

@@ -20,5 +20,15 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-benchmark -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-benchmark</artifactId>
+            <version>8.0.0</version>
+        </dependency>
+
+    </dependencies>
+
 
 </project>

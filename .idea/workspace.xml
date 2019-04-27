@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41ade00b-97fb-4451-8e28-c55de9bc0be7" name="Default Changelist" comment="Repaired nigrams">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="404a42b3-c832-415c-99fb-cddc7c9383c7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/data_management/DataProcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KSR_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_management/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_management/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_management/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_management/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_management/Read.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_management/Read.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_management/ReadAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_management/ReadAll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_1_specific/ExtractorFirstWords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_1_specific/ExtractorFirstWords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_1_specific/ExtractorRemoveFrequentOccurences.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_1_specific/ExtractorRemoveFrequentOccurences.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_1_specific/ExtractorRemoveRarelyOccuring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_1_specific/ExtractorRemoveRarelyOccuring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_2_specific/SemioticExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_2_specific/SemioticExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.txt" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,16 +28,25 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+            <state relative-caret-position="525">
+              <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="74" selection-end-column="62" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data_management/DataProcess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="642">
+              <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -33,19 +55,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/data_management/ConfigReader.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data_management/StanfordLemmatizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-953">
-              <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+            <state relative-caret-position="-34">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data_management/Article.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="323">
+              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#584#585#0" expanded="true" />
+                <element signature="e#613#614#0" expanded="true" />
+                <element signature="e#759#760#0" expanded="true" />
+                <element signature="e#796#797#0" expanded="true" />
+                <element signature="e#843#844#0" expanded="true" />
+                <element signature="e#873#874#0" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="e#952#953#0" expanded="true" />
+                <element signature="e#994#995#0" expanded="true" />
+                <element signature="e#1028#1029#0" expanded="true" />
+                <element signature="e#1074#1075#0" expanded="true" />
+                <element signature="e#1112#1113#0" expanded="true" />
+                <element signature="e#1162#1163#0" expanded="true" />
+                <element signature="e#1198#1199#0" expanded="true" />
+                <element signature="e#1264#1265#0" expanded="true" />
+                <element signature="e#1316#1317#0" expanded="true" />
+                <element signature="e#1375#1376#0" expanded="true" />
+                <element signature="e#1413#1414#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,31 +96,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="238">
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config.txt">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data_management/ReadAll.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+            <state relative-caret-position="391">
+              <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/sgm/reut2-002.sgm">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_4_specific/PoemExtractor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data_management/Read.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+            <state relative-caret-position="107">
+              <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#603#612#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,26 +130,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/sgm/reut2-000.sgm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+            <state relative-caret-position="-663" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="652">
+              <caret line="53" column="68" selection-start-line="53" selection-start-column="68" selection-end-line="53" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/ourTexts/restaurants.sgm">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="22" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/ourTexts/movies.sgm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="17" />
+            <state relative-caret-position="493">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -114,8 +157,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
-        <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -126,40 +168,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/Stopwords.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/sgm/reut2-004.sgm" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/Extractor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/NElementsSelector.java" />
-        <option value="$PROJECT_DIR$/src/main/java/matching_words/Matcher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/Distance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/EuclideanDistance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/ChebyshevDistance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/ManhattanDistance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/matching_words/word_comparators/WordComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/results/Precision.java" />
-        <option value="$PROJECT_DIR$/src/main/java/results/Recall.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveFrequentOccurances.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveRarelyOccurringWords.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorFirstWords.java" />
-        <option value="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveStopWords.java" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/Converter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/stopwords.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parsing/Read.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parsing/ReadAll.java" />
-        <option value="$PROJECT_DIR$/src/main/java/matching_words/word_comparators/GeneralizedNGrams.java" />
-        <option value="$PROJECT_DIR$/src/main/java/matching_words/word_comparators/WordComparator2.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/ourTexts/restaurants.sgm" />
-        <option value="$PROJECT_DIR$/src/main/resources/ourTexts/reviews.sgm" />
-        <option value="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/StanfordLemmatizer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/results/Accuraccy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data_management/ReadAll.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data_management/Read.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data_management/Article.java" />
+        <option value="$PROJECT_DIR$/src/main/java/data_management/DataProcess.java" />
       </list>
     </option>
   </component>
@@ -176,60 +193,61 @@
     <option name="width" value="933" />
     <option name="height" value="946" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="false" id="Update" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
-              <item name="sprawozdanie" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="extracting" type="462c0819:PsiDirectoryNode" />
+              <item name="data_management" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
               <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="KSR.KSR_1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KSR_1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sgm" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -238,24 +256,15 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554574297627" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/sprawozdanie/uml.png" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556384405300" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/stanford-corenlp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.uml" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\macie\OneDrive\Studia\Rok III\Semestr VI\Komputerowe systemy rozpoznawania\KSR_1" />
-      <recent name="C:\Users\macie\OneDrive\Studia\Rok III\Semestr VI\Komputerowe systemy rozpoznawania\KSR_1\src\main\resources" />
-      <recent name="C:\Users\Radioaktywny\Documents\Github\KSR_1\src\main\resources" />
-    </key>
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -269,19 +278,34 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="KSR_1" />
+  <component name="RunManager" selected="Application.DataProcess">
+    <configuration name="DataProcess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data_management.DataProcess" />
+      <module name="KSR.KSR_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data_management.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="KSR.KSR_1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.DataProcess" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DataProcess" />
       </list>
     </recent_temporary>
   </component>
@@ -290,869 +314,204 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="41ade00b-97fb-4451-8e28-c55de9bc0be7" name="Default Changelist" comment="" />
-      <created>1554029699174</created>
+      <changelist id="404a42b3-c832-415c-99fb-cddc7c9383c7" name="Default Changelist" comment="" />
+      <created>1556375207182</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1554029699174</updated>
-      <workItem from="1554029704318" duration="335000" />
-      <workItem from="1554113244023" duration="3807000" />
-      <workItem from="1554186116540" duration="6866000" />
-      <workItem from="1554206562094" duration="675000" />
-      <workItem from="1554278321938" duration="2656000" />
-      <workItem from="1554452273998" duration="1894000" />
-      <workItem from="1554466475692" duration="8479000" />
-      <workItem from="1554540238733" duration="12379000" />
-      <workItem from="1554650173576" duration="23315000" />
-      <workItem from="1554911374409" duration="35000" />
-      <workItem from="1555070729427" duration="9827000" />
-      <workItem from="1555101421150" duration="1030000" />
-      <workItem from="1555155137948" duration="1666000" />
-      <workItem from="1555256258342" duration="4109000" />
+      <updated>1556375207182</updated>
+      <workItem from="1556375212151" duration="9113000" />
     </task>
-    <task id="LOCAL-00001" summary="NiGrams!">
-      <created>1554652202797</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1554652202797</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Changed config">
-      <created>1554654283165</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1554654283165</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added restaurants">
-      <created>1554656158865</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1554656158865</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Sprawozdanie">
-      <created>1554657224377</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1554657224377</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Sprawozdanie begin">
-      <created>1554658218712</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1554658218712</updated>
-    </task>
-    <task id="LOCAL-00006" summary="sprawko">
-      <created>1554663224244</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1554663224244</updated>
-    </task>
-    <task id="LOCAL-00007" summary="bibliograhy - do poprawki jeszcze">
-      <created>1554665276459</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1554665276459</updated>
-    </task>
-    <task id="LOCAL-00008" summary="sprawko">
-      <created>1554666251030</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1554666251030</updated>
-    </task>
-    <task id="LOCAL-00009" summary="spr">
-      <created>1554667948772</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1554667948772</updated>
-    </task>
-    <task id="LOCAL-00010" summary="sprawozdanie uml">
-      <created>1554668160130</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1554668160130</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Ciągłe prace nad sprawkiem">
-      <created>1554671535321</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1554671535322</updated>
-    </task>
-    <task id="LOCAL-00012" summary="spraw">
-      <created>1554674085313</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1554674085313</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Sprawozdanie Beta1.0">
-      <created>1554677927164</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1554677927164</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Sprawozdanie ready">
-      <created>1554679166543</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1554679166543</updated>
-    </task>
-    <task id="LOCAL-00015" summary="sprawozdanie ready v2">
-      <created>1554679535629</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1554679535629</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added accuraccy">
-      <created>1555087409336</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1555087409336</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Some changes to sprawozdanie, added confison matrix">
-      <created>1555158123115</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1555158123115</updated>
-    </task>
-    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82303000" />
+    <option name="totallyTimeSpent" value="9113000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1504" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Learn" order="7" />
+      <window_info anchor="bottom" id="Messages" weight="0.32969603" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4989339" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49173334" weight="0.37811485" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4976" visible="true" weight="0.3997833" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32969603" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3998441" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" weight="0.32936078" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49946696" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5024" side_tool="true" visible="true" weight="0.3997833" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49840087" weight="0.32936078" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-      <window_info anchor="right" id="Key Promoter X" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="NiGrams!" />
-    <MESSAGE value="Changed config" />
-    <MESSAGE value="Added restaurants" />
-    <MESSAGE value="Sprawozdanie" />
-    <MESSAGE value="Sprawozdanie begin" />
-    <MESSAGE value="bibliograhy - do poprawki jeszcze" />
-    <MESSAGE value="sprawko" />
-    <MESSAGE value="spr" />
-    <MESSAGE value="sprawozdanie uml" />
-    <MESSAGE value="Ciągłe prace nad sprawkiem" />
-    <MESSAGE value="spraw" />
-    <MESSAGE value="Sprawozdanie Beta1.0" />
-    <MESSAGE value="Sprawozdanie ready" />
-    <MESSAGE value="sprawozdanie ready v2" />
-    <MESSAGE value="Added accuraccy" />
-    <MESSAGE value="Some changes to sprawozdanie, added confison matrix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some changes to sprawozdanie, added confison matrix" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>24</line>
+          <url>file://$PROJECT_DIR$/src/main/java/data_management/DataProcess.java</url>
+          <line>50</line>
           <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>16</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>17</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>19</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>23</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java</url>
-          <line>20</line>
-          <properties />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="correctLabels" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="jar://$PROJECT_DIR$/src/main/resources/stanford-corenlp/stanford-corenlp-3.9.2-models.jar!/edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/notempty.txt">
+    <entry file="jar://$PROJECT_DIR$/src/main/resources/stanford-corenlp/stanford-corenlp-3.9.2-javadoc.jar!/edu/stanford/nlp/pipeline/NERCombinerAnnotator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3570" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/stanford-corenlp/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1307" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/processed/reuters/okoi">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sgm/reut2-004.sgm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1301" column="26" selection-start-line="1301" selection-start-column="26" selection-end-line="1301" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parsing/Article.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/matching_words/Matcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/matching_words/ArticleMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/WordComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/Distance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="62" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveFrequentOccurances.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveStopWords.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveRarelyOccurringWords.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/EuclideanDistance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/Converter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/ChebyshevDistance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/NElementsSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorFirstWords.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parsing/ReadAll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorRemoveNumbers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/Stopwords.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="51" column="53" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/MainExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="67" selection-start-line="26" selection-start-column="67" selection-end-line="26" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/calculate_distance/ManhattanDistance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/Extractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/GeneralizedNGrams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ourTexts/reviews.sgm" />
-    <entry file="uml://JavaScript-modules-diagram/C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/extracting;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/knn_classification;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/matching_words;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/parsing;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/results;">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src/main/java/extracting;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/knn_classification;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/matching_words;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/parsing;C:/Users/macie/OneDrive/Studia/Rok III/Semestr VI/Komputerowe systemy rozpoznawania/KSR_1/src/main/java/results;</OriginalElement>
-          <nodes />
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="732.0" y="285.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sprawozdanie/sprawozdanie.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="47" column="28" lean-forward="true" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement />
-          <nodes>
-            <node x="688.0" y="0.0">extracting.feature_extractors.ExtractorFirstWords</node>
-            <node x="1135.0" y="272.0">parsing.Article</node>
-            <node x="758.0" y="136.0">knn_classification.VectorForElement</node>
-            <node x="697.0" y="439.0">knn_classification.calculate_distance.ManhattanDistance</node>
-            <node x="333.0" y="1354.0">matching_words.ArticleMatcher</node>
-            <node x="1331.0" y="697.0">extracting.MainExtractor</node>
-            <node x="559.0" y="342.0">matching_words.word_comparators.GeneralizedNGrams</node>
-            <node x="698.0" y="852.0">knn_classification.calculate_distance.Distance</node>
-            <node x="0.0" y="1170.0">extracting.feature_extractors.Stopwords</node>
-            <node x="0.0" y="1354.0">matching_words.Matcher</node>
-            <node x="742.0" y="1125.0">knn_classification.calculate_distance.ChebyshevDistance</node>
-            <node x="1653.0" y="196.0">extracting.feature_extractors.StanfordLemmatizer</node>
-            <node x="536.0" y="957.0">knn_classification.calculate_distance.EuclideanDistance</node>
-            <node x="1216.0" y="518.0">extracting.feature_extractors.ExtractorTFIDF</node>
-            <node x="1288.0" y="38.0">extracting.Converter</node>
-            <node x="816.0" y="707.0">extracting.feature_extractors.Extractor</node>
-            <node x="183.0" y="867.0">extracting.feature_extractors.ExtractorRemoveStopWords</node>
-            <node x="182.0" y="432.0">extracting.feature_extractors.ExtractorRemoveNumbers</node>
-            <node x="475.0" y="584.0">matching_words.word_comparators.NGrams</node>
-            <node x="1112.0" y="898.0">knn_classification.knnNetwork</node>
-            <node x="589.0" y="674.0">matching_words.word_comparators.WordComparator</node>
-            <node x="1581.0" y="1123.0">extracting.NElementsSelector</node>
-            <node x="735.0" y="560.0">Main</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="extracting.feature_extractors.ExtractorFirstWords" target="extracting.Converter">
-              <point x="0.0" y="5.006430130660192" />
-              <point x="0.0" y="5.006430130660249" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorFirstWords" target="extracting.feature_extractors.Extractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="extracting.feature_extractors.ExtractorRemoveStopWords">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.VectorForElement" target="extracting.Converter">
-              <point x="0.0" y="5.135683381325009" />
-              <point x="0.0" y="5.135683381325009" />
-            </edge>
-            <edge source="Main" target="knn_classification.calculate_distance.ChebyshevDistance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorTFIDF" target="extracting.feature_extractors.StanfordLemmatizer">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="extracting.feature_extractors.Extractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.calculate_distance.EuclideanDistance" target="knn_classification.calculate_distance.Distance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="extracting.feature_extractors.ExtractorTFIDF">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorTFIDF" target="extracting.feature_extractors.Extractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="knn_classification.calculate_distance.EuclideanDistance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.knnNetwork" target="knn_classification.calculate_distance.Distance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="knn_classification.knnNetwork">
-              <point x="4.111974608893689" y="-2.84458517464563" />
-              <point x="4.111974608893661" y="-2.8445851746456583" />
-            </edge>
-            <edge source="matching_words.word_comparators.NGrams" target="matching_words.word_comparators.WordComparator">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorFirstWords" target="parsing.Article">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="extracting.feature_extractors.ExtractorFirstWords">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="extracting.MainExtractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="parsing.Article">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.calculate_distance.ManhattanDistance" target="knn_classification.calculate_distance.Distance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="knn_classification.VectorForElement">
-              <point x="5.004769616865502" y="0.0" />
-              <point x="5.004769616865502" y="0.0" />
-            </edge>
-            <edge source="extracting.MainExtractor" target="extracting.feature_extractors.Extractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorRemoveStopWords" target="extracting.feature_extractors.Stopwords">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.MainExtractor" target="extracting.Converter">
-              <point x="5.223714143483335" y="0.0" />
-              <point x="5.223714143483335" y="0.0" />
-            </edge>
-            <edge source="knn_classification.knnNetwork" target="parsing.Article">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="matching_words.word_comparators.GeneralizedNGrams" target="matching_words.word_comparators.WordComparator">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.VectorForElement" target="parsing.Article">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.Converter" target="extracting.feature_extractors.StanfordLemmatizer">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="extracting.feature_extractors.ExtractorRemoveNumbers">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorTFIDF" target="parsing.Article">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="matching_words.word_comparators.NGrams">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="knn_classification.calculate_distance.Distance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorRemoveStopWords" target="extracting.feature_extractors.Extractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.feature_extractors.ExtractorRemoveNumbers" target="extracting.feature_extractors.Extractor">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="matching_words.word_comparators.WordComparator">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.calculate_distance.ChebyshevDistance" target="knn_classification.calculate_distance.Distance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="matching_words.word_comparators.GeneralizedNGrams">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.VectorForElement" target="matching_words.word_comparators.WordComparator">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="knn_classification.knnNetwork" target="extracting.NElementsSelector">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.Converter" target="parsing.Article">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="Main" target="knn_classification.calculate_distance.ManhattanDistance">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="extracting.MainExtractor" target="extracting.NElementsSelector">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="0.5087842586085735" x="2.0" y="462.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Fields</Category>
-            <Category>Constructors</Category>
-            <Category>Methods</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/stopwords.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="4794" lean-forward="true" selection-start-line="4794" selection-end-line="4794" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/StanfordLemmatizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="283" selection-start-line="283" selection-end-line="283" />
-          <folding>
-            <element signature="e#10623#10624#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/README.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/Recall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/ConfusionMatrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/Precision.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="17" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/Accuraccy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/MultiClassPrecision.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/results/PrecisionAndRecallForTags.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parsing/Read.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sgm/reut2-000.sgm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/data_management/ConfigReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-953">
-          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/extracting/feature_extractors/method_4_specific/PoemExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/poems/poems.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/poems/articles.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sgm/reut2-002.sgm">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/processed/oko.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ourTexts/restaurants.sgm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ourTexts/movies.sgm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
+    <entry file="jar://$PROJECT_DIR$/src/main/resources/stanford-corenlp/stanford-corenlp-3.9.2-models.jar!/edu/stanford/nlp/models/pos-tagger/english-left3words/english-left3words-distsim.tagger.props">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/config.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/VectorForElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="238">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/matching_words/word_comparators/NGrams.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-benchmark/8.0.0/lucene-benchmark-8.0.0.jar!/org/apache/lucene/benchmark/utils/ExtractReuters.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="-1986">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/knn_classification/knnNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="53" column="68" selection-start-line="53" selection-start-column="68" selection-end-line="53" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sgm/reut2-000.sgm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-663" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data_management/Read.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#603#612#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data_management/ReadAll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="74" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data_management/Article.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#584#585#0" expanded="true" />
+            <element signature="e#613#614#0" expanded="true" />
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#796#797#0" expanded="true" />
+            <element signature="e#843#844#0" expanded="true" />
+            <element signature="e#873#874#0" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+            <element signature="e#994#995#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1162#1163#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1316#1317#0" expanded="true" />
+            <element signature="e#1375#1376#0" expanded="true" />
+            <element signature="e#1413#1414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data_management/StanfordLemmatizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data_management/DataProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1185,6 +544,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>javafx-swt</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1208,7 +568,19 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>KSR_1</last-edited>
+          <last-edited>KSR.KSR_1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

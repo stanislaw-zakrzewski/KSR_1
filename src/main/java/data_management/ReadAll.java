@@ -20,6 +20,7 @@ public class ReadAll {
                 articlesToReadCount = listOfFiles.size();
             }
             for (int i = 0; i < articlesToReadCount; i++) {
+                System.out.println(i);
                 articles.addAll(Read.readTag(listOfFiles.get(i), tag));
             }
         } catch (IOException e) {

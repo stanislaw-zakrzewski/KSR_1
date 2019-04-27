@@ -6,15 +6,24 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Read {
     public static List<Article> readTag(String fileName, String tag) {
+        List<String> possibleTags = new ArrayList<>();
+        List<String> possibleTagsEnds = new ArrayList<>();
+        possibleTags.add("PLACES");
+        possibleTagsEnds.add("/PLACES");
+        possibleTags.add("TOPICS");
+        possibleTagsEnds.add("/TOPICS");
+        possibleTags.add("REVIEWS");
+        possibleTagsEnds.add("/REVIEWS");
+
+
         String line;
         FileReader fileReader = null;
-        StringBuilder txt = new StringBuilder();
+        List<String> tags = new ArrayList<>();
+        List<StringBuilder> tagsValues = new ArrayList<>();
         StringBuilder tit = new StringBuilder();
         StringBuilder bod = new StringBuilder();
         List<Article> articles = new ArrayList<Article>();
@@ -30,15 +39,15 @@ public class Read {
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.length() != 0) {
                     int i = 0;
-                    if(readableBody) {
+                    if (readableBody) {
                         bod.append("\n");
                     }
                     while (i < line.length()) {
                         if (readableTag) {
                             if (line.charAt(i) == '<' && line.charAt(i + 1) == '/' && line.charAt(i + 2) == 'D') {
-                                txt.append(" ");
+                                tagsValues.get(tagsValues.size() - 1).append(" ");
                             } else if (line.charAt(i) != '<') {
-                                txt.append(line.charAt(i));
+                                tagsValues.get(tagsValues.size() - 1).append(line.charAt(i));
                             }
                         }
                         if (readableTitle) {
@@ -61,10 +70,12 @@ public class Read {
                                 tg.append(line.charAt(i));
                                 i++;
                             }
-                            if (tg.toString().equals(tag)) {
+                            if (possibleTags.contains(tg.toString())) {
                                 readableTag = true;
+                                tagsValues.add(new StringBuilder());
+                                tags.add(tg.toString());
                             }
-                            if (tg.toString().equals(("/" + tag))) {
+                            if (possibleTagsEnds.contains(tg.toString())) {
                                 readableTag = false;
                             }
                             if (tg.toString().equals("TITLE")) {
@@ -80,9 +91,13 @@ public class Read {
                                 readableBody = false;
                             }
                             if (tg.toString().equals("/" + "REUTERS")) {
-                                List<String> retList = new ArrayList<String>(Arrays.asList(txt.toString().split(" ")));
-                                articles.add(new Article(retList, tit.toString(), bod.toString()));
-                                txt = new StringBuilder();
+                                Map<String, List<String>> tagsAndValues = new HashMap<>();
+                                for (int j = 0; j < tags.size(); j++) {
+                                    tagsAndValues.put(tags.get(j), Arrays.asList(tagsValues.get(j).toString().split(" ")));
+                                }
+                                articles.add(new Article(tagsAndValues, tit.toString(), bod.toString()));
+                                tags = new ArrayList<>();
+                                tagsValues = new ArrayList<>();
                                 tit = new StringBuilder();
                                 bod = new StringBuilder();
                             }

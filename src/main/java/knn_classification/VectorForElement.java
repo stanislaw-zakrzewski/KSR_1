@@ -16,10 +16,10 @@ public class VectorForElement {
             vector.add(0.f);
         }
 
-        List<String> words = ((Article) element).getLemmatizedWords();
+        List<String> words = ((Article) element).getLemmas();
 
         if (comparator instanceof OurComparator) {
-            words = ((Article) element).getOurWords();
+            //words = ((Article) element).getOurWords();
         }
 
         for (String word : words) {

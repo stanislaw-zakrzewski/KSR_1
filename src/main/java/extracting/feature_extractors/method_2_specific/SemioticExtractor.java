@@ -35,7 +35,7 @@ public class SemioticExtractor {
         vector.add((float) document.get(CoreAnnotations.SentencesAnnotation.class).size());
 
         //Second element is the words count
-        vector.add((float) ((Article) element).getLemmatizedWords().size());
+        vector.add((float) ((Article) element).getLemmas().size());
 
         //Next 8 elements contains count of different size words
         Map<String, Float> wordsCount = new HashMap<>();
@@ -48,7 +48,7 @@ public class SemioticExtractor {
         wordsCount.put("8", 0.f);
         wordsCount.put("9orMore", 0.f);
 
-        for (String word : ((Article) element).getLemmatizedWords()) {
+        for (String word : ((Article) element).getLemmas()) {
             switch (word.length()) {
                 case 0:
                 case 1:
@@ -85,7 +85,7 @@ public class SemioticExtractor {
 
         //11th element is the count of capitalized words
         float capitalizedCount = 0;
-        for(String word : ((Article)element).getLemmatizedWords()) {
+        for(String word : ((Article)element).getLemmas()) {
             if(Character.isUpperCase(word.charAt(0))) {
                 capitalizedCount += 1;
             }

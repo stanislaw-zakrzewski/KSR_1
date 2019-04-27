@@ -29,7 +29,7 @@ public class knnNetwork {
         if (vectorToAdd.size() == vectorSize) {
             vectors.put(objectToAdd, vectorToAdd);
         }
-        String tag = ((Article)objectToAdd).getTags().get(0);
+        String tag = ((Article)objectToAdd).getTags().get("PLACES").get(0);
         tagsCount.replace(tag, tagsCount.get(tag) + 1);
     }
 
@@ -51,7 +51,7 @@ public class knnNetwork {
         Map<String, Integer> uncoveredLabelsCount = new HashMap<>();
         tags.forEach(tag -> uncoveredLabelsCount.put(tag, (int)(tagsCount.get(tag) * n)));
         for (Object o : vectors.keySet()) {
-            String tag = ((Article) o).getTags().get(0);
+            String tag = ((Article) o).getTags().get("PLACES").get(0);
             if (uncoveredLabelsCount.containsKey(tag)) {
                 if (uncoveredLabelsCount.get(tag) == 1) {
                     uncoveredLabelsCount.remove(tag);

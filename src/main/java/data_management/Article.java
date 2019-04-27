@@ -1,24 +1,28 @@
 package data_management;
 
-import data_management.StanfordLemmatizer;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Article {
-    private List<String> tags;
+    private Map<String, List<String>> tags;
     private String title;
     private String content;
-    private List<String> lemmatizedWords;
-    private List<String> ourWords;
+    private List<String> lemmas;
+    private List<String> entityMentions;
+    private Map<String, String> nerTags;
 
-    public Article(List<String> tags, String title, String content) {
+    public Article(Map<String, List<String>> tags, String title, String content) {
         this.tags = tags;
         this.title = title;
         this.content = content;
+        entityMentions = new ArrayList<>();
+        lemmas = new ArrayList<>();
+        nerTags = new HashMap<>();
     }
 
-    public List<String> getTags() {
+    public Map<String, List<String>> getTags() {
         return tags;
     }
 
@@ -30,30 +34,39 @@ public class Article {
         return content;
     }
 
-    public List<String> getLemmatizedWords() {
-        if(lemmatizedWords == null) {
-            lemmatizedWords = StanfordLemmatizer.getInstance().lemmatize(content);
-        }
-        return lemmatizedWords;
+    public List<String> getLemmas() {
+        return lemmas;
     }
 
-    public List<String> getOurWords() {
-        if(ourWords == null) {
-            ourWords = new ArrayList<>();
-            for(String word : getLemmatizedWords()) {
-                ourWords.add(Character.toString(word.charAt(0)) + word.charAt(word.length()-1) + word.length());
-            }
-        }
-        return ourWords;
+    public List<String> getEntityMentions() {
+        return entityMentions;
     }
 
-    public void printAll() {
-        System.out.println("Article title: " + title);
-        System.out.println("Article body: " + content);
-        System.out.print("Tags: ");
-        for (int i=0;i<tags.size();i++) {
-            System.out.println(tags.get(i));
-        }
-        System.out.println("\n \n");
+    public Map<String, String> getNerTags() {
+        return nerTags;
+    }
+
+    public void setTags(Map<String, List<String>> tags) {
+        this.tags = tags;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setLemmas(List<String> lemmas) {
+        this.lemmas = lemmas;
+    }
+
+    public void setEntityMentions(List<String> entityMentions) {
+        this.entityMentions = entityMentions;
+    }
+
+    public void setNerTags(Map<String, String> nerTags) {
+        this.nerTags = nerTags;
     }
 }

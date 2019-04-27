@@ -9,7 +9,7 @@ public class Converter {
     public Map<Object, Float> articlesToVector(List<Object> articles) {
         HashSet<String> words = new HashSet<>();
         for(Object article : articles) {
-            words.addAll(((Article)article).getLemmatizedWords());
+            words.addAll(((Article)article).getLemmas());
         }
         Map<Object, Float> vector = new HashMap<>();
         for(String word : words) {
