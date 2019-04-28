@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.List;
 
 public class WriteObjects {
-    public static void write(List<Object> objects) {
-        File f = new File("src/main/resources/extracted/reuters/01.txt");
+    public static void write(List<Object> objects, String pathName) {
+        File f = new File(pathName);
         try {
             FileOutputStream fos = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fos);

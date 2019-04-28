@@ -32,9 +32,11 @@ public class Main {
 
         Stopwatch stopwatch = new Stopwatch();
 
+        System.out.println(stopwatch.getTime());
         //Read all articles
-        List<Object> allArticles = ReadAllObjects.read("src/main/resources/extracted/reuters/");
+        List<Object> allArticles = ReadObjects.read("src/main/resources/extracted/reuters.txt");
         Collections.shuffle(allArticles);
+        System.out.println(stopwatch.getTime());
 
         //Remove all articles that have tags count other than 1 and if they have 1 check if it is in the list of tags
         List<Object> toRemove = new ArrayList<>();
