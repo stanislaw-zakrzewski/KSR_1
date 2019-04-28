@@ -5,18 +5,17 @@ import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreEntityMention;
 import edu.stanford.nlp.pipeline.CoreSentence;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import org.apache.lucene.benchmark.utils.ExtractReuters;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 
 public class DataProcess {
+    private static final String reutersPath = "src/main/resources/sgm/";
+
+
     public static void main(String[] args) {
         ConfigReader config = new ConfigReader("src/main/resources/config.txt");
-        List<Object> allArticles = ReadAll.read(config.getFolderPath(), config.getTagClass(), config.getArticlesToReadCount());
+        List<Object> allArticles = ReadAll.read(reutersPath, config.getTagClass(), config.getArticlesToReadCount());
         String text;
 
         Properties props = new Properties();
@@ -26,6 +25,8 @@ public class DataProcess {
         props.setProperty("coref.algorithm", "neural");
         // build pipeline
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+
 
         int j = 0;
         for (Object o : allArticles) {
@@ -50,5 +51,7 @@ public class DataProcess {
             }
             System.out.println(j++);
         }
+
+        WriteObjects.write(allArticles);
     }
 }

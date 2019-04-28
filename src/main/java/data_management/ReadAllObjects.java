@@ -9,21 +9,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ReadAll {
-    public static List<Object> read(String folderPath, String tag, int articlesToReadCount) {
-        List<Object> articles = new ArrayList<>();
+public class ReadAllObjects {
+    public static List<Object> read(String folderPath) {
+        List<Object> objects = new ArrayList<>();
         try (Stream<Path> walk = Files.walk(Paths.get(folderPath))) {
             List<String> listOfFiles = walk.filter(Files::isRegularFile).map(Path::toString).collect(Collectors.toList());
-            if (articlesToReadCount > listOfFiles.size()) {
-                articlesToReadCount = listOfFiles.size();
-            }
-            for (int i = 0; i < articlesToReadCount; i++) {
-                System.out.println(i);
-                articles.addAll(Read.readTag(listOfFiles.get(i), tag));
+            for (String file : listOfFiles) {
+                objects.addAll(ReadObjects.read(file));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return articles;
+        return objects;
     }
 }

@@ -1,5 +1,6 @@
 package knn_classification;
 
+import data_management.ConfigReader;
 import extracting.NElementsSelector;
 import knn_classification.calculate_distance.Distance;
 import data_management.Article;
@@ -13,11 +14,13 @@ public class knnNetwork {
     private final List<String> tags;
     private Map<String, Integer> tagsCount;
 
+    private String classTag;
 
-    public knnNetwork(int vectorSize, List<String> tags) {
+    public knnNetwork(int vectorSize, List<String> tags, String classTag) {
         vectors = new HashMap<>();
         this.vectorSize = vectorSize;
         this.tags = tags;
+        this.classTag = classTag;
         answer = new HashMap<>();
         tagsCount = new HashMap<>();
         for(String tag : tags) {
@@ -29,7 +32,7 @@ public class knnNetwork {
         if (vectorToAdd.size() == vectorSize) {
             vectors.put(objectToAdd, vectorToAdd);
         }
-        String tag = ((Article)objectToAdd).getTags().get("PLACES").get(0);
+        String tag = ((Article)objectToAdd).getTags().get(classTag).get(0);
         tagsCount.replace(tag, tagsCount.get(tag) + 1);
     }
 
@@ -51,7 +54,7 @@ public class knnNetwork {
         Map<String, Integer> uncoveredLabelsCount = new HashMap<>();
         tags.forEach(tag -> uncoveredLabelsCount.put(tag, (int)(tagsCount.get(tag) * n)));
         for (Object o : vectors.keySet()) {
-            String tag = ((Article) o).getTags().get("PLACES").get(0);
+            String tag = ((Article) o).getTags().get(classTag).get(0);
             if (uncoveredLabelsCount.containsKey(tag)) {
                 if (uncoveredLabelsCount.get(tag) == 1) {
                     uncoveredLabelsCount.remove(tag);
