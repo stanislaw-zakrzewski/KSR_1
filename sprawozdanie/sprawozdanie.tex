@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{enumerate}
 \usepackage{graphicx}
+\usepackage{listings}
 \usepackage{float}
 \restylefloat{table}
 \usepackage{multirow}
@@ -40,23 +41,70 @@ Celem zadania było poznanie oraz zaimplementowanie różnych metod ekstrakcji c
 	
 	Algorytm k najbliższych sąsiadów, nazywamy też potocznie algorytmem knn, pozwala na klasyfikację zbioru wieloelementowego według określonych etykiet. Na początku działania algorytmu k najbliższych sąsiadów określane są wektory dla każdego z elementów podlegających klasyfikacji. W naszym przypadku określanie wektorów polega na odpowiednim przetworzeniu tekstu zawierającego się w elementach zbioru do klasyfikacji. Następnie wektory są umieszczane na przestrzeni n elementowej, gdzie n stanowi liczebność elementów w wektorze. Odsłaniane są etykiety, domyślnie 10\% dla każdej z etykiet. Odsłonięcie etykiet stanowi jeden ze sposobów rozwiązania problemu zimnego startu. Następnie kolejne etykiety są nadawane kolejnym elementom, poprzez znalezienie k najbliższych elementów i wybranie spośród etykiet należących do danych elementów tych, które są najliczniejsze, w przypadku identycznej liczebności etykiet wybierana jest ta, której średnia odległość do aktualnie klasyfikowanego elementu jest mniejsza.
 	
-	Do wytworzenia wektora cech stosowane są dwa warianty ekstrakcji cech typu Dictionary Matching (DM). W obu przypadkach teksty znajdujące się w artykułach są początkowo poddane procesowi lemmatyzacji. Proces lemmatyzacji jest to czynność mająca na celu znalezienia lemmy dla danego słowa, lemma jest to forma podstawowa wyrazu w obszarze części mowy, którą reprezentuje. Następnie następuje proces przyznawania punktów dla poszczególnych słów. Wybierane zostają słowa mające najwięcej punktów. Pierwszy z na początku usuwa wszystkie słowa znajdujące się na przygotowanej wcześniej stop-liście, usuwa wartości liczbowe oraz zwiększa punktację słów znajdujących się bliżej początku tekstu. Drugi sposób bazuje natomiast na algorytmie TFIDF oraz również usuwane są wszelkie wartości liczbowe. 
+	Zaimplementowaliśmy 4 metody ekstrackji cech, będziemy je nazywać kolejno:
+	\begin{itemize}
+	    \item Pierwszy sposób ekstrakcji
+	    \item Drugi sposób ekstrakcji
+	    \item Trzeci sposób ekstrakcji
+	    \item Czwarty sposób ekstrakcji
+	\end{itemize}
 	
-	Algorytm TFIDF jest jedną z metod obliczania wagi słów w oparciu o liczbę ich wystąpień. Jest on stosowany między innymi w wyszukiwarkach internetorych. Jest on obliczany przy pomocy wzoru:
-\[ \left ( tf-idf \right )_{i,j}=tf_{i,j} \times idf_{i} \]
-gdzie \( tf_{i,j} \) to tak zwany „term frequency” opisany wzorem:
-\[ tf_{i,j}=log \frac{n_{i,j}}{\sum _{k}n_{k,j}} \]
-gdzie: \( n_{i,j} \) jest liczbą wystąpień termu \( \left ( t_{i} \right ) \) w dokumencie \( d_{j}\), a mianownik jest dumą liczby wystąpień wszystkich termów w dokumencie \( d_{j} \cdot idf_{i} \) to „inverse document frequency” wyraża się wzorem:
-\[ idf_{i}=log \frac{|D|}{| \left \{ d: t_{i} \epsilon d \right \} |} \]
-gdzie:
-\( |D| \) - liczba dokumentów w korpusie
-\( | \left \{ d: t_{i} \epsilon d \right \} | \) - liczba dokumentów zawierających przynajmniej jedno wystąpienie danego termu.
-
-	Powstałe w wyniku działania obu ekstraktorów cech wektory są używane do wytworzenia wektorów liczbowych pozwalających na umieszczenie elementów w przestrzeni liczbowej, co jest wymagane w algorytmie k najbliższych sąsiadów.
+	\subsection{Pierwszy sposób ekstrakcji}
+	Wektor cech w pierwszym sposobie ekstrakcji jest tworzony poprzez wybieranie słów kluczowych z tekstów. Kolejno dla każdej z etykiet wykonuje się kroki:
+	\begin{enumerate}
+	    \item Z tekstów zawierających daną etykietę wybierane są wszystkie słowa jakie się w nich znajdują i tworzony jest z nich wektor.
+	    \item Z wektora usuwane są słowa znajdujące się na stop liście.
+	    \item Z wektora usuwane są jakiekolwiek liczby.
+	    \item Przy pomocy pomiaru częstotliwości pojawiania się słów bliżej początku tekstu, wybierana jest określona wcześniej liczba słów.
+	\end{enumerate}
+	Następnie wszystkie wektory powstałe dla każdej etykiety łączone są w jeden wektor nie zawierający powtórzeń.
+	Wektor cech w pierwszym sposobie ekstrakcji przyjmuje postać:
+	\[ v = ["word1", "word2", ... "wordN"]\]
+	Następnie dla każdego z tekstów znajdującego się w zbiorze testowym ustalany jest wektor poprzez określenie podobieństwa słów z tekstu do słów w wektorze. Następnie następuje normalizacja do przediału wartości od 0 do 1. Powstają wtedy wektory gotowe do umieszczenia w przesrzeni knn przyjmujące na przykład postać:
+	\[ v=[0, 0.4, 0.6, 1, 0.6]\]
+	
+\subsection{Drugi sposób ekstrakcji}
+	Wektor w drugim sposobie ekstrakcji składa się z 11 cech(11 liczb). Pierwsza z nich określa liczbę zdań w tekście, druga liczbę słów. Następnie 8 kolejnych liczb odpowiada: liczbie słów składających się z 2 i mniej liter, liczbę słów składających się z 3 liter, liczbę słów składających się z 4 liter, liczbę słów składających się z 5 liter, liczbę słów składających się z 6 liter, liczbę słów składających się z 7 liter, liczbę słów składających się z 8 liter oraz  liczbę słów składających się z 9 i więcej liter. Ostatnim elementem jest liczba słów zaczynających się z wieliej litery.\\
+	Wektor cech w drugim sposobie ekstrakcji przyjmuje postać:
+	\[v=[1, 2, 3, 5, 12, 3, 3, 4, 10, 5, 0] \]
+	
+\subsection{Trzeci sposób ekstrakcji}
+	Trzeci sposób jest analogiczny do pierwszego, różni się tylko zamiana słów na reprezentujące je skróty. Skrót taki składa się z pierwszej litery słowa, ostatniej litery słowa i liczby liter w słowie, przykładowo przyjmiuje wartość:\\
+	\[ s(american)=an8\]
+	Podobnie jak w pierwszym sposobie ekstrakcji(proszę zwrócić uwagę na dodanie 4 punktu) wykonuje sie kroki:
+		\begin{enumerate}
+	    \item Z tekstów zawierających daną etykietę wybierane są wszystkie słowa jakie się w nich znajdują i tworzony jest z nich wektor.
+	    \item Z wektora usuwane są słowa znajdujące się na stop liście.
+	    \item Z wektora usuwane są jakiekolwiek liczby.
+	    \item Zamiana słów na skróty.
+	    \item Przy pomocy pomiaru częstotliwości pojawiania się słów bliżej początku tekstu, wybierana jest określona wcześniej liczba słów.
+	\end{enumerate}
+	Następnie wszystkie wektory powstałe dla każdej etykiety łączone są w jeden wektor nie zawierający powtórzeń.\\
+	Wektor cech w trzecim sposobie ekstrakcji przyjmuje postać:\\
+	\[ v = ["ak8", "wn6", ... "fg5"]\]
+	Następnie dla każdego z tekstów znajdującego się w zbiorze testowym ustalany jest wektor poprzez określenie podobieństwa słów z tekstu do słów w wektorze. Następnie następuje normalizacja do przediału wartości od 0 do 1. Powstają wtedy wektory gotowe do umieszczenia w przesrzeni knn przyjmujące na przykład postać:\\
+	\[ v=[0, 0.4, 0.6, 1, 0.6]\]
+	W trzecim sposobie ekstrakcji zastosowana została własna miara podobieństwa obiczaza poprzez wzór przedstawiony w formie wycinku kodu z klasy \(OurComparator\):
+	\begin{lstlisting}
+if(s1.charAt(0)==s2.charAt(0) && s1.charAt(1)==s2.charAt(2)) {
+    return (float)1/(1+Math.abs(Integer.parseInt(s1.substring(2))
+        - Integer.parseInt(s2.substring(2))));
+}
+return 0;
+	\end{lstlisting}
+	Gdzie \(s1\) i \(s2\) są elementami, które ze sobą porównujemy.
+	
+	
+	\subsection{Czwarty sposób ekstrakcji}
+	Wektor w czwartym sposobie ekstrakcji składa się z 6 elementów. Pierwsze 4 są generowane poprzez podzielenie liczby różnych końcówek słów znajdujących się na końcu linii(kolejno w w 1 liczbie końcówka składa się z 1 litery w 2 z 2 liter w 3 z 3 liter a w 4 z 4 liter) poprzez liczbę linijek. Piąty element stanowi maksymalną różnicę w liczbie sylab pomiędzy linijkami, podzieloną poprzez maksymalną liczbę sylab w jednej linijce. Ostatą wartość tworzy się poprzez podzielenie maksymalnej różnicy długości w literach linijek w tekście, poprzez maksymalną liczbę liter w linijce.
+	Wektor cech w czwartym sposobie ekstrakcji przyjmuje postać:
+	\[ v=[0.1, 0.3, 0.5, 0.1, 0.8, 0.5]\]
+	
+	\subsection{Pozostałe wzory użyte w programie}
 	
 	Obliczenia odległości dokonano w trzech metrykach.
 	
-	Pierwszą z nich jest metryka Euklidesa, odległość \( d \) obliczana jest przy pomocy wzoru: 
+	Pierwszą z nich jest metryka Euklidesa, odległość \( d \) obliczana jest przy pomocy wzoru, gdzie \(n\) oznacza długość wektora w przestrzeni knn: 
 \[ d\left ( x,y \right )=\sqrt{\left ( x_{1}-y_{1} \right )^{2} + \left ( x_{2}-y_{2} \right )^{2} + ... + \left ( x_{n}-y_{n} \right )^{2}} \]
 
 	Drugą z nich jest metryka Manhattana, nazywana również metryką uliczną, taksówkarską lub miejską. Odległość jest obliczana przy pomocy wzoru:
@@ -102,18 +150,18 @@ Za przekazywanie danych do programu odpowiada plik config.txt zawierający w sob
 	\item wordSimilarity - metryka podobieństwa słów
 	\item extractors - zestaw ekstraktorów
 \end{itemize}
-
+\newpage
 
 \section{Materiały i metody}
-Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 11, 19), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan), przy stosunku zbioru treningowego do testowego 60-40 i dla 10\% odkrytych etykiet. W drugim przypadku według tagu TOPICS etykietowano przy pomocy dwóch etykiet (coffee i gold), przy równym podziale na zbiór treningowy i testowy. Natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\% odkrytych etykiet.
+Klasyfikacja tekstów Reutersa oraz danych zebranych przez nas została wykonana dla obu sposobów ekstrakcji cech i dla każdej z 3 metryk obliczania dystansu w algorytmie k najbliższych sąsiadów. Dla parametru k wybrano niektóre wartości ze zbioru (3, 5, 8, 13, 21), tak aby jak najlepiej ukazać właściwości każdego z sposobów ekstrakcji oraz najlepiej dopasować je do zbioru danych testowych. Klasyfikacja na zbiorze Reutersa według tagu PLACES została przeprowadzona dla sześciu etykiet (west-germany, usa, uk, canada, france, japan)(13766 elementów), przy stosunku zbioru treningowego do testowego 60\%(8260 elementów) do 40\%(5506 elementów) i dla 10\%(551 elementów) odkrytych etykiet w zbiorze testowym. W drugim przypadku według tagu TOPICS etykietowano przy pomocy dwóch etykiet (coffee i gold), przy równym podziale na zbiór treningowy i testowy. Natomiast w naszych tekstach klasyfikacja nastąpiła według tagu REVIEWS dla dwóch etykiet (movie, restaurant), równego podziału zbioru elementów na część treningową i testową oraz 20\%(10 etykiet) odkrytych etykiet w zbiorze testowym. Dodatkowo do przetestowania czwartego sposobu ektrakcji użyto zbioru własnego składającego się w połowie z wierszy Williama Blake'a a w połowie z artykułów Reutera, jego liczebnośc wynosi 100 elementów, jest on podzielony na dwie części treningową i testową z czego w testowej odkryte jest 20\% etykiet(10 etykiet).
 
 Do zbadania wyników klasyfikacji posłużyliśmy metodą tablicy pomyłek (zwaną również macierzą błędów, ang. confusin matrix). Pozwala ona ocenić jakoś klasyfikacji. Poniżej znajduje się tabela wyjaśniająca sposób jej tworzenia.
 \begin{table}[H]
 \begin{tabular}{|c|c|c|}
 \hline
 Klasa rzeczywista & Klasyfikacja jako Pozytywna                                                             & Klasyfikacja jako Negatywna                                                              \\ \hline \hline
-Pozytywna         & \begin{tabular}[c]{@{}c@{}}Prawdziwie Pozytywna\\ (ang. True Positive, TP)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Fałszywie Pozytywna\\ (ang. True Negative, TN)\end{tabular}   \\ \hline
-Negatywna         & \begin{tabular}[c]{@{}c@{}}Fałszywie Pozytywna\\ (ang. False Positive, FP)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Prawdziwie Negatywna\\ (ang. False Negative, FN)\end{tabular} \\ \hline
+Pozytywna         & \begin{tabular}[c]{@{}c@{}}Prawdziwie Pozytywna\\ (ang. True Positive, TP)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Fałszywie Negatywna\\ (ang. False Negative, FN)\end{tabular}   \\ \hline
+Negatywna         & \begin{tabular}[c]{@{}c@{}}Fałszywie Pozytywna\\ (ang. False Positive, FP)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Prawdziwie Negatywna\\ (ang. True Negative, TN)\end{tabular} \\ \hline
 \end{tabular}
 \caption{Macierz błędów}
 \end{table}
@@ -124,448 +172,134 @@ Skrótów angielskich nazw będziemy używać dalej przy określaniu miar. Znaj�
 	\item Recall (Sensitivity)
 \end{enumerate}
 opisane poniżej.
+\newpage
 \subsection{Accuracy}
 Dokładność (ang. Accuracy) jest ogólną efektywnością klasyfikacji. Wyraża się wzorem:
-$$ \frac{tp+tn}{tp+fn+fp+tn} $$
+$$ Accuracy = \frac{tp+tn}{tp+fn+fp+tn} $$
 
-\subsection{Precison}
-Precyzja (ang. Precision) oznacza zgodność etykiet z pozytywnymi cechami.
-$$ \frac{tp}{tp+fp} $$
+\subsection{Precision}
+Precyzja (ang. Precision) oznacza zgodność etykiet z pozytywnie zaklasyfikowanymi cechami.
+$$ Precision = \frac{tp}{tp+fp} $$
 
 \subsection{Recall}
-Czułość (ang. Recall lub Sensitivity) to efektywność klasyfikowania pozytywnych cech. 
-$$ \frac{tp}{tp+fn} $$
+Czułość (ang. Recall lub Sensitivity) jest to stosunek poprawnie zaklasyfikowanych pozytywnych przypadków do liczby pozytywnych przyadków w zbiorze
+$$ Recall = \frac{tp}{tp+fn} $$
 
 \section{Wyniki}
-Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone w tabelach poniżej. Początkowa konfiguracja programu znajduje się poniżej, przy kolejnych eksperymentach zostały wspominanie tylko te parametry które były zmienione.
-\begin{itemize}
-	\item tagClass = PLACES
-	\item articlesToReadCount = 23
-	\item k = 3
-	\item fractionOfUncoveredForEachTag = 0.1
-	\item tags = west-germany, usa, france, uk, canada, japan
-	\item numberOfElementsPerTag = 5
-	\item trainToTestRatio = 0.6
-	\item distanceKNN = euclidean
-	\item wordSimilarity = NGrams
-	\item extractors = 1
-\end{itemize}
-Poniżej znajdują się wyniki dla przedstawionych powyższej parametrów.\\
-
-
+Wyniki kolejnych przeprowadzanych eksperymentów zostały umieszczone poniżej.
+\subsection{Wyniki klasyfikacji dla tagu PLACES}
+Wyniki eksperymentów dla tagu PLACES zostały przedstawione w tabeli~\ref{tab:PLACES1} oraz na rysunkach od~\ref{fig:PLACES1} do~\ref{fig:PLACES4}.\\
 \begin{table}[H]
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.39534885 & 0.3923077  \\ \hline
-usa          & 0.83159405 & 0.9416126  \\ \hline
-france       & 0.5064935  & 0.35779816 \\ \hline
-uk           & 0.62025315 & 0.24873096 \\ \hline
-canada       & 0.49079755 & 0.23738873 \\ \hline
-japan        & 0.5652174  & 0.23636363 \\ \hline
+             & west-germany & usa  & uk  & france & canada & japan \\ \hline
+west-germany & 59           & 99   & 2   & 5      & 0      & 4     \\ \hline
+usa          & 6            & 5334 & 47  & 21     & 26     & 39    \\ \hline
+uk           & 1            & 275  & 156 & 8      & 9      & 7     \\ \hline
+france       & 0            & 26   & 3   & 90     & 0      & 7     \\ \hline
+canada       & 0            & 252  & 7   & 1      & 165    & 1     \\ \hline
+japan        & 0            & 71   & 2   & 1      & 1      & 159   \\ \hline
+\label{tab:PLACES1}
+\caption{Confusion Matrix dla tagu PLACES i etykiet: west-germany, usa, uk, france, canada, japan.}
 \end{tabular}
-\caption{Precision i Recall dla parametrów bazowych}
 \end{table}
-Multi-Class Pecision: 0.7962223\\
-\\
-\\
-\begin{table}[H]
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-             & west-germany & usa  & france & uk & canada & japan \\ \hline
-west-germany & 51           & 74   & 0      & 2  & 3      & 0     \\ \hline
-usa          & 57           & 4064 & 31     & 57 & 71     & 36    \\ \hline
-france       & 1            & 65   & 39     & 0  & 2      & 2     \\ \hline
-uk           & 10           & 273  & 5      & 98 & 7      & 1     \\ \hline
-canada       & 5            & 248  & 2      & 1  & 80     & 1     \\ \hline
-japan        & 5            & 163  & 0      & 0  & 0      & 52    \\ \hline
-\end{tabular}
-\caption{Przypisanie tagów dla parametrów bazowych}
-\end{table}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/1ext5k3mp_mcacc.png}
+  \caption{Dane przedstawiające wartość parametru Multi-Class Accuracy dla wybranych wartości k i trzech zawartych w programie metryk.}
+  \label{fig:PLACES1}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/1ext2k6tag_precrec.png}
+  \caption{Wyniki ekstrakcji pierwszym ekstraktorem przedstawione poprzez wartości parametrów precision i recall dla dwóch wartości k(3 oraz 13) dla sześciu etykiet(west-germany, usa, uk, france, canada, japan).}
+  \label{fig:PLACES2}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/2ext2k6tag_precrec.png}
+  \caption{Wyniki ekstrakcji drugim ekstraktorem przedstawione poprzez wartości parametrów precision i recall dla dwóch wartości k(3 oraz 13) dla sześciu etykiet(west-germany, usa, uk, france, canada, japan).}
+  \label{fig:PLACES3}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/3ext2k6tah_precrec.png}
+  \caption{Wyniki ekstrakcji trzecim ekstraktorem przedstawione poprzez wartości parametrów precision i recall dla dwóch wartości k(3 oraz 13) dla sześciu etykiet(west-germany, usa, uk, france, canada, japan).}
+  \label{fig:PLACES4}
+\end{figure}
 \newpage
+\subsection{Wyniki klasyfikacji dla tagu TOPICS}
+Wyniki eksperymentów dla tagu TOPICS zostały przedstawione na rysunkach od~\ref{fig:TOPICS1} do~\ref{fig:TOPICS3}.\\
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/1ext2tag3mp_precrec.png}
+  \caption{Wyniki ekstrakcji pierwszym ekstraktorem przedstawione przy poprzez wartości precision i recall dla trzech różnych metryk(manhattana, czebyszewa i euklidesa) dla dwóch etykiet(coffee, gold).}
+  \label{fig:TOPICS1}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/2ext2tag3mp_precrec.png}
+  \caption{Wyniki ekstrakcji drugim ekstraktorem przedstawione przy poprzez wartości precision i recall dla trzech różnych metryk(manhattana, czebyszewa i euklidesa) dla dwóch etykiet(coffee, gold).}
+  \label{fig:TOPICS2}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/3ext2tag3mp_precrec.png}
+  \caption{Wyniki ekstrakcji trzecim ekstraktorem przedstawione przy poprzez wartości precision i recall dla trzech różnych metryk(manhattana, czebyszewa i euklidesa) dla dwóch etykiet(coffee, gold).}
+  \label{fig:TOPICS3}
+\end{figure}
 
-\subsection{Eksperymenty 1 - Różne metryki odległości}
-Metryka euklidesowa
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.39534885 & 0.3923077  \\ \hline
-usa          & 0.83159405 & 0.9416126  \\ \hline
-france       & 0.5064935  & 0.35779816 \\ \hline
-uk           & 0.62025315 & 0.24873096 \\ \hline
-canada       & 0.49079755 & 0.23738873 \\ \hline
-japan        & 0.5652174  & 0.23636363 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla metryki euklidesowej}
-\end{table}
-Multi-Class Pecision: 0.7962223\\
-\\
-\\
-Metryka uliczna
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.5566038  & 0.4402985  \\ \hline
-usa          & 0.8411453  & 0.914457   \\ \hline
-france       & 0.32407406 & 0.2651515  \\ \hline
-uk           & 0.45026177 & 0.22994652 \\ \hline
-canada       & 0.45614034 & 0.31610942 \\ \hline
-japan        & 0.53797466 & 0.425      \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla metryki ulicznej}
-\end{table}
-Multi-Class Pecision: 0.78732294\\
-\\
-\\
-Metryka Czebyszewa
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.64788735 & 0.35384616 \\ \hline
-usa          & 0.8515893  & 0.91464823 \\ \hline
-france       & 0.37195122 & 0.5126051  \\ \hline
-uk           & 0.4652778  & 0.17539267 \\ \hline
-canada       & 0.52517986 & 0.43843845 \\ \hline
-japan        & 0.49222797 & 0.4589372  \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla metryki Czebyszewa}
-\end{table}
-Multi-Class Pecision: 0.7954958
+\subsection{Wyniki klasyfikacji dla tagu REVIEWS}
+Wyniki eksperymentów dla tagu REVIEWS zostały przedstawione na rysunkach~\ref{fig:REVIEWS1} i~\ref{fig:REVIEWS2}.\\
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/1ext2tagNG_precrecacc.png}
+  \caption{Wyniki ekstrakcji pierwszym ekstraktorem przedstawione poprzez wartości parametrów precision, recall i accuracy dla miary podobieństwa trigramów dla dwóch etykiet(movie, restaurant).}
+  \label{fig:REVIEWS1}
+\end{figure}
 \newpage
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/2ext2tagGNG_precrecall.png}
+  \caption{Wyniki ekstrakcji pierwszym ekstraktorem przedstawione poprzez wartości parametrów precision, recall i accuracy dla miary podobieństwa uogólnionej miary n-gramów dla dwóch etykiet(movie, restaurant).}
+  \label{fig:REVIEWS2}
+\end{figure}
 
-\subsection{Eksperymenty 2 - różne metryki porównywania słów}
-NGramy dla n = 3
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.39534885 & 0.3923077  \\ \hline
-usa          & 0.83159405 & 0.9416126  \\ \hline
-france       & 0.5064935  & 0.35779816 \\ \hline
-uk           & 0.62025315 & 0.24873096 \\ \hline
-canada       & 0.49079755 & 0.23738873 \\ \hline
-japan        & 0.5652174  & 0.23636363 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla NGramów, n = 3}
-\end{table}
-Multi-Class Pecision: 0.7962223\\
-\\
-\\
-NGramy dla n = 2
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.5416667  & 0.104      \\ \hline
-usa          & 0.80586374 & 0.94232106 \\ \hline
-france       & 0.22972973 & 0.16037735 \\ \hline
-uk           & 0.26666668 & 0.12276215 \\ \hline
-canada       & 0.4347826  & 0.16574585 \\ \hline
-japan        & 0.47619048 & 0.09756097 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla NGramów, n = 2}
-\end{table}
-Multi-Class Pecision: 0.7675263\\
-\\
-\\
-NGramy dla n = 4
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.5652174  & 0.36879432 \\ \hline
-usa          & 0.847703   & 0.9302486  \\ \hline
-france       & 0.36619717 & 0.23853211 \\ \hline
-uk           & 0.41411042 & 0.34526855 \\ \hline
-canada       & 0.6785714  & 0.23312883 \\ \hline
-japan        & 0.6884058  & 0.4871795  \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla NGramów, n = 4}
-\end{table}
-Multi-Class Pecision: 0.80366874\\
-\\
-\\
-\\
-\\
-\\
-Uogólnione NGramy
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall      \\ \hline
-west-germany & 0.7589286  & 0.65891474  \\ \hline
-usa          & 0.8819797  & 0.9648311   \\ \hline
-france       & 0.46666667 & 0.7241379   \\ \hline
-uk           & 0.7490196  & 0.49354005  \\ \hline
-canada       & 1.0        & 0.099415205 \\ \hline
-japan        & 0.76649743 & 0.7190476   \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla UogólnionychNGramów}
-\end{table}
-Multi-Class Pecision: 0.85633856
-
-\subsection{Eksperymenty 3 - Różne wartości parametru k}
-k = 3
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.39534885 & 0.3923077  \\ \hline
-usa          & 0.83159405 & 0.9416126  \\ \hline
-france       & 0.5064935  & 0.35779816 \\ \hline
-uk           & 0.62025315 & 0.24873096 \\ \hline
-canada       & 0.49079755 & 0.23738873 \\ \hline
-japan        & 0.5652174  & 0.23636363 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla k = 3}
-\end{table}
-Multi-Class Pecision: 0.7962223\\
-\\
-\\
-k = 5
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.59       & 0.43382353 \\ \hline
-usa          & 0.83722854 & 0.93855786 \\ \hline
-france       & 0.46666667 & 0.26168224 \\ \hline
-uk           & 0.46025103 & 0.28795812 \\ \hline
-canada       & 0.6566265  & 0.29945055 \\ \hline
-japan        & 0.5660377  & 0.29411766 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla k = 5}
-\end{table}
-Multi-Class Pecision: 0.8016709\\
-\\
-\\
-\\
-\\
-\\
-\\
-k = 8
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 1.0        & 0.09375    \\ \hline
-usa          & 0.8347242  & 0.95040554 \\ \hline
-france       & 0.44827586 & 0.10655738 \\ \hline
-uk           & 0.6        & 0.29210526 \\ \hline
-canada       & 0.625      & 0.375      \\ \hline
-japan        & 0.58278143 & 0.43781096 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla k = 8}
-\end{table}
-Multi-Class Pecision: 0.81002545\\
-\\
-\\
-k = 13
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall      \\ \hline
-west-germany & 0.61290324 & 0.2753623   \\ \hline
-usa          & 0.8147582  & 0.98611754  \\ \hline
-france       & 1.0        & 0.094339624 \\ \hline
-uk           & 1.0        & 0.09793814  \\ \hline
-canada       & 0.67832166 & 0.297546    \\ \hline
-japan        & 1.0        & 1.0         \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla k = 13}
-\end{table}
-Multi-Class Pecision: 0.81129676\\
-\\
-\\
-k = 21
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 1.0        & 0.09375    \\ \hline
-usa          & 0.81465435 & 0.9944815  \\ \hline
-france       & 1.0        & 0.09615385 \\ \hline
-uk           & 1.0        & 0.104      \\ \hline
-canada       & 0.7826087  & 0.26548672 \\ \hline
-japan        & 1.0        & 0.09952607 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla k = 21}
-\end{table}
-Multi-Class Pecision: 0.81674534
+\subsection{Wyniki klasyfikacji dla tagu LITERATURE}
+Wyniki eksperymentów dla tagu LITERATURE zostały przedstawione na rysunkach~\ref{fig:LITERATURE1} i~\ref{fig:LITERATURE2}.\\
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/1ext2tag_precrecacc.png}
+  \caption{Wyniki ekstrakcji pierwszym ekstraktorem przedstawione poprzez wartości precision, recall i accuracy dla dwóch etykiet(poem, article).}
+  \label{fig:LITERATURE1}
+\end{figure}
+\begin{figure}[H]
+  \includegraphics[width=\linewidth]{wykresy/4ext2tag_precrecacc.png}
+  \caption{Wyniki ekstrakcji czwartym ekstraktorem przedstawione poprzez wartości precision, recall i accuracy dla dwóch etykiet(poem, article).}
+  \label{fig:LITERATURE2}
+\end{figure}
 \newpage
-
-\subsection{Eksperymenty 4 - Różne ekstraktory}
-Ekstraktor nr 1
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall     \\ \hline
-west-germany & 0.39534885 & 0.3923077  \\ \hline
-usa          & 0.83159405 & 0.9416126  \\ \hline
-france       & 0.5064935  & 0.35779816 \\ \hline
-uk           & 0.62025315 & 0.24873096 \\ \hline
-canada       & 0.49079755 & 0.23738873 \\ \hline
-japan        & 0.5652174  & 0.23636363 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla ekstraktora 1.}
-\end{table}
-Multi-Class Pecision: 0.7962223\\
-\\
-Ekstraktor nr 2
-articlesToReadCount = 10
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label        & Precision  & Recall      \\ \hline
-west-germany & 0.17948718 & 0.13461539  \\ \hline
-usa          & 0.81395346 & 0.94287044  \\ \hline
-france       & 0.6363636  & 0.1         \\ \hline
-uk           & 0.30555555 & 0.17837837  \\ \hline
-canada       & 0.6060606  & 0.104166664 \\ \hline
-japan        & 0.19444445 & 0.10144927  \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla ekstraktora 2.}
-\end{table}
-Multi-Class Pecision: 0.77324516
-
-\subsection{Eksperymenty 5 - Inny tag}
-Eksperymenty dla tagu TOPICS oraz etykiet coffe, gold.
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label  & Precision & Recall    \\ \hline
-coffee & 0.9811321 & 0.9122807 \\ \hline
-gold   & 0.9074074 & 0.98      \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla tagu TOPISC}
-\end{table}
-Multi-Class Pecision: 0.94392526\\
-\\
-\\
-distance = manhattan
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label  & Precision  & Recall     \\ \hline
-coffee & 0.94827586 & 0.94827586 \\ \hline
-gold   & 0.93877554 & 0.93877554 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla tagu TOPISC i dystansu miejskiego}
-\end{table}
-Multi-Class Pecision: 0.94392526\\
-\\
-\\
-distance = chebyshev
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label  & Precision  & Recall     \\ \hline
-coffee & 0.98245615 & 0.9655172  \\ \hline
-gold   & 0.96       & 0.97959185 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla tagu TOPISC i dystansu Czebyszewa}
-\end{table}
-Multi-Class Pecision: 0.97196263\\
-\\
-extractors = 2
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label  & Precision & Recall      \\ \hline
-coffee & 0.6213592 & 1.0         \\ \hline
-gold   & 1.0       & 0.093023255 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla tagu TOPISC i 2. ekstraktora}
-\end{table}
-Multi-Class Pecision: 0.635514\\
-\\
-trainToTestRatio = 0.3
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label  & Precision & Recall    \\ \hline
-coffee & 0.975     & 0.975     \\ \hline
-gold   & 0.9714286 & 0.9714286 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla tagu TOPISC i stosunku zbiorów 0.3}
-\end{table}
-Multi-Class Pecision: 0.97333336\\
-\\
-k = 5
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label  & Precision  & Recall \\ \hline
-coffee & 0.91935486 & 1.0    \\ \hline
-gold   & 1.0        & 0.9    \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla tagu TOPISC i k = 5}
-\end{table}
-Multi-Class Pecision: 0.95327103
-
-\subsection{Eksperymenty 6 - Nasz zbiór tekstów}
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label      & Precision & Recall      \\ \hline
-movie      & 0.5641026 & 1.0         \\ \hline
-restaurant & 1.0       & 0.055555556 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla własnych tekstów}
-\end{table}
-Multi-Class Pecision: 0.575\\
-\\
-\\
-Uogólniona miara Ngramów
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label      & Precision  & Recall     \\ \hline
-movie      & 0.72727275 & 0.8888889  \\ \hline
-restaurant & 0.8888889  & 0.72727275 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla własnych tekstów i uogólnionej miary NGramów}
-\end{table}
-Multi-Class Pecision: 0.8\\
-\\
-\\
-k = 8
-\begin{table}[H]
-\begin{tabular}{|c|c|c|}
-\hline
-Label      & Precision & Recall     \\ \hline
-movie      & 0.5897436 & 1.0        \\ \hline
-restaurant & 1.0       & 0.05882353 \\ \hline
-\end{tabular}
-\caption{Precision i Recall dla własnych tekstów i uogólnionej miary NGramów}
-\end{table}
-Multi-Class Pecision: 0.6
 
 \section{Dyskusja}
-	Napisanie programu klasyfikującego uświadomiło nam, że w rozpoznawaniu danego tekstu nie liczą się jedynie znaczenia poszczególnych słów. Pozytywny wpływ na jakość klasyfikacji miało między innymi dodanie do ekstrakcji cech „punktowanie” słów znajdujących się bliżej początku artykułu. Właściwość ta jest związana z podstawowymi założeniami artykułu prasowego, i w tekstach opracowanych przez nas recenzji, które mają na celu w pierwszych słowach określić kontekst danego tekstu. Zdajemy sobie sprawę, że dla innego typu tekstu pisanego, takiego jak na przykład opowiadanie cecha ta niekoniecznie będzie obecna, nastąpi wtedy konieczność stworzenia nowego modelu ekstrakcji cech, do którego przyjęcia nasz program jest zdolny.
+\subsection{Uwagi ogólne}
+	Napisanie programu klasyfikującego uświadomiło nam, że w rozpoznawaniu danego tekstu nie liczą się jedynie znaczenia poszczególnych słów. Pozytywny wpływ na jakość klasyfikacji miało wykorzystanie w pierwszym ekstraktorze cech wybierania słów kluczowych poprzez preferowanie tych znajdujących się bliżej początku tekstu. Właściwość ta jest związana z podstawowymi założeniami artykułu prasowego, i w tekstach opracowanych przez nas recenzji, które mają na celu w pierwszych słowach określić kontekst danego tekstu. Zdajemy sobie sprawę, że dla innego typu tekstu pisanego, takiego jak na przykład opowiadanie cecha ta niekoniecznie będzie obecna, nastąpi wtedy konieczność stworzenia nowego modelu ekstrakcji cech, do którego przyjęcia nasz program jest zdolny.
 	
-	Zauważyliśmy, że uogólniona miara n-gramów pozwala na osiągnięcie lepszych wyników klasyfikacyjnych od trigramów. Dzieje się tak, ponieważ uogólniona miara n-gramów pozwala na wyższy stopień rozgraniczenia podobieństwa tekstów, poprzez uwzględnienie aspektów niebędących możliwymi do wyłapania w przypadku trigramów. Jedynym przeciwwskazaniem w użyciu uogólnionej miary n-gramów może być jej wyższa złożoność obliczeniowa.
+	Bardzo ważne, przy tworzeniu programów do klasyfikacji tekstów jest rozróżnienie cech językowych od cech metajęzykowych. Poprzez cechy językowe rozumiemy cechy odnoszące się do semantyki. Semantyką nazywamy naukę o budowie wyrazów. Poprzez cechy metajęzykowe rozumiemy wszystkie cechy abstrahujące od znaczenia słów, a skupiające się na ich ułożeniu, długości, rymach, czy liczbie sylab. W pierwszym i trzecim sposobie ekstrakcji użyliśmy zarówno cech językowych jak i metajęzykowych. Natomiast w drugim sposobie użyliśmy wyłącznie cech metajęzykowych.
 	
-	Z trzech miar pomiaru odległości między wektorami, najlepsze rezultaty daje według naszych badań metryka Euklidesa, zaraz za nią jest metryka Czebyszewa, natomiast na końcu plasuje się metryka uliczna. Dystans Euklidesa najlepiej więc oddaje odległość pomiędzy wektorami w przestrzeni dla zastosowania algorytmu k najbliższych sąsiadów.
+	Znacząco większa liczebność artykułów z etykietą usa negatywnie wpływa na klasyfikację klas z etykietami: west-germany, uk, france, canada i japan. Jest to szczególnie widoczne w tabeli~\ref{tab:PLACES1} przedstawiającej confusion matrix. Dodatkowo w przypadku znacznej przewagi liczebnej jednej z etykiet przydatność parametru accuracy spada, co widać na rysunku~\ref{fig:PLACES1}.
 	
-	Algorytm TFIDF okazał się wolniejszy od alternatywnego rozwiązania w drugim sposobie ekstrakcji. Jest to spowodowane jego złożonością obliczeniową w porównaniu do usuwania słów ze stop listy i punktowaniu słów pojawiających się wcześniej. Osiągał on też mniejsze wartości. Jest on jednak w przeciwieństwie do stworzonej przez nas stop-listy uniwersalny.
+	Rezultaty dla przygotowywanych przez nas tekstów(Rysunki:~\ref{fig:REVIEWS1},~\ref{fig:REVIEWS2}) były znacząco niższe niż dla tekstów zaczerpniętych z bazy Reutera(Rysunki:~\ref{fig:TOPICS1},~\ref{fig:TOPICS2},~\ref{fig:TOPICS3}). Jest to zapewnie spowodowane spójnym stylem i określoną formą tekstów Reutera, podczas gdy przygotowane przez nas teksty znacząco się różniły pod względem stylistycznym jak i formalnym.
 	
-	Normalizacja wektorów cech okazała się niezwykle kluczowa ze względu na różną długość artykułów i recenzji znajdujących się w zbiorach danych. Początkowe próby działania programu bez uniezależnienia wartości na wektorze od długości tekstów dawały bardzo niskie rezultaty.
-	
-	Rezultaty dla przygotowywanych przez nas tekstów były znacząco niższe niż dla tekstów zaczerpniętych z bazy Reutera. Jest to zapewnie spowodowane spójnym stylem i określoną formą tekstów Reutera, podczas gdy przygotowane przez nas teksty znacząco się różniły pod względem stylistycznym jak i formalnym.
-	
-	Program osiągnął średnią skuteczność na poziomie 90-95 procent dla tylko dwóch etykiet. Jest to przewidywany efekt. Skuteczność wzrastała nawet do 97 procent po zwiększeniu k z 3 do 5. Jest to wynik więcej niż satysfakcjonujący.
-
+\subsection{Wyższość pierwszego sposobu ekstrakcji nad drugim i trzecim.}
+    Zauważyliśmy znaczącą różnicę pomiędzy wartościami współczynnikow precision, recall i accuracy pomiędzy pierwszym(Rysunek~\ref{fig:PLACES2}) a drugim(Rysunek~\ref{fig:PLACES3}) i trzecim(Rysunek~\ref{fig:PLACES4}) sposobem ekstrakcji na korzyść pierwszego sposobu ekstrakcji.
+    
+    Wyniki lepsze niż drugi sposób ekstrakcji, sposób pierwszy osiągnął dzięki użyciu w nim cech zarówno językowych jak i metajęzykowych.
+    
+    Niestety nasza próba uproszczenia sposobu zapisu słów kluczowych w trzecim sposobie ekstrakcji okazała się nietrafiona. Sposób w jaki postanowiliśmy zapisać słowa kluczowe całkowicie nie jest wystarczający, aby przechować wystarzającą informację.
+    
+\subsection{Zrozumienie idei czwartego sposobu ekstrakcji.}
+    Jak już zostało napisane powyżej w ekstrakcji cech z tekstów ważne jest aby odróżniac cechy języka od cech metajęzyka. Rozróżnienie to jest kluczowe zwłaszcza przy próbie zrozumienia dlaczego czwarty ektraktor działa tak dobrze.
+    
+    W czwartym ekstraktorze wykorzystane zostały cechy struktury lirycznej jaką jest wiersz(eng. poem). Są to rymy o różnej, acz rozsądnej długości, stała, bądź bardzo zbliżona do siebie liczba sylab w kolejnych linijkach oraz mała różnica w długości linijek. Dla odmiany artykuły nie zawierają w sobie żadnej z wyżej wymienionych cech. Posłużyliśmy się zatem cechami metajęzykowymi.
+    
+    Dla porównania cechy języka, przy pomocy których operuje najskuteczniejszy w eksperymentach na tagach PLACES, TOPICS oraz REVIEWS pierwszy ekstraktor, nie dają specjalnie wysokich wyników w przypadku tekstów z tagu LITERATURE(Rysunek~\ref{fig:LITERATURE1}) w porównaniu do wyników czwartego ekstraktora(Rysunek~\ref{fig:LITERATURE2}). Jest to spowodowane ich różnorodnością i brakiem wspólnego znaczenia semantycznego.
+    
 \section{Wnioski}
 	Stworzenie systemu ekstrakcji cech dla danego rodzaju bądź zbioru tekstów jest zadaniem o wiele trudniejszym niż przypuszczaliśmy i wymaga nie tylko wiedzy o słowach jakie mogą się znaleźć w danym tekście, ale i dogłębnej wiedzy o wybranym typie tekstu, jak w naszym przypadku artykule jak i w wybranym przez nas, podobnej jeśli chodzi o cechy recenzji.
 	
 	Algorytm k najbliższych sąsiadów ma problem, w momencie, kiedy jedna z etykiet ma znacząco więcej przyporządkowanych do niej elementów. Ważne jest wtedy aby odpowiednio dobrać wartość k aby nie była zbyt wysoka. Należy też wtedy zadbać o to, aby do zbioru początkowo odkrytych etykiet dla elementów trafiły etykiety każdego rodzaju.
 	
-	Uniwersalne metody zawsze będą mniej skuteczne niż metody skrojone dokładnie pod dany przypadek. Jest to uniwersalna prawda, która w informatyce odgrywa znaczącą rolę w porównaniu do innych dziedzin. Mogliśmy ją zaobserwować na przykładzie porównania algorytmu TFIDF z stop-listą i wybieraniem słów pojawiających się wcześniej.
-
+	Najlepiej radzą sobie algorytmy korzystające zarówno z cech językowych jak i metajęzykowych.
 
 \begin{thebibliography}{0}
   \bibitem{article1} David D. Lewis.
