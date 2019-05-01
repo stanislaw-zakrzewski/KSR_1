@@ -16,11 +16,12 @@ public class ExtractorEntities implements Extractor {
     @SuppressWarnings("Duplicates")
     @Override
     public List<Object> extract(Elements elements) {
+        System.out.println("I  Extractor entities:");
         Stopwatch stopwatch = new Stopwatch();
         List<Object> vector = new ArrayList<>();
         Converter converter = new Converter();
         for (String tag : elements.getTags()) {
-            Map<Object, Float> vectorPart = converter.articlesToVector(elements.getTrainElementsForTag(tag));
+            Map<Object, Float> vectorPart = converter.articlesToVectorUseEntities(elements.getTrainElementsForTag(tag));
 
             // Remove numbers
             List<String> toRemove = new ArrayList<>();
@@ -59,16 +60,15 @@ public class ExtractorEntities implements Extractor {
             }
 
             // Select N keywords from text
+            System.out.println("\t# " + tag + ":");
             for (Object s : NElementsSelector.selectN(vectorPart, 5)) {
+                System.out.println("\t\t> " + s);
                 if (!vector.contains(s)) {
                     vector.add(s);
                 }
             }
         }
-        System.out.println("I  Extractor entities (" + stopwatch.getTime() + "s), list of entities extracted: ");
-        for(Object keyword : vector) {
-            System.out.println("\t> " + keyword);
-        }
+        System.out.println("T  Extractor entities: " + stopwatch.getTime() + "s");
         return vector;
     }
 
@@ -79,7 +79,7 @@ public class ExtractorEntities implements Extractor {
             valuesForElement.add(0.f);
         }
         Article article = (Article) element;
-        for (String lemma : article.getLemmas()) {
+        for (String lemma : article.getEntityMentions()) {
             for (int i = 0; i < vector.size(); i++) {
                 valuesForElement.set(i, valuesForElement.get(i) + wordComparator.similarity(lemma, vector.get(i)));
             }

@@ -14,6 +14,7 @@ public class ExtractorKeywords implements Extractor {
     @SuppressWarnings("Duplicates")
     @Override
     public List<Object> extract(Elements elements) {
+        System.out.println("I  Extractor keywords:");
         Stopwatch stopwatch = new Stopwatch();
         List<Object> vector = new ArrayList<>();
         Converter converter = new Converter();
@@ -57,16 +58,15 @@ public class ExtractorKeywords implements Extractor {
             }
 
             // Select N keywords from text
+            System.out.println("\t# " + tag + ":");
             for (Object s : NElementsSelector.selectN(vectorPart, 5)) {
+                System.out.println("\t\t> " + s);
                 if (!vector.contains(s)) {
                     vector.add(s);
                 }
             }
         }
-        System.out.println("I  Extractor keywords (" + stopwatch.getTime() + "s), list of keywords extracted: ");
-        for(Object keyword : vector) {
-            System.out.println("\t> " + keyword);
-        }
+        System.out.println("T  Extractor keywords: " + stopwatch.getTime() + "s");
         return vector;
     }
 
