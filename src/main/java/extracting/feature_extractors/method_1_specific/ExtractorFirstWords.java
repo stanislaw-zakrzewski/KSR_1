@@ -2,8 +2,10 @@ package extracting.feature_extractors.method_1_specific;
 
 import extracting.feature_extractors.Extractor;
 import data_management.Article;
+import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +24,11 @@ public class ExtractorFirstWords implements Extractor {
         for (Object article : elementsForTag) {
             for (String word : ((Article) article).getLemmas()) {
                 if (vector.containsKey(word)) {
-                    vector.replace(word, vector.get(word) * (1 + (1.0f/firstWordsCount)/10));
-                    if(wordsCounter == firstWordsCount) {
+                    vector.replace(word, vector.get(word) * (1 + (1.0f / firstWordsCount) / 10));
+                    if (wordsCounter == firstWordsCount) {
                         break;
                     } else {
-                        wordsCounter ++;
+                        wordsCounter++;
                     }
                 }
             }
@@ -34,5 +36,10 @@ public class ExtractorFirstWords implements Extractor {
 
         System.out.println("ExtractorFirstWords: " + stopwatch.getTime());
         return vector;
+    }
+
+    @Override
+    public List<Float> getValues(List<Object> vector, Object element, WordComparator wordComparator) {
+        return null;
     }
 }
