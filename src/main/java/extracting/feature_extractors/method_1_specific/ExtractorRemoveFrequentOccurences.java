@@ -1,7 +1,9 @@
 package extracting.feature_extractors.method_1_specific;
 
+import data_management.Elements;
 import extracting.feature_extractors.Extractor;
 import data_management.Article;
+import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class ExtractorRemoveFrequentOccurences implements Extractor {
         this.percent = percent;
     }
 
-    @Override
+
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Stopwatch stopwatch = new Stopwatch();
         int value = (int)(elements.size() * percent);
@@ -40,5 +42,15 @@ public class ExtractorRemoveFrequentOccurences implements Extractor {
         vector.keySet().removeAll(toRemove);
         System.out.println("ExtractorRemoveFrequentOccuring: " + stopwatch.getTime());
         return vector;
+    }
+
+    @Override
+    public List<Object> extract(Elements elements) {
+        return null;
+    }
+
+    @Override
+    public List<Float> getValues(List<Object> vector, Object element, WordComparator wordComparator) {
+        return null;
     }
 }

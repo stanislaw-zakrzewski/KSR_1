@@ -7,6 +7,7 @@ import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.trees.Tree;
 import extracting.MainExtractor;
 import extracting.feature_extractors.Extractor;
+import extracting.feature_extractors.ExtractorKeywords;
 import extracting.feature_extractors.ExtractorRemoveNumbers;
 import extracting.feature_extractors.ExtractorRemoveStopWords;
 import extracting.feature_extractors.method_1_specific.ExtractorFirstWords;
@@ -32,90 +33,38 @@ public class Main {
 
         Stopwatch stopwatch = new Stopwatch();
 
-        System.out.println(stopwatch.getTime());
-        //Read all articles
-        List<Object> allArticles = ReadObjects.read("src/main/resources/extracted/reuters.txt");
-        Collections.shuffle(allArticles);
+        // Read all elements
+        Elements elements = new Elements(config.getTagClass(), config.getTags(), config.getTrainToTestRatio(), "src/main/resources/extracted/reuters.txt");
         System.out.println(stopwatch.getTime());
 
-        //Remove all articles that have tags count other than 1 and if they have 1 check if it is in the list of tags
-        List<Object> toRemove = new ArrayList<>();
-        for (Object object : allArticles) {
-            Article article = ((Article)object);
-            if (article.getTags().get(config.getTagClass()).size() != 1) {
-                toRemove.add(article);
-            } else if (!config.getTags().contains(article.getTags().get(config.getTagClass()).get(0))) {
-                toRemove.add(article);
+        // Extract vector pattern
+        List<Extractor> extractors = new ArrayList<>();
+        extractors.add(new ExtractorKeywords());
+        List<List<Object>> vector = MainExtractor.createVector(elements, extractors);
+        for (List<Object> o1 : vector) {
+            for (Object o2 : o1) {
+                System.out.println(o2);
             }
-        }
-        allArticles.removeAll(toRemove);
-
-        //Split articles into train and test groups
-        List<Object> trainArticles = new ArrayList<>();
-        List<Object> testArticles = new ArrayList<>();
-        for (int i = 0; i < allArticles.size(); i++) {
-            if (((float) i) / ((float) allArticles.size()) < config.getTrainToTestRatio()) {
-                trainArticles.add(allArticles.get(i));
-            } else {
-                testArticles.add(allArticles.get(i));
-            }
-        }
-
-        Map<String, List<Object>> trainArticlesByTags = getElementsForTags(trainArticles, config.getTags());
-        Map<String, List<Object>> testArticlesByTags = getElementsForTags(testArticles, config.getTags());
-
-        //Check how many elements are there for each tag
-        for (String o : testArticlesByTags.keySet()) {
-            System.out.println(o + "  " + testArticlesByTags.get(o).size());
         }
 
         List<List<Float>> testVectors = new LinkedList<>();
         knnNetwork network = null;
         int ext = Integer.parseInt(config.getExtractor());
-        if (ext == 2) {
-            for (Object o : testArticles) {
-                testVectors.add(SemioticExtractor.getInstance().calculateVector(o));
-            }
-            network = new knnNetwork(11, config.getTags(), config.getTagClass());
-        } else if(ext == 4) {
-            for (Object o : testArticles) {
-                testVectors.add(PoemExtractor.getInstance().calculateVector(o));
-            }
-            network = new knnNetwork(6, config.getTags(), config.getTagClass());
-        } else {
-            List<Extractor> extractors = new ArrayList<>();
-            extractors.add(new ExtractorRemoveStopWords());
-            extractors.add(new ExtractorRemoveNumbers());
-            if (ext == 1) {
-                //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
-                //extractors.add(new ExtractorTFIDF());
-                extractors.add(new ExtractorFirstWords(10));
-                //extractors.add(new ExtractorTFIDF());
-            } else {
-                extractors.add(new ExtractorOurMethod());
-                //extractors.add(new ExtractorRemoveFrequentOccurences(0.2f));
-                extractors.add(new ExtractorFirstWords(10));
-            }
-            List<Object> vector = MainExtractor.createVector(trainArticles, trainArticlesByTags, config.getTags(), config.getNumberOfElementsPerTag(), extractors);
 
-            VectorForElement vectorForElement = new VectorForElement();
-            if (ext == 1) {
-                for (Object o : testArticles) {
-                    testVectors.add(vectorForElement.generateVector(vector, o, config.getWordSimilarity()));
-                }
-            } else {
-                WordComparator our = new OurComparator();
-                for (Object o : testArticles) {
-                    testVectors.add(vectorForElement.generateVector(vector, o, our));
-                }
-            }
 
-            network = new knnNetwork(vector.size(), config.getTags(), config.getTagClass());
+        VectorForElement vectorForElement = new VectorForElement();
+
+        for (Object o : elements.getTestElements()) {
+            testVectors.add(MainExtractor.calculateValues(o, extractors, vector, config.getWordSimilarity()));
         }
+
+        int vectorSize = vector.stream().mapToInt(List::size).sum();
+        network = new knnNetwork(vectorSize, config.getTags(), config.getTagClass());
+
 
         //Use knn to classify articles
         for (int i = 0; i < testVectors.size(); i++) {
-            network.addVector(testArticles.get(i), testVectors.get(i));
+            network.addVector(elements.getTestElements().get(i), testVectors.get(i));
         }
         Map<Object, String> classifiedArticles = network.classify(config.getK(), config.getFractionOfUncoveredForEachTag(), config.getDistance());
 
@@ -131,26 +80,11 @@ public class Main {
         System.out.println();
         ConfusionMatrix.calculate(config.getTags(), correctLabels, resultLabels);
         float acc = 0;
-        for(String tag : config.getTags()) {
+        for (String tag : config.getTags()) {
             System.out.println(Accuraccy.calculate(tag, correctLabels, resultLabels));
-            acc +=Accuraccy.calculate(tag, correctLabels, resultLabels);
+            acc += Accuraccy.calculate(tag, correctLabels, resultLabels);
         }
-        System.out.println("Accuracy: " + acc/config.getTags().size());
+        System.out.println("Accuracy: " + acc / config.getTags().size());
         System.out.println("Cały program: " + stopwatch.getTime());
-    }
-
-    private static Map<String, List<Object>> getElementsForTags(List<Object> elements, List<String> tags) {
-        Map<String, List<Object>> elementsForTags = new HashMap<>();
-        tags.forEach(tag -> elementsForTags.put(tag, new ArrayList<>()));
-        elements.forEach(article -> {
-                    List<String> tagsForArticle = ((Article) article).getTags().get("PLACES");
-                    if (tagsForArticle.size() == 1) {
-                        if (tags.contains(tagsForArticle.get(0))) {
-                            elementsForTags.get(tagsForArticle.get(0)).add(article);
-                        }
-                    }
-                }
-        );
-        return elementsForTags;
     }
 }

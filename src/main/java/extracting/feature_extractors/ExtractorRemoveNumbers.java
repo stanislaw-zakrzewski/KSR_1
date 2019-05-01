@@ -1,5 +1,7 @@
 package extracting.feature_extractors;
 
+import data_management.Elements;
+import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
 import java.util.ArrayList;
@@ -16,7 +18,6 @@ public class ExtractorRemoveNumbers implements Extractor {
      * @param tag - unused in this case
      * @return updated vector, with removed numbers
      */
-    @Override
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Stopwatch stopwatch = new Stopwatch();
         List<String> toRemove = new ArrayList<>();
@@ -31,5 +32,15 @@ public class ExtractorRemoveNumbers implements Extractor {
         }
         System.out.println("ExtractorRemoveNumbers: " + stopwatch.getTime());
         return vector;
+    }
+
+    @Override
+    public List<Object> extract(Elements elements) {
+        return null;
+    }
+
+    @Override
+    public List<Float> getValues(List<Object> vector, Object element, WordComparator wordComparator) {
+        return null;
     }
 }

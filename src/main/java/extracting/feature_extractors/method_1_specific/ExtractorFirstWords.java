@@ -1,7 +1,9 @@
 package extracting.feature_extractors.method_1_specific;
 
+import data_management.Elements;
 import extracting.feature_extractors.Extractor;
 import data_management.Article;
+import extracting.feature_extractors.Stopwords;
 import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
@@ -16,9 +18,10 @@ public class ExtractorFirstWords implements Extractor {
         this.firstWordsCount = firstWordsCount;
     }
 
-    @Override
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Stopwatch stopwatch = new Stopwatch();
+
+
 
         int wordsCounter = 1;
         for (Object article : elementsForTag) {
@@ -36,6 +39,11 @@ public class ExtractorFirstWords implements Extractor {
 
         System.out.println("ExtractorFirstWords: " + stopwatch.getTime());
         return vector;
+    }
+
+    @Override
+    public List<Object> extract(Elements elements) {
+        return null;
     }
 
     @Override

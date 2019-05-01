@@ -1,5 +1,7 @@
 package extracting.feature_extractors;
 
+import data_management.Elements;
+import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
 import java.util.ArrayList;
@@ -30,5 +32,15 @@ public class ExtractorRemoveStopWords implements Extractor {
         }
         System.out.println("ExtractorRemoveStopWords: " + stopwatch.getTime());
         return vector;
+    }
+
+    @Override
+    public List<Object> extract(Elements elements) {
+        return null;
+    }
+
+    @Override
+    public List<Float> getValues(List<Object> vector, Object element, WordComparator wordComparator) {
+        return null;
     }
 }

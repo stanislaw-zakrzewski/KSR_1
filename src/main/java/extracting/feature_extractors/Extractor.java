@@ -1,11 +1,11 @@
 package extracting.feature_extractors;
 
+import data_management.Elements;
 import matching_words.word_comparators.WordComparator;
 
 import java.util.List;
-import java.util.Map;
 
 public interface Extractor {
-    Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag);
+    List<Object> extract(Elements elements);
     List<Float> getValues(List<Object> vector, Object element, WordComparator wordComparator);
 }

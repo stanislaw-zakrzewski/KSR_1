@@ -1,7 +1,9 @@
 package extracting.feature_extractors.method_1_specific;
 
+import data_management.Elements;
 import extracting.feature_extractors.Extractor;
 import data_management.Article;
+import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
 import java.util.HashMap;
@@ -15,7 +17,7 @@ public class ExtractorRemoveRarelyOccuring implements Extractor {
         this.wordsCount = wordsCount;
     }
 
-    @Override
+
     public Map<Object, Float> extract(Map<Object, Float> vector, List<Object> elements, List<Object> elementsForTag, String tag) {
         Stopwatch stopwatch = new Stopwatch();
         Map<String, Integer> wordsInDocumentsCount = new HashMap<>();
@@ -37,5 +39,15 @@ public class ExtractorRemoveRarelyOccuring implements Extractor {
         }
         System.out.println("ExtractorRemoveRarelyOccuring: " + stopwatch.getTime());
         return vector;
+    }
+
+    @Override
+    public List<Object> extract(Elements elements) {
+        return null;
+    }
+
+    @Override
+    public List<Float> getValues(List<Object> vector, Object element, WordComparator wordComparator) {
+        return null;
     }
 }

@@ -1,11 +1,11 @@
 tagClass = PLACES
 folderPath = src/main/resources/sgm/
 articlesToReadCount = 22
-k = 3
+k = 5
 fractionOfUncoveredForEachTag = 0.1f
 tags = west-germany, usa, uk, france, canada, japan
 numberOfElementsPerTag = 5
-trainToTestRatio = 0.5f
+trainToTestRatio = 0.6f
 distanceKNN = euclidean
 wordSimilarity = generalizedNGrams
 extractors = 1
