@@ -7,9 +7,11 @@ import extracting.NElementsSelector;
 import matching_words.word_comparators.WordComparator;
 import program_performance.Stopwatch;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public class ExtractorKeywords implements Extractor {
+public class ExtractorEntities implements Extractor {
 
     @SuppressWarnings("Duplicates")
     @Override
@@ -63,7 +65,7 @@ public class ExtractorKeywords implements Extractor {
                 }
             }
         }
-        System.out.println("I  Extractor keywords (" + stopwatch.getTime() + "s), list of keywords extracted: ");
+        System.out.println("I  Extractor entities (" + stopwatch.getTime() + "s), list of entities extracted: ");
         for(Object keyword : vector) {
             System.out.println("\t> " + keyword);
         }

@@ -3,6 +3,7 @@ import data_management.ConfigReader;
 import data_management.Elements;
 import extracting.MainExtractor;
 import extracting.feature_extractors.Extractor;
+import extracting.feature_extractors.ExtractorEntities;
 import extracting.feature_extractors.ExtractorKeywords;
 import knn_classification.knnNetwork;
 import program_performance.Stopwatch;
@@ -29,6 +30,7 @@ public class Main {
         // Extract vector pattern
         List<Extractor> extractors = new ArrayList<>();
         extractors.add(new ExtractorKeywords());
+        extractors.add(new ExtractorEntities());
         List<List<Object>> vector = MainExtractor.createVector(elements, extractors);
         System.out.println("T  Extract vector pattern: " + stopwatch.getTime() + "s");
 

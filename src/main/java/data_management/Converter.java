@@ -17,4 +17,16 @@ public class Converter {
         }
         return vector;
     }
+
+    public Map<Object, Float> articlesToVectorUseEntities(List<Object> articles) {
+        HashSet<String> words = new HashSet<>();
+        for(Object article : articles) {
+            words.addAll(((Article)article).getEntityMentions());
+        }
+        Map<Object, Float> vector = new HashMap<>();
+        for(String word : words) {
+            vector.put(word, 1.f);
+        }
+        return vector;
+    }
 }
