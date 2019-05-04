@@ -1,6 +1,7 @@
 import data_management.Article;
 import data_management.ConfigReader;
 import data_management.Elements;
+import extracting.ExtractorNerTags;
 import extracting.MainExtractor;
 import extracting.feature_extractors.Extractor;
 import extracting.feature_extractors.ExtractorEntities;
@@ -31,6 +32,7 @@ public class Main {
         List<Extractor> extractors = new ArrayList<>();
         extractors.add(new ExtractorKeywords());
         extractors.add(new ExtractorEntities());
+        extractors.add(new ExtractorNerTags());
         List<List<Object>> vector = MainExtractor.createVector(elements, extractors);
         System.out.println("T  Extract vector pattern: " + stopwatch.getTime() + "s");
 

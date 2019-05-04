@@ -63,6 +63,8 @@ public class ExtractorKeywords implements Extractor {
                 System.out.println("\t\t> " + s);
                 if (!vector.contains(s)) {
                     vector.add(s);
+                } else {
+                    vector.remove(s);
                 }
             }
         }
