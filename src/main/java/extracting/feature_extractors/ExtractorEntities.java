@@ -43,6 +43,15 @@ public class ExtractorEntities implements Extractor {
             }
             vectorPart.keySet().removeAll(toRemove);
 
+            // Update frequent words
+            for (Object o : elements.getTrainElementsForTag(tag)) {
+                for (String word : ((Article) o).getEntityMentions()) {
+                    if (vectorPart.containsKey(word)) {
+                        vectorPart.replace(word, vectorPart.get(word) + 1);
+                    }
+                }
+            }
+
             // Update value of first words
             for (Object o : elements.getTrainElementsForTag(tag)) {
                 int wordsCounter = 1;

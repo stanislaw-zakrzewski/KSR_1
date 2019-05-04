@@ -73,6 +73,20 @@ public class ExtractorNerTags implements Extractor {
             }
             vectorPart.keySet().removeAll(toRemove);
 
+            // Update frequent words
+            for (Object o : elements.getTrainElementsForTag(tag)) {
+                for(String nerTag : nerTags) {
+                    Article current = (Article)o;
+                    for (String key : current.getNerTags().keySet()) {
+                        if(nerTag.equals(current.getNerTags().get(key))) {
+                            if (vectorPart.containsKey(key)) {
+                                vectorPart.replace(key, vectorPart.get(key) + 1);
+                            }
+                        }
+                    }
+                }
+            }
+
             // Update value of first words
             for (Object o : elements.getTrainElementsForTag(tag)) {
                 int wordsCounter = 1;
