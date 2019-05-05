@@ -52,6 +52,6 @@ public class DataProcess {
             System.out.println(j++);
         }
 
-        WriteObjects.write(allArticles, "src/main/resources/extracted/reuters.txt");
+        WriteObjects.write(allArticles, "src/main/resources/extracted/test.txt");
     }
 }

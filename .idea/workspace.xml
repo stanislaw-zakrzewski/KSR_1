@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6e816c3-b9e1-4da4-adb0-30d6473a5151" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/ExtractorNerTags.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/ExtractorNerTags.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorKeywords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/extracting/feature_extractors/ExtractorKeywords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/stopwords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stopwords.txt" afterDir="false" />
-    </list>
+    <list default="true" id="e6e816c3-b9e1-4da4-adb0-30d6473a5151" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -159,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1294" />
@@ -270,7 +265,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DataProcess">
+    <configuration name="DataProcess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data_management.DataProcess" />
+      <module name="KSR.KSR_1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data_management.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="KSR.KSR_1" />
@@ -278,6 +286,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DataProcess" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -290,15 +303,15 @@
       <option name="presentableId" value="Default" />
       <updated>1556699495822</updated>
       <workItem from="1556699499118" duration="13057000" />
-      <workItem from="1556956732689" duration="2999000" />
+      <workItem from="1556956732689" duration="3336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16056000" />
+    <option name="totallyTimeSpent" value="16393000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1920" height="1050" extended-state="6" />
+    <frame x="-8" y="-8" width="1920" height="1050" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2524013" />
